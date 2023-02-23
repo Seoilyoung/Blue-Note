@@ -1,6 +1,6 @@
-[
-    {
-        "ID": "시로코", "Academy":"아비도스", "MainOparts":"파에스토스", "SubOparts":"보이니치",
+{
+    "시로코" : {
+        "Academy":"아비도스", "MainOparts":"파에스토스", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[13,11,11,9],
             "Sub":[0,32,27,19]
@@ -10,8 +10,8 @@
             "Sub":[0,0,0,10,19,17,9,16]
         }
     },
-    {
-        "ID": "호시노", "Academy":"아비도스", "MainOparts":"네브라", "SubOparts":"님루드",
+    "호시노" : {
+        "Academy":"아비도스", "MainOparts":"네브라", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[19,10,10,9],
             "Sub":[0,26,28,20]
@@ -21,8 +21,8 @@
             "Sub":[0,0,0,13,21,16,9,14]
         }
     },
-    {
-        "ID": "", "Academy":"", "MainOparts":"", "SubOparts":"",
+    "Default" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -32,4 +32,4 @@
             "Sub":[0,0,0,0,0,0,0,0]
         }
     }
-]
+}
