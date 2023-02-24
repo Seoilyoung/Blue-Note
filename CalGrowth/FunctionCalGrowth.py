@@ -20,8 +20,10 @@ list_oparts = ["네브라", "파에스토스", "볼프세크", "님루드", "만
 list_academy = ["백귀야행", "붉은겨울", "트리니티", "게헨나", "아비도스", "밀레니엄", "아리우스", "산해경", "발키리"]
 
 # 화면에서 받아오는걸로 변경 예정 (list로 받으니까 여러명 대응 필요)
-# 그냥 json으로 할까
-char_test = DataCharacter.dataset('시로코')
+# 그냥 json으로 할까 gui에서 받아오는 방식을 찾아보고 해야할듯
+# 계산하는거 먼저 만들고 이후에 여러명 적용.
+char_name = '시로코'
+char_test = DataCharacter.dataset(char_name)
 char_test.Level_current = 1
 char_test.Skill_current = [1,1,1,1]
 char_test.Level_goal = 80
@@ -32,42 +34,48 @@ with open('CalGrowth/Database.json','r',encoding='UTF-8') as j_database:
     json_datas = json.load(j_database)
 with open('CalGrowth/TableExp.json','r',encoding='UTF-8') as j_tableexp:
     json_table_exp = json.load(j_tableexp)
+with open('CalGrowth/TableCredit.json','r',encoding='UTF-8') as j_tablecredit:
+    json_table_credit = json.load(j_tablecredit)
+with open('CalGrowth/TableSkill.json','r',encoding='UTF-8') as j_tableskill:
+    json_table_skill = json.load(j_tableskill)
 # print(json.dumps(json_datas, ensure_ascii=False))
 
-# 학생별 레벨업 재화 계산
+print(json_datas)
+# 학생 레벨업 재화 계산
 for exp in json_table_exp['level']:
-    if int(exp) <= char_test.Level_goal:
-        data_preset1.Credit[1]+=json_table_exp['level'][exp]
-print(data_preset1.Credit[1])
+    if  (char_test.Level_current < int(exp)) and (int(exp) <= char_test.Level_goal):
+        data_preset1.Report += json_table_exp['level'][exp]
+data_preset1.Credit[1] += data_preset1.Report*7
+# 학생 BD 재화 계산
+for credit in json_table_credit['Skill_Bd']:
+    if (char_test.Skill_current[0] < int(credit)) and (int(credit) <= char_test.Skill_goal[0]):
+        data_preset1.Credit[0] += json_table_credit['Skill_Bd'][credit]
+        data_preset1.increase('Bd',json_datas[char_name]['Academy'],json_table_skill['Skill_Bd'][credit])
+        data_preset1.increaseOparts('OpartsBd', 'Main',json_datas[char_name]['MainOparts'],json_datas[char_name]['Skill_Bd']['Main'],credit)
+        data_preset1.increaseOparts('OpartsBd', 'Sub',json_datas[char_name]['SubOparts'],json_datas[char_name]['Skill_Bd']['Sub'],credit)
+# 학생 노트 재화 계산
+for credit in json_table_credit['Skill_Note']:
+    for i in range(1,4):
+        if (char_test.Skill_current[i] < int(credit)) and (int(credit) <= char_test.Skill_goal[i]):
+            if credit == '10':
+                data_preset1.ScretNote += 1
+                data_preset1.Credit[0] += json_table_credit['Skill_Note'][credit]
+            else:
+                data_preset1.Credit[0] += json_table_credit['Skill_Note'][credit]
+                data_preset1.increase('Note',json_datas[char_name]['Academy'],json_table_skill['Skill_Note'][credit])
+                data_preset1.increaseOparts('OpartsNote', 'Main',json_datas[char_name]['MainOparts'],json_datas[char_name]['Skill_Note']['Main'],credit)
+                data_preset1.increaseOparts('OpartsNote', 'Sub',json_datas[char_name]['SubOparts'],json_datas[char_name]['Skill_Note']['Sub'],credit)
+            
 
 
 
-
-
-
-
-
-
-
-
-
-
-# sum_note = 0
-# for json_data in json_datas :
-#     if json_data['MainOparts']=='보이니치':
-#         for i in range(0,4):
-#             data_preset1.Oparts['보이니치'][i] +=json_data['Skill_Bd']['Main'][i]
-#             # 보이니치 +=json_data['Skill_Note']['Main']
-#     if json_data['SubOparts']=='보이니치':
-#         for i in range(0,4):
-#             data_preset1.Oparts['보이니치'][i] +=json_data['Skill_Bd']['Sub'][i]
-#             # 보이니치 +=json_data['Skill_Note']['Sub']
-    
-# 밀레니엄 소속 T3 노트 개수
+print(data_preset1.all()) #임시확인용
 # 이런식으로 한땀한땀 변수에 저장해서 DataUserbase에 옮기기
 # 이렇게 우선 하고 좀더 시간 줄일만한거 생각해보기
 
 # DB 닫기
 j_database.close()
 j_tableexp.close()
+j_tablecredit.close()
+j_tableskill.close()
 # print(data_preset1.all())
