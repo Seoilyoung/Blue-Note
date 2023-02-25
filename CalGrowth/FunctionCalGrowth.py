@@ -22,12 +22,14 @@ list_academy = ["백귀야행", "붉은겨울", "트리니티", "게헨나", "�
 # 화면에서 받아오는걸로 변경 예정 (list로 받으니까 여러명 대응 필요)
 # 그냥 json으로 할까 gui에서 받아오는 방식을 찾아보고 해야할듯
 # 계산하는거 먼저 만들고 이후에 여러명 적용.
+#-------------------------------------------------------------------------------
 char_name = '시로코'
 char_test = DataCharacter.dataset(char_name)
 char_test.Level_current = 1
 char_test.Skill_current = [1,1,1,1]
 char_test.Level_goal = 80
 char_test.Skill_goal = [5,10,10,10]
+#-------------------------------------------------------------------------------
 
 # DB 열기
 with open('CalGrowth/Database.json','r',encoding='UTF-8') as j_database:
@@ -78,4 +80,3 @@ j_database.close()
 j_tableexp.close()
 j_tablecredit.close()
 j_tableskill.close()
-# print(data_preset1.all())
