@@ -4,6 +4,8 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QLabel, QWid
 from PyQt6.QtGui import QIcon,QAction,QPixmap, QFont
 from PyQt6.QtCore import Qt
 
+# 레이아웃 배경을 하얀색으로 하지 않고 회색 반투명으로 하고 글자색을 흰색으로 하면 더 완성도 있어 보인다.
+
 class MainWindow(QMainWindow):
 
     def __init__(self):
