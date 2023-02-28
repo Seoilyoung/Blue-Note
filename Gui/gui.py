@@ -1,44 +1,57 @@
 import sys
 
-from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QToolBar, QStatusBar
-from PyQt6.QtGui import QIcon,QAction
+from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QLabel, QWidget, QListWidget, QLineEdit
+from PyQt6.QtGui import QIcon,QAction,QPixmap, QFont
 from PyQt6.QtCore import Qt
 
-class Example(QMainWindow):
+class MainWindow(QMainWindow):
+
     def __init__(self):
         super().__init__()
-
-        self.init_ui()
-    
-    def init_ui(self):
-        self.statusBar().showMessage('Ready')
-
-        self.setGeometry(300,300,320,240)
+        pic = """
+            background-image:url(Gui/background.png);
+            background-repeat: no-repeat;
+            background-position: center;
+        """
+        # QMainWindow
         self.setWindowTitle('PyQt6 Example')
+        self.setStyleSheet(pic)
+        self.resize(1280,730)
+        # self.setMinimumSize(1280,730)
+        # self.setMaximumSize(1280,730)
+        # self.setWindowIcon(QIcon("abc/abc.ico"))
+        
+        # # Font
+        # self.font = QFont() 
+        # self.font.setFamily("Times nEw roman")
+        # self.font.setPointSize(20)
 
-        label = QLabel("Hello!")
-        label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.setCentralWidget(label)
+        # # Label
+        # widget = QLabel("Hello")
+        # font = widget.font()
+        # font.setPointSize(30)
+        # widget.setFont(font)
+        # widget.setAlignment(Qt.AlignmentFlag.AlignVCenter)
+        # self.setCentralWidget(widget)
 
-        toolbar = QToolBar("My Toolbar")
-        self.addToolBar(toolbar)
+        # ListWidget
+        listwidget = QListWidget()
+        listwidget.addItems(["list1 list1 list1", "list2 list2 list2", "list3 list3 list3"])
+        listwidget.currentItemChanged.connect(self.index_changed)
+        listwidget.currentItemChanged.connect(self.text_changed)
+        self.setCentralWidget(listwidget)
 
-        button_action = QAction("Your button", self)
-        button_action.setStatusTip("This is your button")
-        button_action.triggered.connect(self.onMyToolBarButtonClick)
-        button_action.setCheckable(True)
-        toolbar.addAction(button_action)
 
-        menu = self.menuBar()
-        file_menu = menu.addMenu("&File")
-        file_menu.addAction(button_action)
+    def index_changed(self, i):
+        print(i.text())
+    def text_changed(self, s):
+        print(s)
 
-        self.show()
+        
 
-    def onMyToolBarButtonClick(self, s):
-            print("click", s)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = Example()
+    window = MainWindow()
+    window.show()
     sys.exit(app.exec())
