@@ -21,3 +21,39 @@
 #   종류가 많음. 메모리 먹는거 확인하면서 선택.
 # - 트위치 스트리머 확인
 #   특정 스트리머 방송 켰는지 확인
+
+import sys
+
+from PyQt6.QtWidgets import QApplication, QMainWindow
+from Gui_Main.MainActivity import Ui_MainWindow
+from Gui_CalGrowth.CalGrowthActivity import Ui_CalGrowthWindow
+
+class MainWindow(QMainWindow, Ui_MainWindow):
+    def __init__(self, *args, obj=None, **kwargs):
+        super(MainWindow, self).__init__(*args, **kwargs)
+        self.setupUi(self)
+
+    def CalGrowth(self):
+        print("여기")
+        self.hide()
+        self.calgrowth = CalGrowthWindow()
+        self.calgrowth.app.exec()
+        self.show()
+
+class CalGrowthWindow(QMainWindow, Ui_CalGrowthWindow):
+    def __init__(self, *args, obj=None, **kwargs):
+        super(CalGrowthWindow, self).__init__(*args, **kwargs)
+        self.setupUi(self)
+
+            
+    def btn_home(self):
+        self.hide()
+        self.home = MainWindow()
+        self.home.show()
+        sys.exit(app.exec())
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())

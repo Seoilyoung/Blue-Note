@@ -20,8 +20,7 @@ class Ui_Dialog(object):
         self.widget.setObjectName("widget")
         self.label = QtWidgets.QLabel(parent=self.widget)
         self.label.setGeometry(QtCore.QRect(0, 0, 1280, 730))
-        self.label.setStyleSheet("border-image: url(Gui/images/background.png)\n"
-"")
+        self.label.setStyleSheet("border-image: url(Gui/images/background.png)\n")
         self.label.setText("")
         self.label.setObjectName("label")
         self.ImageViewer = QtWidgets.QScrollArea(parent=self.widget)
@@ -37,7 +36,7 @@ class Ui_Dialog(object):
         self.ImageViewer.setWidget(self.scrollAreaWidgetContents)
         self.label_2 = QtWidgets.QLabel(parent=self.widget)
         self.label_2.setGeometry(QtCore.QRect(1200, 0, 80, 730))
-        self.label_2.setStyleSheet("background-color:gba(0,0,0,80);")
+        self.label_2.setStyleSheet("background-color:rgba(0,0,0,80);")
         self.label_2.setText("")
         self.label_2.setObjectName("label_2")
         self.Notice = QtWidgets.QScrollArea(parent=self.widget)
@@ -90,7 +89,7 @@ class Ui_Dialog(object):
         self.scrollAreaWidgetContents_6.setObjectName("scrollAreaWidgetContents_6")
         self.pushButton_AP = QtWidgets.QPushButton(parent=self.scrollAreaWidgetContents_6)
         self.pushButton_AP.setGeometry(QtCore.QRect(0, 0, 40, 40))
-        self.pushButton_AP.setObjectName("pushButton_AP")
+        self.pushButton_AP.setObjectName("pushButton_CalGrowth")
         self.icon_apguide.setWidget(self.scrollAreaWidgetContents_6)
         self.icon_calculater = QtWidgets.QScrollArea(parent=self.widget)
         self.icon_calculater.setGeometry(QtCore.QRect(1220, 360, 40, 40))
@@ -106,7 +105,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle("Blue Scheduler")
         self.textEdit_3.setHtml(_translate("Dialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
