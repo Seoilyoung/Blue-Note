@@ -1,59 +1,22 @@
+import os
 import sys
+from PyQt6.QtWidgets import *
+from PyQt6 import uic
 
-from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QLabel, QWidget, QListWidget, QLineEdit
-from PyQt6.QtGui import QIcon,QAction,QPixmap, QFont
-from PyQt6.QtCore import Qt
+def resource_path(relative_path):
+    base_path = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
 
-# 레이아웃 배경을 하얀색으로 하지 않고 회색 반투명으로 하고 글자색을 흰색으로 하면 더 완성도 있어 보인다.
+form = resource_path('MainActivity.ui')
+form_class = uic.loadUiType(form)[0]
 
-class MainWindow(QMainWindow):
-
+class MainWindow(QMainWindow, form_class):
     def __init__(self):
         super().__init__()
-        pic = """
-            background-image:url(Gui/background.png);
-            background-repeat: no-repeat;
-            background-position: center;
-        """
-        # QMainWindow
-        self.setWindowTitle('PyQt6 Example')
-        self.setStyleSheet(pic)
-        self.resize(1280,730)
-        # self.setMinimumSize(1280,730)
-        # self.setMaximumSize(1280,730)
-        # self.setWindowIcon(QIcon("abc/abc.ico"))
-        
-        # # Font
-        # self.font = QFont() 
-        # self.font.setFamily("Times nEw roman")
-        # self.font.setPointSize(20)
-
-        # # Label
-        # widget = QLabel("Hello")
-        # font = widget.font()
-        # font.setPointSize(30)
-        # widget.setFont(font)
-        # widget.setAlignment(Qt.AlignmentFlag.AlignVCenter)
-        # self.setCentralWidget(widget)
-
-        # ListWidget
-        listwidget = QListWidget()
-        listwidget.addItems(["list1 list1 list1", "list2 list2 list2", "list3 list3 list3"])
-        listwidget.currentItemChanged.connect(self.index_changed)
-        listwidget.currentItemChanged.connect(self.text_changed)
-        self.setCentralWidget(listwidget)
-
-
-    def index_changed(self, i):
-        print(i.text())
-    def text_changed(self, s):
-        print(s)
-
-        
-
+        self.setupUi(self)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = MainWindow()
-    window.show()
+    myWindow = MainWindow()
+    myWindow.show()
     sys.exit(app.exec())
