@@ -23,34 +23,43 @@
 #   특정 스트리머 방송 켰는지 확인
 
 import sys
+from PyQt6.QtWidgets import QApplication, QMainWindow, QStackedWidget
+from PyQt6.uic import loadUi
+from PyQt6.QtGui import QPixmap
+import ApGuide.FunctionApGuide
 
-from PyQt6.QtWidgets import QApplication, QMainWindow
-from Gui_Main.MainActivity import Ui_MainWindow
-from Gui_CalGrowth.CalGrowthActivity import Ui_CalGrowthWindow
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        loadUi('Gui/Screen.ui', self)
+        pixmap = QPixmap('Gui/images/background.png')
+        self.label.setPixmap(pixmap)
 
-class MainWindow(QMainWindow, Ui_MainWindow):
-    def __init__(self, *args, obj=None, **kwargs):
-        super(MainWindow, self).__init__(*args, **kwargs)
-        self.setupUi(self)
+        # 버튼 연결 - 메뉴바
+        self.button_screen_menu1.clicked.connect(self.show_screen1)
+        self.button_screen_menu2.clicked.connect(self.show_screen2)
+        self.button_screen_menu3.clicked.connect(self.show_screen3)
+        self.button_screen_menu4.clicked.connect(self.show_screen4)
+        
+        # 버튼 연결 - AP 가이드
+        self.button_screen_ap1.clicked.connect(self.ap_image_check)
+        self.button_screen_ap2.clicked.connect(self.ap_image_save)
 
-    def CalGrowth(self):
-        print("여기")
-        self.hide()
-        self.calgrowth = CalGrowthWindow()
-        self.calgrowth.app.exec()
-        self.show()
+    # 버튼 기능 - 메뉴바
+    def show_screen1(self):
+        self.stackedWidget.setCurrentIndex(0)
+    def show_screen2(self):
+        self.stackedWidget.setCurrentIndex(1)
+    def show_screen3(self):
+        self.stackedWidget.setCurrentIndex(2)
+    def show_screen4(self):
+        self.stackedWidget.setCurrentIndex(3)
 
-class CalGrowthWindow(QMainWindow, Ui_CalGrowthWindow):
-    def __init__(self, *args, obj=None, **kwargs):
-        super(CalGrowthWindow, self).__init__(*args, **kwargs)
-        self.setupUi(self)
-
-            
-    def btn_home(self):
-        self.hide()
-        self.home = MainWindow()
-        self.home.show()
-        sys.exit(app.exec())
+    # 버튼 기능 - AP 가이드
+    def ap_image_check(self):
+        print("check")
+    def ap_image_save(self):
+        print("save image")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
