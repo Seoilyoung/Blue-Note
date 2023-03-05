@@ -33,16 +33,16 @@ from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtCore import QDate, QTimer
 import ApGuide.FunctionApGuide as ApGuide
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        ui_path = 'Gui/Screen.ui'
         img_back_path = 'Gui/images/28.png'
         icon_path = 'Gui/images/1-9.png'
         window_title = '블루 스케줄러'
 
-        loadUi(ui_path, self)
+        loadUi('Gui\Screen.ui',self)
         
         pixmap = QPixmap(img_back_path)
         self.label.setPixmap(pixmap)
@@ -94,7 +94,7 @@ class MainWindow(QMainWindow):
         self.timer = QTimer()
         self.timer.start(1500)
         self.timer.timeout.connect(self.change_label_color2)
-
+    
     def change_label_color1(self):
         self.label_ap6.setStyleSheet("background-color: rgba(0,0,0,210); color:rgba(255,255,255,210); border-radius:20px;")
     def change_label_color2(self):
@@ -105,7 +105,6 @@ class MainWindow(QMainWindow):
         if os.path.isdir('Images') == False:
             os.mkdir('Images')
         folder_path = os.path.dirname(__file__)
-        print(folder_path)
         explorer_command = "explorer.exe"
         subprocess.Popen([explorer_command, folder_path+'\Images'])
 
