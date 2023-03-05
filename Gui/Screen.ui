@@ -675,6 +675,35 @@ QPushButton:clicked{
         <string>경로</string>
        </property>
       </widget>
+      <widget class="QLabel" name="label_ap6">
+       <property name="geometry">
+        <rect>
+         <x>540</x>
+         <y>315</y>
+         <width>200</width>
+         <height>100</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>배달의민족 주아</family>
+         <pointsize>15</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0,0,0,0);
+color:rgba(255,255,255,0);
+border-radius:20px;</string>
+       </property>
+       <property name="text">
+        <string>저장 성공</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QLabel" name="label">

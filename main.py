@@ -22,24 +22,36 @@
 # - 트위치 스트리머 확인
 #   특정 스트리머 방송 켰는지 확인
 
+# - 이미지 출처 : 블루 아카이브 디지털 굿즈샵 (https://forum.nexon.com/bluearchive/board_view?thread=1881343)
+
 import sys
 import os
 import subprocess
-from PyQt6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QDateEdit
+from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.uic import loadUi
-from PyQt6.QtGui import QPixmap
-from PyQt6.QtCore import QDate, Qt
-from datetime import datetime
+from PyQt6.QtGui import QPixmap, QIcon
+from PyQt6.QtCore import QDate, QTimer
 import ApGuide.FunctionApGuide as ApGuide
 
 class MainWindow(QMainWindow):
     def __init__(self):
-        super(MainWindow, self).__init__()
+        super().__init__()
+        
         ui_path = 'Gui/Screen.ui'
-        img_back_path = 'Gui/images/background.png'
+        img_back_path = 'Gui/images/28.png'
+        icon_path = 'Gui/images/1-9.png'
+        window_title = '블루 스케줄러'
+
         loadUi(ui_path, self)
+        
         pixmap = QPixmap(img_back_path)
         self.label.setPixmap(pixmap)
+        self.label.setScaledContents(True)
+
+        icon = QIcon(icon_path)
+        self.setWindowIcon(icon)
+        self.setWindowTitle(window_title)
+
         self.dateEdit_ap1.setDate(QDate.currentDate())
 
         # 버튼 연결 - 메뉴바
@@ -69,16 +81,33 @@ class MainWindow(QMainWindow):
         time_start_str = self.timeEdit_ap1.time().toString('hh:mm')
         time_end_str = self.timeEdit_ap2.time().toString('hh:mm')
         time_spare_str = self.spinBox_ap1.value()
-        print(event_str)
-        print('점검일 :',date_str)
-        print(time_start_str)
-        print(time_end_str)
-        print(time_spare_str)
+        ApGuide.ImgSave(event_str, date_str, time_start_str, time_end_str, time_spare_str)
+
+        filepath = 'Images/'+event_str+' AP 가이드.webp'
+        if os.path.exists(filepath):
+            self.label_ap5.setPixmap(QPixmap(filepath))
+            self.label_ap5.setScaledContents(True) 
+        else:
+            print("NO FILE")
+       
+        self.change_label_color1()
+        self.timer = QTimer()
+        self.timer.start(1500)
+        self.timer.timeout.connect(self.change_label_color2)
+
+    def change_label_color1(self):
+        self.label_ap6.setStyleSheet("background-color: rgba(0,0,0,210); color:rgba(255,255,255,210); border-radius:20px;")
+    def change_label_color2(self):
+        self.timer.stop()
+        self.label_ap6.setStyleSheet("background-color: rgba(0,0,0,0); color:rgba(255,255,255,0); border-radius:20px;")
 
     def ap_image_link(self):
+        if os.path.isdir('Images') == False:
+            os.mkdir('Images')
         folder_path = os.path.dirname(__file__)
+        print(folder_path)
         explorer_command = "explorer.exe"
-        subprocess.Popen([explorer_command, folder_path])
+        subprocess.Popen([explorer_command, folder_path+'\Images'])
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
