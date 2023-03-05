@@ -381,23 +381,10 @@ p, li { white-space: pre-wrap; }
       <zorder>tableView_4</zorder>
      </widget>
      <widget class="QWidget" name="page_4">
-      <widget class="QTextBrowser" name="textBrowser_2">
+      <widget class="QPushButton" name="button_ap1">
        <property name="geometry">
         <rect>
-         <x>720</x>
-         <y>60</y>
-         <width>387</width>
-         <height>561</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color:rgb(0,0,0,50)</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="button_screen_ap2">
-       <property name="geometry">
-        <rect>
-         <x>520</x>
+         <x>460</x>
          <y>200</y>
          <width>40</width>
          <height>40</height>
@@ -448,8 +435,15 @@ QPushButton:clicked{
          <bold>true</bold>
         </font>
        </property>
+       <property name="time">
+        <time>
+         <hour>11</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
       </widget>
-      <widget class="QDateEdit" name="dateEdit_ap">
+      <widget class="QDateEdit" name="dateEdit_ap1">
        <property name="geometry">
         <rect>
          <x>100</x>
@@ -466,8 +460,21 @@ QPushButton:clicked{
          <bold>true</bold>
         </font>
        </property>
+       <property name="time">
+        <time>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
+       <property name="displayFormat">
+        <string>yyyy/MM/dd</string>
+       </property>
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
       </widget>
-      <widget class="QLabel" name="label_ap1">
+      <widget class="QLabel" name="label_ap2">
        <property name="geometry">
         <rect>
          <x>15</x>
@@ -505,8 +512,15 @@ QPushButton:clicked{
          <bold>true</bold>
         </font>
        </property>
+       <property name="time">
+        <time>
+         <hour>16</hour>
+         <minute>0</minute>
+         <second>0</second>
+        </time>
+       </property>
       </widget>
-      <widget class="QLabel" name="label_ap2">
+      <widget class="QLabel" name="label_ap3">
        <property name="geometry">
         <rect>
          <x>410</x>
@@ -527,10 +541,107 @@ QPushButton:clicked{
         <string>~</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="button_screen_ap1">
+      <widget class="QLabel" name="label_ap1">
        <property name="geometry">
         <rect>
-         <x>460</x>
+         <x>15</x>
+         <y>90</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>배달의민족 주아</family>
+         <pointsize>15</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>이벤트명</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="textEdit_ap1">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>87</y>
+         <width>300</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>배달의민족 주아</family>
+         <pointsize>15</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_ap4">
+       <property name="geometry">
+        <rect>
+         <x>15</x>
+         <y>190</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>배달의민족 주아</family>
+         <pointsize>15</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>여유 시간</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="spinBox_ap1">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>187</y>
+         <width>51</width>
+         <height>35</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>배달의민족 주아</family>
+         <pointsize>15</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="value">
+        <number>3</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_ap5">
+       <property name="geometry">
+        <rect>
+         <x>720</x>
+         <y>60</y>
+         <width>387</width>
+         <height>567</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgba(0,0,0,50)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="button_ap2">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
          <y>200</y>
          <width>40</width>
          <height>40</height>
@@ -538,7 +649,7 @@ QPushButton:clicked{
        </property>
        <property name="font">
         <font>
-         <family>Segoe MDL2 Assets</family>
+         <family>배달의민족 주아</family>
          <pointsize>15</pointsize>
          <weight>75</weight>
          <bold>true</bold>
@@ -561,46 +672,7 @@ QPushButton:clicked{
 </string>
        </property>
        <property name="text">
-        <string></string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_ap1_2">
-       <property name="geometry">
-        <rect>
-         <x>15</x>
-         <y>90</y>
-         <width>81</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>배달의민족 주아</family>
-         <pointsize>15</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>이벤트명</string>
-       </property>
-      </widget>
-      <widget class="QTextEdit" name="textEdit_5">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>87</y>
-         <width>300</width>
-         <height>35</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>배달의민족 주아</family>
-         <pointsize>15</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
+        <string>경로</string>
        </property>
       </widget>
      </widget>

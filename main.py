@@ -23,17 +23,24 @@
 #   특정 스트리머 방송 켰는지 확인
 
 import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow, QStackedWidget
+import os
+import subprocess
+from PyQt6.QtWidgets import QApplication, QMainWindow, QStackedWidget, QDateEdit
 from PyQt6.uic import loadUi
 from PyQt6.QtGui import QPixmap
-import ApGuide.FunctionApGuide
+from PyQt6.QtCore import QDate, Qt
+from datetime import datetime
+import ApGuide.FunctionApGuide as ApGuide
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
-        loadUi('Gui/Screen.ui', self)
-        pixmap = QPixmap('Gui/images/background.png')
+        ui_path = 'Gui/Screen.ui'
+        img_back_path = 'Gui/images/background.png'
+        loadUi(ui_path, self)
+        pixmap = QPixmap(img_back_path)
         self.label.setPixmap(pixmap)
+        self.dateEdit_ap1.setDate(QDate.currentDate())
 
         # 버튼 연결 - 메뉴바
         self.button_screen_menu1.clicked.connect(self.show_screen1)
@@ -42,8 +49,8 @@ class MainWindow(QMainWindow):
         self.button_screen_menu4.clicked.connect(self.show_screen4)
         
         # 버튼 연결 - AP 가이드
-        self.button_screen_ap1.clicked.connect(self.ap_image_check)
-        self.button_screen_ap2.clicked.connect(self.ap_image_save)
+        self.button_ap1.clicked.connect(self.ap_image_save)
+        self.button_ap2.clicked.connect(self.ap_image_link)
 
     # 버튼 기능 - 메뉴바
     def show_screen1(self):
@@ -56,10 +63,22 @@ class MainWindow(QMainWindow):
         self.stackedWidget.setCurrentIndex(3)
 
     # 버튼 기능 - AP 가이드
-    def ap_image_check(self):
-        print("check")
     def ap_image_save(self):
-        print("save image")
+        event_str = self.textEdit_ap1.toPlainText()
+        date_str = self.dateEdit_ap1.date().toString('yyyy/MM/dd')
+        time_start_str = self.timeEdit_ap1.time().toString('hh:mm')
+        time_end_str = self.timeEdit_ap2.time().toString('hh:mm')
+        time_spare_str = self.spinBox_ap1.value()
+        print(event_str)
+        print('점검일 :',date_str)
+        print(time_start_str)
+        print(time_end_str)
+        print(time_spare_str)
+
+    def ap_image_link(self):
+        folder_path = os.path.dirname(__file__)
+        explorer_command = "explorer.exe"
+        subprocess.Popen([explorer_command, folder_path])
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
