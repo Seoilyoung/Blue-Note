@@ -10,10 +10,6 @@ from typing import List
 # <a href="https://kr.freepik.com/free-photo/white-crumpled-paper-texture-for-background_1189775.htm">
 # 작가 aopsan</a> 출처 Freepik
 
-def __init__(self):
-     print('init')
-
-
 def ImgSave(event_name, date, time_start, time_end, remain_time):
 
     # 입력 변수 정의

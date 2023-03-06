@@ -34,6 +34,7 @@ from PyQt6.QtCore import QDate, QTimer
 import ApGuide.FunctionApGuide as ApGuide
 
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -52,15 +53,26 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(icon)
         self.setWindowTitle(window_title)
 
-        self.dateEdit_ap1.setDate(QDate.currentDate())
 
-        # 버튼 연결 - 메뉴바
+        # 메뉴바
         self.button_screen_menu1.clicked.connect(self.show_screen1)
         self.button_screen_menu2.clicked.connect(self.show_screen2)
         self.button_screen_menu3.clicked.connect(self.show_screen3)
         self.button_screen_menu4.clicked.connect(self.show_screen4)
-        
-        # 버튼 연결 - AP 가이드
+
+        # Home
+        # self.graphicsView_home = SlideShow()
+        # files = os.listdir('Posts/Images')
+        # files_path = ['Posts/Images' + file for file in files]
+        # self.graphicsView_home.setFilenames(files_path)
+        # self.graphicsView_home.setBottomButtonVisible(False)
+        # self.graphicsView_home.setInterval(3000)
+        # 이게 QtPy5용이라서 바로 적용이 안됨. 방법 찾는중
+
+
+        # AP 가이드
+        self.dateEdit_ap1.setDate(QDate.currentDate())
+
         self.button_ap1.clicked.connect(self.ap_image_save)
         self.button_ap2.clicked.connect(self.ap_image_link)
 
