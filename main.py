@@ -27,12 +27,13 @@
 import sys
 import os
 import subprocess
+import webbrowser
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.uic import loadUi
 from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtCore import QDate, QTimer
 import ApGuide.FunctionApGuide as ApGuide
-
+import Posts.FunctionPosts as Posts
 
 
 class MainWindow(QMainWindow):
@@ -60,14 +61,19 @@ class MainWindow(QMainWindow):
         self.button_screen_menu3.clicked.connect(self.show_screen3)
         self.button_screen_menu4.clicked.connect(self.show_screen4)
 
-        # Home
-        # self.graphicsView_home = SlideShow()
-        # files = os.listdir('Posts/Images')
-        # files_path = ['Posts/Images' + file for file in files]
-        # self.graphicsView_home.setFilenames(files_path)
-        # self.graphicsView_home.setBottomButtonVisible(False)
-        # self.graphicsView_home.setInterval(3000)
-        # 이게 QtPy5용이라서 바로 적용이 안됨. 방법 찾는중
+        # Home - 슬라이드쇼
+        self.url = Posts.getImages()
+        self.label_slide_home.setScaledContents(True)
+        if os.path.isdir('Posts/Images'):
+            files = os.listdir('Posts/Images')
+            files_path = ['Posts/Images/' + file for file in files]
+            self.images = files_path
+            self.current_image = 0
+            self.setImage()
+            self.timer = QTimer()
+            self.timer.timeout.connect(self.next_image)
+            self.timer.start(3000)
+        self.pushButton_slide_home.clicked.connect(self.clicked_image)
 
 
         # AP 가이드
@@ -85,6 +91,16 @@ class MainWindow(QMainWindow):
         self.stackedWidget.setCurrentIndex(2)
     def show_screen4(self):
         self.stackedWidget.setCurrentIndex(3)
+
+    # 슬라이드쇼 - Home
+    def setImage(self):
+        pixmap = QPixmap(self.images[self.current_image])
+        self.label_slide_home.setPixmap(pixmap)
+    def next_image(self):
+        self.current_image = (self.current_image + 1) % len(self.images)
+        self.setImage()
+    def clicked_image(self):
+        webbrowser.open_new_tab(self.url)
 
     # 버튼 기능 - AP 가이드
     def ap_image_save(self):

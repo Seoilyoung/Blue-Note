@@ -251,7 +251,7 @@ p, li { white-space: pre-wrap; }
         </widget>
        </widget>
       </widget>
-      <widget class="QGraphicsView" name="graphicsView_home">
+      <widget class="QLabel" name="label_slide_home">
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -259,6 +259,40 @@ p, li { white-space: pre-wrap; }
          <width>390</width>
          <height>219</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>ArrowCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:gba(0,0,0,80);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_slide_home">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>230</y>
+         <width>390</width>
+         <height>219</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgba(0,0,0,0);
+}
+QPushButton:hover{
+}
+QPushButton:clicked{
+}</string>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
