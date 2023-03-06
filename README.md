@@ -1,7 +1,7 @@
 # Blue-Scheduler
 블루아카이브 일정 관리 프로그램
 
-개발 언어 : python
+개발 언어 : python 3.11.2
 
 1. Home
   1) 공지가 올라오는 사이트 크롤링
