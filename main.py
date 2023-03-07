@@ -32,8 +32,9 @@ from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.uic import loadUi
 from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtCore import QDate, QTimer
+from PyQt6.QtWidgets import QGraphicsDropShadowEffect, QTableWidgetItem
 import ApGuide.FunctionApGuide as ApGuide
-import Posts.FunctionPosts as Posts
+from Posts.FunctionPosts import Posts
 
 
 class MainWindow(QMainWindow):
@@ -54,7 +55,6 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(icon)
         self.setWindowTitle(window_title)
 
-
         # 메뉴바
         self.button_screen_menu1.clicked.connect(self.show_screen1)
         self.button_screen_menu2.clicked.connect(self.show_screen2)
@@ -62,8 +62,10 @@ class MainWindow(QMainWindow):
         self.button_screen_menu4.clicked.connect(self.show_screen4)
 
         # Home - 슬라이드쇼
-        self.url = Posts.getImages()
+        posts = Posts()
+        # self.url_slideshow = posts.getImages()
         self.label_slide_home.setScaledContents(True)
+        self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         if os.path.isdir('Posts/Images'):
             files = os.listdir('Posts/Images')
             files_path = ['Posts/Images/' + file for file in files]
@@ -75,6 +77,16 @@ class MainWindow(QMainWindow):
             self.timer.start(3000)
         self.pushButton_slide_home.clicked.connect(self.clicked_image)
 
+        # Home - 주요소식
+        self.tabWidget_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+        list_maintopic = posts.getMainTopic()
+        n=0
+        for item in list_maintopic:
+            self.tableWidget_home_maintopic.setItem(n,0,QTableWidgetItem(item['title']))
+            self.tableWidget_home_maintopic.setItem(n,1,QTableWidgetItem(item['link']))
+            self.tableWidget_home_maintopic.setItem(n,2,QTableWidgetItem(item['date']))
+            n+=1
+            # 이거 테이블위젯? 리스트위젯?
 
         # AP 가이드
         self.dateEdit_ap1.setDate(QDate.currentDate())
@@ -100,7 +112,7 @@ class MainWindow(QMainWindow):
         self.current_image = (self.current_image + 1) % len(self.images)
         self.setImage()
     def clicked_image(self):
-        webbrowser.open_new_tab(self.url)
+        webbrowser.open_new_tab(self.url_slideshow)
 
     # 버튼 기능 - AP 가이드
     def ap_image_save(self):
