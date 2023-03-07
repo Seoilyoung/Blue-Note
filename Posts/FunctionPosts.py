@@ -1,20 +1,28 @@
 from selenium import webdriver
+from selenium.webdriver.edge.service import Service
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from bs4 import BeautifulSoup
 from datetime import datetime
 import urllib.request
 import os, glob
+
+base_url = 'https://forum.nexon.com/bluearchive/'
+
 class Posts():
     def __init__(self):
         super().__init__()
         options = webdriver.EdgeOptions()
-        options.add_experimental_option("excludeSwitches", ["enable-logging"])
+        options.add_argument("disable-logging")
         options.add_argument("headless")
-        self.driver = webdriver.Edge('msedgedriver.exe',options=options)
+        self.driver = webdriver.Edge(options=options, executable_path=EdgeChromiumDriverManager().install())
 
     def getImages(self):
-        url = 'https://forum.nexon.com/bluearchive/board_view?board=1076&thread=2035425&stickyBoard=1'
+        url_titlesearch = base_url + '/board_list?keywords=%EC%83%81%EC%84%B8&board=1076&searchKeywordType=THREAD_TITLE'
+        self.driver.get(url_titlesearch)
+        soup = BeautifulSoup(self.driver.page_source, 'lxml')
+        post_url = base_url + soup.select('body div.list-box a')[0].get('href')
 
-        self.driver.get(url)
+        self.driver.get(post_url)
 
         soup = BeautifulSoup(self.driver.page_source, 'lxml')
         posts = soup.select('body div.board-view div.section-bot div.view-box div.txt.note-editor p')
@@ -37,12 +45,10 @@ class Posts():
                         img = f.read()
                         h.write(img)
                 n += 1
-        return url
+        return post_url
 
     def getMainTopic(self):
-        url = 'https://forum.nexon.com/bluearchive/'
-
-        self.driver.get(url)
+        self.driver.get(base_url)
 
         soup = BeautifulSoup(self.driver.page_source, 'lxml')
         soup_extract = soup.body.extract()

@@ -63,7 +63,7 @@ class MainWindow(QMainWindow):
 
         # Home - 슬라이드쇼
         posts = Posts()
-        # self.url_slideshow = posts.getImages()
+        self.url_slideshow = posts.getImages()
         self.label_slide_home.setScaledContents(True)
         self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         if os.path.isdir('Posts/Images'):
