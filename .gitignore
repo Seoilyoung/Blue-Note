@@ -1,2 +1,7 @@
+# 임시파일
 *.pyc
 __pycache__/
+
+#결과 이미지 폴더
+Posts/Images
+Images

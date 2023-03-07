@@ -1,12 +1,12 @@
 from selenium import webdriver
-from selenium.webdriver.edge.service import Service
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from bs4 import BeautifulSoup
 from datetime import datetime
 import urllib.request
-import os, glob
+import os
+import glob
 
-base_url = 'https://forum.nexon.com/bluearchive/'
+BASE_URL = 'https://forum.nexon.com/bluearchive/'
 
 class Posts():
     def __init__(self):
@@ -16,39 +16,48 @@ class Posts():
         options.add_argument("headless")
         self.driver = webdriver.Edge(options=options, executable_path=EdgeChromiumDriverManager().install())
 
+    def __del__(self):
+        self.driver.quit()
+
+    def download_image(self, url, filename):
+        with urllib.request.urlopen(url) as response:
+            with open(filename, 'wb') as file:
+                file.write(response.read())
+
     def getImages(self):
-        url_titlesearch = base_url + '/board_list?keywords=%EC%83%81%EC%84%B8&board=1076&searchKeywordType=THREAD_TITLE'
-        self.driver.get(url_titlesearch)
-        soup = BeautifulSoup(self.driver.page_source, 'lxml')
-        post_url = base_url + soup.select('body div.list-box a')[0].get('href')
+        url_search = BASE_URL + '/board_list?keywords=%EC%83%81%EC%84%B8&board=1076&searchKeywordType=THREAD_TITLE'
+        self.driver.get(url_search)
+        soup_search = BeautifulSoup(self.driver.page_source, 'lxml')
+        post_url = BASE_URL + soup_search.select('body div.list-box a')[0].get('href')
 
         self.driver.get(post_url)
 
         soup = BeautifulSoup(self.driver.page_source, 'lxml')
         posts = soup.select('body div.board-view div.section-bot div.view-box div.txt.note-editor p')
 
-        if os.path.isdir('./Posts/Images') == False:
+        if not os.path.isdir('./Posts/Images'):
             os.mkdir('./Posts/Images')
-        [os.remove(f) for f in glob.glob("./Posts/Images/*.png")]
+        
+        for file in glob.glob("./Posts/Images/*.png"):
+            os.remove(file)
+
         n=1
         for post in posts:
             img = post.find('img')
-            if(img != None) and img.get('width') == '780' and img.get('height') == '438':    
-                imgUrl = img.get('src')
-                name, ext = os.path.splitext(imgUrl)
-                with urllib.request.urlopen(imgUrl) as f:
-                    if n<10:
-                        str_n = '0' + str(n)
-                    else:
-                        str_n = str(n)
-                    with open('./Posts/Images/' + str_n + '.png', 'wb') as h:
-                        img = f.read()
-                        h.write(img)
-                n += 1
+            if img and img.get('width') == '780' and img.get('height') == '438':    
+                img_url = img.get('src')
+                name, ext = os.path.splitext(img_url)
+                filename = f"./Posts/Images/{n:02}.png"
+                try:
+                    self.download_image(img_url, filename)
+                    n += 1
+                except Exception as e:
+                    print(f"Error download image {img_url}: {e}")
+
         return post_url
 
     def getMainTopic(self):
-        self.driver.get(base_url)
+        self.driver.get(BASE_URL)
 
         soup = BeautifulSoup(self.driver.page_source, 'lxml')
         soup_extract = soup.body.extract()
@@ -56,13 +65,18 @@ class Posts():
 
         list_post = []
         for post in posts:
-            if post.find('h3') != None:
+            if post.find('h3') is not None:
                 # category = post.find('span',class_= 'key-color').text.strip()
                 # icon = post.find('span',class_='icon-new')
                 title = post.find('h3').text.strip()
                 link = post.find('a').get('href')
-                date = datetime.strptime(post.find('span', {'class':'date'}).text, '%Y.%m.%d').strftime('%m/%d')
+                date_str = post.find('span', {'class':'date'})
+                if date_str is not None:
+                    date = datetime.strptime(date_str.text, '%Y.%m.%d').strftime('%m/%d')
+                else:
+                    date = ''
                 list_post.append({"title":title, "link":link, "date":date})
+                
         return list_post
     
     def getNotice(self):
