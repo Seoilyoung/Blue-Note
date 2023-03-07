@@ -28,11 +28,17 @@ import sys
 import os
 import subprocess
 import webbrowser
-from PyQt6.QtWidgets import QApplication, QMainWindow
-from PyQt6.uic import loadUi
-from PyQt6.QtGui import QPixmap, QIcon
+
 from PyQt6.QtCore import QDate, QTimer
-from PyQt6.QtWidgets import QGraphicsDropShadowEffect, QTableWidgetItem
+from PyQt6.QtGui import QPixmap, QIcon
+from PyQt6.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QGraphicsDropShadowEffect,
+    QTableWidgetItem
+)
+from PyQt6.uic import loadUi
+
 import ApGuide.FunctionApGuide as ApGuide
 from Posts.FunctionPosts import Posts
 
@@ -56,10 +62,11 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(window_title)
 
         # 메뉴바
-        self.button_screen_menu1.clicked.connect(self.show_screen1)
-        self.button_screen_menu2.clicked.connect(self.show_screen2)
-        self.button_screen_menu3.clicked.connect(self.show_screen3)
-        self.button_screen_menu4.clicked.connect(self.show_screen4)
+        self.button_screen_menu1.clicked.connect(lambda: self.show_screen(0))
+        self.button_screen_menu1.clicked.connect(lambda: self.show_screen(1))
+        self.button_screen_menu1.clicked.connect(lambda: self.show_screen(2))
+        self.button_screen_menu1.clicked.connect(lambda: self.show_screen(3))
+
 
         # Home - 슬라이드쇼
         posts = Posts()
@@ -94,15 +101,10 @@ class MainWindow(QMainWindow):
         self.button_ap1.clicked.connect(self.ap_image_save)
         self.button_ap2.clicked.connect(self.ap_image_link)
 
+
     # 버튼 기능 - 메뉴바
-    def show_screen1(self):
-        self.stackedWidget.setCurrentIndex(0)
-    def show_screen2(self):
-        self.stackedWidget.setCurrentIndex(1)
-    def show_screen3(self):
-        self.stackedWidget.setCurrentIndex(2)
-    def show_screen4(self):
-        self.stackedWidget.setCurrentIndex(3)
+    def show_screen(self, index):
+        self.stackedWideget.setCurrentIndex(index)
 
     # 슬라이드쇼 - Home
     def setImage(self):
@@ -137,6 +139,7 @@ class MainWindow(QMainWindow):
     
     def change_label_color1(self):
         self.label_ap6.setStyleSheet("background-color: rgba(0,0,0,210); color:rgba(255,255,255,210); border-radius:20px;")
+
     def change_label_color2(self):
         self.timer.stop()
         self.label_ap6.setStyleSheet("background-color: rgba(0,0,0,0); color:rgba(255,255,255,0); border-radius:20px;")

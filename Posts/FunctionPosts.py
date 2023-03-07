@@ -1,10 +1,13 @@
-from selenium import webdriver
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
-from bs4 import BeautifulSoup
-from datetime import datetime
-import urllib.request
+import asyncio
 import os
 import glob
+import aiohttp
+
+from selenium import webdriver
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from bs4 import BeautifulSoup, SoupStrainer
+from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor
 
 BASE_URL = 'https://forum.nexon.com/bluearchive/'
 
@@ -19,21 +22,21 @@ class Posts():
     def __del__(self):
         self.driver.quit()
 
-    def download_image(self, url, filename):
-        with urllib.request.urlopen(url) as response:
-            with open(filename, 'wb') as file:
-                file.write(response.read())
+    async def download_image(self, session, url, filename):
+        async with session.get(url) as response:
+            with open(filename, 'wb') as f:
+                async for data in response.content.iter_chunked(1024):
+                    f.write(data)
 
-    def getImages(self):
+    async def getImages(self):
         url_search = BASE_URL + '/board_list?keywords=%EC%83%81%EC%84%B8&board=1076&searchKeywordType=THREAD_TITLE'
         self.driver.get(url_search)
         soup_search = BeautifulSoup(self.driver.page_source, 'lxml')
-        post_url = BASE_URL + soup_search.select('body div.list-box a')[0].get('href')
+        post_url = BASE_URL + soup_search.select_one('body div.list-box a')['href']
 
         self.driver.get(post_url)
 
-        soup = BeautifulSoup(self.driver.page_source, 'lxml')
-        posts = soup.select('body div.board-view div.section-bot div.view-box div.txt.note-editor p')
+        img_tags = BeautifulSoup(self.driver.page_source, 'lxml', parse_only=SoupStrainer('img', {'width':'780', 'height':'438'})).find_all('img')
 
         if not os.path.isdir('./Posts/Images'):
             os.mkdir('./Posts/Images')
@@ -41,18 +44,15 @@ class Posts():
         for file in glob.glob("./Posts/Images/*.png"):
             os.remove(file)
 
-        n=1
-        for post in posts:
-            img = post.find('img')
-            if img and img.get('width') == '780' and img.get('height') == '438':    
-                img_url = img.get('src')
-                name, ext = os.path.splitext(img_url)
-                filename = f"./Posts/Images/{n:02}.png"
-                try:
-                    self.download_image(img_url, filename)
-                    n += 1
-                except Exception as e:
-                    print(f"Error download image {img_url}: {e}")
+        with ThreadPoolExecutor() as executor:
+            tasks = []
+            async with aiohttp.ClientSession() as session:
+                for i, img in enumerate(img_tags, 1):
+                    img_url = img.get('src')
+                    name, ext = os.path.splitext(img_url)
+                    filename = f"./Posts/Images/{i:02}.png"
+                    tasks.append(asyncio.ensure_future(self.download_image(session, img_url, filename)))
+                await asyncio.gather(*tasks)
 
         return post_url
 
@@ -78,6 +78,6 @@ class Posts():
                 list_post.append({"title":title, "link":link, "date":date})
                 
         return list_post
-    
-    def getNotice(self):
-        print("test")
+        
+    # async def getNotice(self):
+    #     print("test")
