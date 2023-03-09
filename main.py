@@ -34,8 +34,7 @@ from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
-    QGraphicsDropShadowEffect,
-    QTableWidgetItem
+    QGraphicsDropShadowEffect, QLabel
 )
 from PyQt6.uic import loadUi
 
@@ -62,10 +61,10 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(window_title)
 
         # 메뉴바
-        self.button_screen_menu1.clicked.connect(lambda: self.show_screen(0))
-        self.button_screen_menu1.clicked.connect(lambda: self.show_screen(1))
-        self.button_screen_menu1.clicked.connect(lambda: self.show_screen(2))
-        self.button_screen_menu1.clicked.connect(lambda: self.show_screen(3))
+        self.button_screen_menu1.clicked.connect(self.show_screen1)
+        self.button_screen_menu2.clicked.connect(self.show_screen2)
+        self.button_screen_menu3.clicked.connect(self.show_screen3)
+        self.button_screen_menu4.clicked.connect(self.show_screen4)
 
 
         # Home - 슬라이드쇼
@@ -84,16 +83,9 @@ class MainWindow(QMainWindow):
             self.timer.start(3000)
         self.pushButton_slide_home.clicked.connect(self.clicked_image)
 
+        
+
         # Home - 주요소식
-        self.tabWidget_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
-        list_maintopic = posts.getMainTopic()
-        n=0
-        for item in list_maintopic:
-            self.tableWidget_home_maintopic.setItem(n,0,QTableWidgetItem(item['title']))
-            self.tableWidget_home_maintopic.setItem(n,1,QTableWidgetItem(item['link']))
-            self.tableWidget_home_maintopic.setItem(n,2,QTableWidgetItem(item['date']))
-            n+=1
-            # 이거 테이블위젯? 리스트위젯?
 
         # AP 가이드
         self.dateEdit_ap1.setDate(QDate.currentDate())
@@ -103,8 +95,14 @@ class MainWindow(QMainWindow):
 
 
     # 버튼 기능 - 메뉴바
-    def show_screen(self, index):
-        self.stackedWideget.setCurrentIndex(index)
+    def show_screen1(self):
+        self.stackedWidget.setCurrentIndex(0)
+    def show_screen2(self):
+        self.stackedWidget.setCurrentIndex(1)
+    def show_screen3(self):
+        self.stackedWidget.setCurrentIndex(2)
+    def show_screen4(self):
+        self.stackedWidget.setCurrentIndex(3)
 
     # 슬라이드쇼 - Home
     def setImage(self):
@@ -115,6 +113,10 @@ class MainWindow(QMainWindow):
         self.setImage()
     def clicked_image(self):
         webbrowser.open_new_tab(self.url_slideshow)
+ 
+    # Home - 공지글 layout
+        def createLayout(self):
+            print('test')
 
     # 버튼 기능 - AP 가이드
     def ap_image_save(self):
