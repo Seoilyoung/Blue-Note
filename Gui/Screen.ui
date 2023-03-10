@@ -226,13 +226,13 @@ QPushButton:clicked{
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgba(0,0,0,80);</string>
+        <string notr="true"/>
        </property>
        <property name="tabShape">
         <enum>QTabWidget::Rounded</enum>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_home1">
         <attribute name="title">
@@ -248,7 +248,7 @@ QPushButton:clicked{
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgba(0,0,0,80);</string>
+          <string notr="true"/>
          </property>
          <column>
           <property name="text">
@@ -276,7 +276,7 @@ QPushButton:clicked{
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgba(0,0,0,80);</string>
+          <string notr="true"/>
          </property>
          <column>
           <property name="text">
@@ -305,44 +305,6 @@ QPushButton:clicked{
        </property>
        <property name="text">
         <string>트위터</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_5">
-       <property name="geometry">
-        <rect>
-         <x>700</x>
-         <y>250</y>
-         <width>271</width>
-         <height>151</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string>&lt;a style='color: black; text-decoration:none;'href=&quot;https://www.naver.com&quot;&gt;[진행 이벤트] 그건 모르지&lt;/a&gt;</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-       <property name="openExternalLinks">
-        <bool>true</bool>
-       </property>
-       <property name="textInteractionFlags">
-        <set>Qt::LinksAccessibleByMouse</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_4">
-       <property name="geometry">
-        <rect>
-         <x>690</x>
-         <y>440</y>
-         <width>56</width>
-         <height>12</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string> &quot;&quot;&quot;&lt;a style='color: black; text-decoration:none;'href=&quot;https://www.naver.com&quot;&gt;[진행 이벤트] 그건 모르지&lt;/a&gt;&quot;&quot;&quot;</string>
        </property>
       </widget>
      </widget>

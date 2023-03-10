@@ -63,7 +63,7 @@ class Posts():
         for soup_child in soup:
             if soup_child.find('h3') is not None:
                 title = soup_child.find('h3').text.strip()
-                link = soup_child.find('a').get('href')
+                link = BASE_URL + soup_child.find('a').get('href')
                 date_str = soup_child.find('span', {'class':'date'})
                 try:
                     date = datetime.strptime(date_str.text, '%Y.%m.%d').strftime('%m/%d')

@@ -28,13 +28,14 @@ import sys
 import os
 import subprocess
 import webbrowser
+import asyncio
 
-from PyQt6.QtCore import QDate, QTimer, Qt
-from PyQt6.QtGui import QPixmap, QIcon
+from PyQt6.QtCore import QDate, QTimer, Qt, QUrl
+from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
-    QGraphicsDropShadowEffect, QHeaderView, QTableWidgetItem, QAbstractItemView
+    QGraphicsDropShadowEffect, QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel
 )
 from PyQt6.uic import loadUi
 
@@ -69,7 +70,7 @@ class MainWindow(QMainWindow):
 
         # Home - 슬라이드쇼
         posts = Posts()
-        self.url_slideshow = posts.getImages()
+        self.url_slideshow = asyncio.run(posts.getImages())
         self.label_slide_home.setScaledContents(True)
         self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         if os.path.isdir('Posts/Images'):
@@ -123,6 +124,12 @@ class MainWindow(QMainWindow):
         tableWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         tableWidget.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
         tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        tableWidget.setStyleSheet("""
+            #label_notice:hover {
+                color: rgba(131,96,53,255);
+                background-color: rgba(0,0,0,80);
+            }   
+        """)
                 
         header = tableWidget.horizontalHeader()
         header.setSectionResizeMode(QHeaderView.ResizeMode.Interactive)
@@ -132,10 +139,28 @@ class MainWindow(QMainWindow):
 
         for idx, post in enumerate(list):
             # title 추가
-            # <a style='color: black; text-decoration:none;'href="https://www.naver.com">[진행 이벤트] 그건 모르지</a>
-            title_item = QTableWidgetItem(post['title'])
-            title_item.setToolTip(post['title'])
-            tableWidget.setItem(idx, 0, title_item)
+            label = ClickableLabel('',post['link'])
+            font_metrics = QFontMetrics(label.font())
+            elided_text = font_metrics.elidedText(post['title'], Qt.TextElideMode.ElideRight, label.width()-250)
+            label.setText(elided_text)
+            label.setObjectName('label_notice')
+            label.setToolTip(post['title'])
+            label.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+            # font_metrics = QFontMetrics(label.font())
+            # elided_text = font_metrics.elidedText(post['title'], Qt.TextElideMode.ElideRight, label.width()-250)
+            # test = f"""<a href="{post['link']}">{elided_text}</a>"""
+            # label.setText(test)
+            # font_metrics = QFontMetrics(label.font())
+            # elided_text = font_metrics.elidedText(post['title'], Qt.TextElideMode.ElideRight, label.width()-250)
+            # test = f"""<a href="{post['link']}">{elided_text}</a>"""
+            # label.setText(test)
+            # style="color: black; text-decoration:none;"
+            # label.setTextFormat(Qt.TextFormat.RichText)
+
+
+            
+
+            tableWidget.setCellWidget(idx,0,label)
             # date 추가
             date_item = QTableWidgetItem(post['date'])
             tableWidget.setItem(idx, 1, date_item)
@@ -174,6 +199,14 @@ class MainWindow(QMainWindow):
         folder_path = os.path.dirname(__file__)
         explorer_command = "explorer.exe"
         subprocess.Popen([explorer_command, folder_path+'\Images'])
+
+class ClickableLabel(QLabel):
+    def __init__(self, text, link):
+        super().__init__(text)
+        self.link = link
+
+    def mouseReleaseEvent(self, event):
+        QDesktopServices.openUrl(QUrl(self.link))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
