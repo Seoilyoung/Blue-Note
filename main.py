@@ -29,12 +29,12 @@ import os
 import subprocess
 import webbrowser
 
-from PyQt6.QtCore import QDate, QTimer
+from PyQt6.QtCore import QDate, QTimer, Qt
 from PyQt6.QtGui import QPixmap, QIcon
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
-    QGraphicsDropShadowEffect, QLabel
+    QGraphicsDropShadowEffect, QHeaderView, QTableWidgetItem, QAbstractItemView
 )
 from PyQt6.uic import loadUi
 
@@ -83,13 +83,13 @@ class MainWindow(QMainWindow):
             self.timer.start(3000)
         self.pushButton_slide_home.clicked.connect(self.clicked_image)
 
-        
-
-        # Home - 주요소식
+        # Home - 공지사항, 주요소식
+        list_mainTopic, list_notice = posts.getNotice()
+        self.createTable(self.tableWidget_home1, list_notice)
+        self.createTable(self.tableWidget_home2, list_mainTopic)
 
         # AP 가이드
         self.dateEdit_ap1.setDate(QDate.currentDate())
-
         self.button_ap1.clicked.connect(self.ap_image_save)
         self.button_ap2.clicked.connect(self.ap_image_link)
 
@@ -115,8 +115,30 @@ class MainWindow(QMainWindow):
         webbrowser.open_new_tab(self.url_slideshow)
  
     # Home - 공지글 layout
-        def createLayout(self):
-            print('test')
+    def createTable(self, tableWidget, list):
+        tableWidget.setRowCount(len(list))
+        tableWidget.setShowGrid(False)
+        tableWidget.horizontalHeader().setVisible(False)
+        tableWidget.verticalHeader().setVisible(False)
+        tableWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        tableWidget.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
+        tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+                
+        header = tableWidget.horizontalHeader()
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Interactive)
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
+        header.resizeSection(1,100)
+
+        for idx, post in enumerate(list):
+            # title 추가
+            # <a style='color: black; text-decoration:none;'href="https://www.naver.com">[진행 이벤트] 그건 모르지</a>
+            title_item = QTableWidgetItem(post['title'])
+            title_item.setToolTip(post['title'])
+            tableWidget.setItem(idx, 0, title_item)
+            # date 추가
+            date_item = QTableWidgetItem(post['date'])
+            tableWidget.setItem(idx, 1, date_item)
 
     # 버튼 기능 - AP 가이드
     def ap_image_save(self):

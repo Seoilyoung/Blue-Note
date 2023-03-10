@@ -238,59 +238,56 @@ QPushButton:clicked{
         <attribute name="title">
          <string>공지사항</string>
         </attribute>
-        <widget class="QLabel" name="label_4">
+        <widget class="QTableWidget" name="tableWidget_home1">
          <property name="geometry">
           <rect>
-           <x>70</x>
-           <y>60</y>
-           <width>56</width>
-           <height>12</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>공지사항</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_5">
-         <property name="geometry">
-          <rect>
-           <x>160</x>
-           <y>130</y>
-           <width>271</width>
-           <height>151</height>
+           <x>0</x>
+           <y>0</y>
+           <width>520</width>
+           <height>320</height>
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">color: white;
-text-decoration: none;</string>
+          <string notr="true">background-color: rgba(0,0,0,80);</string>
          </property>
-         <property name="text">
-          <string>&lt;a style='color: black; text-decoration:none;'href=&quot;https://www.naver.com&quot;&gt;[진행 이벤트] 그건 모르지&lt;/a&gt;</string>
-         </property>
-         <property name="openExternalLinks">
-          <bool>true</bool>
-         </property>
-         <property name="textInteractionFlags">
-          <set>Qt::LinksAccessibleByMouse</set>
-         </property>
+         <column>
+          <property name="text">
+           <string>title</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>date</string>
+          </property>
+         </column>
         </widget>
        </widget>
        <widget class="QWidget" name="tab_home2">
         <attribute name="title">
          <string>주요소식</string>
         </attribute>
-        <widget class="QListWidget" name="listWidget_home2">
+        <widget class="QTableWidget" name="tableWidget_home2">
          <property name="geometry">
           <rect>
            <x>0</x>
            <y>0</y>
            <width>520</width>
-           <height>325</height>
+           <height>320</height>
           </rect>
          </property>
-         <property name="horizontalScrollBarPolicy">
-          <enum>Qt::ScrollBarAlwaysOff</enum>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(0,0,0,80);</string>
          </property>
+         <column>
+          <property name="text">
+           <string>title</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>date</string>
+          </property>
+         </column>
         </widget>
        </widget>
       </widget>
@@ -308,6 +305,31 @@ text-decoration: none;</string>
        </property>
        <property name="text">
         <string>트위터</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>700</x>
+         <y>250</y>
+         <width>271</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>&lt;a style='color: black; text-decoration:none;'href=&quot;https://www.naver.com&quot;&gt;[진행 이벤트] 그건 모르지&lt;/a&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+       <property name="openExternalLinks">
+        <bool>true</bool>
+       </property>
+       <property name="textInteractionFlags">
+        <set>Qt::LinksAccessibleByMouse</set>
        </property>
       </widget>
      </widget>

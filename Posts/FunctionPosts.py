@@ -4,7 +4,6 @@ import glob
 import aiohttp
 
 from selenium import webdriver
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from bs4 import BeautifulSoup, SoupStrainer
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
@@ -14,10 +13,11 @@ BASE_URL = 'https://forum.nexon.com/bluearchive/'
 class Posts():
     def __init__(self):
         super().__init__()
+        
         options = webdriver.EdgeOptions()
         options.add_argument("disable-logging")
         options.add_argument("headless")
-        self.driver = webdriver.Edge(options=options, executable_path=EdgeChromiumDriverManager().install())
+        self.driver = webdriver.Edge('edgedriver_win64/msedgedriver.exe', options=options)
 
     def __del__(self):
         self.driver.quit()
@@ -35,7 +35,6 @@ class Posts():
         post_url = BASE_URL + soup_search.select_one('body div.list-box a')['href']
 
         self.driver.get(post_url)
-
         img_tags = BeautifulSoup(self.driver.page_source, 'lxml', parse_only=SoupStrainer('img', {'width':'780', 'height':'438'})).find_all('img')
 
         if not os.path.isdir('./Posts/Images'):
@@ -56,28 +55,22 @@ class Posts():
 
         return post_url
 
-    def getMainTopic(self):
+    def getNotice(self):
         self.driver.get(BASE_URL)
+        soup = BeautifulSoup(self.driver.page_source, 'lxml', parse_only=SoupStrainer('li'))
 
-        soup = BeautifulSoup(self.driver.page_source, 'lxml')
-        soup_extract = soup.body.extract()
-        posts = soup_extract.select('body div.main.main-type2 div.section-bot div.sticky-box ul.swiper-slide.type-list.swiper-slide-active li')
-
-        list_post = []
-        for post in posts:
-            if post.find('h3') is not None:
-                # category = post.find('span',class_= 'key-color').text.strip()
-                # icon = post.find('span',class_='icon-new')
-                title = post.find('h3').text.strip()
-                link = post.find('a').get('href')
-                date_str = post.find('span', {'class':'date'})
-                if date_str is not None:
+        posts = []
+        for soup_child in soup:
+            if soup_child.find('h3') is not None:
+                title = soup_child.find('h3').text.strip()
+                link = soup_child.find('a').get('href')
+                date_str = soup_child.find('span', {'class':'date'})
+                try:
                     date = datetime.strptime(date_str.text, '%Y.%m.%d').strftime('%m/%d')
-                else:
-                    date = ''
-                list_post.append({"title":title, "link":link, "date":date})
-                
-        return list_post
-        
-    # async def getNotice(self):
-    #     print("test")
+                except ValueError:
+                    date = datetime.now().strftime('%m/%d')
+                posts.append({"title":title, "link":link, "date":date})
+
+        post_mainTopic = posts[:20]
+        post_notice = posts[20:]
+        return post_mainTopic, post_notice
