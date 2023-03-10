@@ -294,8 +294,8 @@ QPushButton:clicked{
       <widget class="QLabel" name="label_6">
        <property name="geometry">
         <rect>
-         <x>600</x>
-         <y>30</y>
+         <x>620</x>
+         <y>40</y>
          <width>391</width>
          <height>641</height>
         </rect>
@@ -330,6 +330,19 @@ QPushButton:clicked{
        </property>
        <property name="textInteractionFlags">
         <set>Qt::LinksAccessibleByMouse</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>690</x>
+         <y>440</y>
+         <width>56</width>
+         <height>12</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string> &quot;&quot;&quot;&lt;a style='color: black; text-decoration:none;'href=&quot;https://www.naver.com&quot;&gt;[진행 이벤트] 그건 모르지&lt;/a&gt;&quot;&quot;&quot;</string>
        </property>
       </widget>
      </widget>
