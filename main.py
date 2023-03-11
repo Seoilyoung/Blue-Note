@@ -43,12 +43,15 @@ import ApGuide.FunctionApGuide as ApGuide
 from Posts.FunctionPosts import Posts
 
 
+import time
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        img_back_path = 'Gui/images/28.png'
-        icon_path = 'Gui/images/1-9.png'
+        time_start=time.time()
+        img_back_path = 'Gui/Useimages/28.png'
+        icon_path = 'Gui/Useimages/1-9.png'
         window_title = '블루 스케줄러'
 
         loadUi('Gui\Screen.ui',self)
@@ -66,11 +69,14 @@ class MainWindow(QMainWindow):
         self.button_screen_menu2.clicked.connect(self.show_screen2)
         self.button_screen_menu3.clicked.connect(self.show_screen3)
         self.button_screen_menu4.clicked.connect(self.show_screen4)
-
+        
+        time_step1 = time.time()
 
         # Home - 슬라이드쇼
         posts = Posts()
-        self.url_slideshow = asyncio.run(posts.getImages())
+        self.url_slideshow = posts.getUpdateUrl()
+        asyncio.run(posts.getImages(self.url_slideshow))
+        time_step2_1 = time.time()
         self.label_slide_home.setScaledContents(True)
         self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         if os.path.isdir('Posts/Images'):
@@ -84,15 +90,29 @@ class MainWindow(QMainWindow):
             self.timer.start(3000)
         self.pushButton_slide_home.clicked.connect(self.clicked_image)
 
+        time_step2_2 = time.time()
+
         # Home - 공지사항, 주요소식
         list_mainTopic, list_notice = posts.getNotice()
+        time_step3_1 =time.time()
         self.createTable(self.tableWidget_home1, list_notice)
         self.createTable(self.tableWidget_home2, list_mainTopic)
+        time_step3_2 =time.time()
+
+        posts.driver.quit()
 
         # AP 가이드
         self.dateEdit_ap1.setDate(QDate.currentDate())
         self.button_ap1.clicked.connect(self.ap_image_save)
         self.button_ap2.clicked.connect(self.ap_image_link)
+        time_step4 =time.time()
+
+        print('기타 init' , time_step1 - time_start)
+        print('getUrl', time_step2_1 - time_step1)
+        print('getImage', time_step2_2 - time_step2_1)
+        print('getPosts', time_step3_1 - time_step2_2)
+        print('setPosts', time_step3_2 - time_step3_1)
+        print('apguide', time_step4 - time_step3_2)
 
 
     # 버튼 기능 - 메뉴바
@@ -210,6 +230,10 @@ class ClickableLabel(QLabel):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    ttime_2 = time.time()
     window = MainWindow()
+    ttime_3 = time.time()
     window.show()
+    print("----------------------------------")
+    print('MainWIndow 시간' ,ttime_3 - ttime_2)
     sys.exit(app.exec())
