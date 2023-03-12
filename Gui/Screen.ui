@@ -159,7 +159,7 @@ QPushButton:clicked{
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">background-color: rgba(0,0,0,0)</string>
      </property>
      <property name="currentIndex">
       <number>0</number>
@@ -169,9 +169,9 @@ QPushButton:clicked{
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>30</y>
-         <width>520</width>
-         <height>292</height>
+         <y>80</y>
+         <width>470</width>
+         <height>264</height>
         </rect>
        </property>
        <property name="cursor">
@@ -188,9 +188,9 @@ QPushButton:clicked{
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>30</y>
-         <width>520</width>
-         <height>292</height>
+         <y>80</y>
+         <width>470</width>
+         <height>264</height>
         </rect>
        </property>
        <property name="cursor">
@@ -213,9 +213,9 @@ QPushButton:clicked{
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>330</y>
-         <width>520</width>
-         <height>350</height>
+         <y>350</y>
+         <width>470</width>
+         <height>300</height>
         </rect>
        </property>
        <property name="font">
@@ -226,7 +226,7 @@ QPushButton:clicked{
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">QTabWidget::pane {border: 0;}</string>
        </property>
        <property name="tabShape">
         <enum>QTabWidget::Rounded</enum>
@@ -243,8 +243,8 @@ QPushButton:clicked{
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>520</width>
-           <height>320</height>
+           <width>470</width>
+           <height>270</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -271,8 +271,8 @@ QPushButton:clicked{
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>520</width>
-           <height>320</height>
+           <width>470</width>
+           <height>270</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -307,6 +307,10 @@ QPushButton:clicked{
         <string>트위터</string>
        </property>
       </widget>
+      <zorder>label_slide_home</zorder>
+      <zorder>tabWidget_home</zorder>
+      <zorder>label_6</zorder>
+      <zorder>pushButton_slide_home</zorder>
      </widget>
      <widget class="QWidget" name="page_2">
       <widget class="QTextEdit" name="textEdit_4">
@@ -729,7 +733,7 @@ border-radius:20px;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">border-image:url(:/newPrefix/Useimages/28.png)</string>
      </property>
      <property name="text">
       <string/>
@@ -745,6 +749,8 @@ border-radius:20px;</string>
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="1.qrc"/>
+ </resources>
  <connections/>
 </ui>

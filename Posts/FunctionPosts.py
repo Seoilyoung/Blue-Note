@@ -26,7 +26,6 @@ class Posts():
         post_url = BASE_URL + soup_search.select_one('body div.list-box a')['href']
         return post_url
 
-
     async def download_image(self, session, url, filename):
         async with session.get(url) as response:
             with open(filename, 'wb') as f:
@@ -34,30 +33,18 @@ class Posts():
                     f.write(data)
 
     async def getImages(self, post_url):
-        time_1 = time.time()
         self.driver.get(post_url)
         img_tags = BeautifulSoup(self.driver.page_source, 'lxml', parse_only=SoupStrainer('img', {'width':'780', 'height':'438'})).find_all('img')
 
-        time_2 = time.time()
         if not os.path.isdir('./Posts/Images'):
             os.mkdir('./Posts/Images')
         
-        time_3 = time.time()
         for file in glob.glob("./Posts/Images/*.png"):
             os.remove(file)
 
-        time_4 = time.time()
         async with aiohttp.ClientSession() as session:
             tasks = [self.download_image(session, img.get('src'), f"./Posts/Images/{i:02}.png") for i, img in enumerate(img_tags, 1)]
             await asyncio.gather(*tasks)
-
-        time_5 = time.time()
-
-        print('adfadfadfadfad')
-        print(time_2 - time_1)
-        print(time_3 - time_2)
-        print(time_4 - time_3)
-        print(time_5 - time_4)
 
     def getNotice(self):
         self.driver.get(BASE_URL)
@@ -73,7 +60,11 @@ class Posts():
                     date = datetime.strptime(date_str.text, '%Y.%m.%d').strftime('%m/%d')
                 except ValueError:
                     date = datetime.now().strftime('%m/%d')
-                posts.append({"title":title, "link":link, "date":date})
+                if soup_child.find('span', {'class':'icon-new'}) is not None:
+                    new = 1
+                else:
+                    new = 0
+                posts.append({"new":new, "title":title, "link":link, "date":date})
 
         post_mainTopic = posts[:20]
         post_notice = posts[20:]

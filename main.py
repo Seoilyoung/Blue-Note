@@ -29,15 +29,15 @@ import os
 import subprocess
 import webbrowser
 import asyncio
+import atexit
 
 from PyQt6.QtCore import QDate, QTimer, Qt, QUrl
 from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices
-from PyQt6.QtWidgets import (
-    QApplication,
-    QMainWindow,
-    QGraphicsDropShadowEffect, QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel
-)
 from PyQt6.uic import loadUi
+from PyQt6.QtWidgets import (
+    QApplication, QMainWindow, QGraphicsDropShadowEffect, 
+    QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel
+)
 
 import ApGuide.FunctionApGuide as ApGuide
 from Posts.FunctionPosts import Posts
@@ -49,7 +49,6 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        time_start=time.time()
         img_back_path = 'Gui/Useimages/28.png'
         icon_path = 'Gui/Useimages/1-9.png'
         window_title = '블루 스케줄러'
@@ -70,13 +69,10 @@ class MainWindow(QMainWindow):
         self.button_screen_menu3.clicked.connect(self.show_screen3)
         self.button_screen_menu4.clicked.connect(self.show_screen4)
         
-        time_step1 = time.time()
-
         # Home - 슬라이드쇼
         posts = Posts()
         self.url_slideshow = posts.getUpdateUrl()
         asyncio.run(posts.getImages(self.url_slideshow))
-        time_step2_1 = time.time()
         self.label_slide_home.setScaledContents(True)
         self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         if os.path.isdir('Posts/Images'):
@@ -90,30 +86,20 @@ class MainWindow(QMainWindow):
             self.timer.start(3000)
         self.pushButton_slide_home.clicked.connect(self.clicked_image)
 
-        time_step2_2 = time.time()
-
         # Home - 공지사항, 주요소식
         list_mainTopic, list_notice = posts.getNotice()
-        time_step3_1 =time.time()
         self.createTable(self.tableWidget_home1, list_notice)
         self.createTable(self.tableWidget_home2, list_mainTopic)
-        time_step3_2 =time.time()
 
-        posts.driver.quit()
+        @atexit.register
+        def close_driver():
+            # os.remove(pid_file)
+            posts.driver.quit()
 
         # AP 가이드
         self.dateEdit_ap1.setDate(QDate.currentDate())
         self.button_ap1.clicked.connect(self.ap_image_save)
         self.button_ap2.clicked.connect(self.ap_image_link)
-        time_step4 =time.time()
-
-        print('기타 init' , time_step1 - time_start)
-        print('getUrl', time_step2_1 - time_step1)
-        print('getImage', time_step2_2 - time_step2_1)
-        print('getPosts', time_step3_1 - time_step2_2)
-        print('setPosts', time_step3_2 - time_step3_1)
-        print('apguide', time_step4 - time_step3_2)
-
 
     # 버튼 기능 - 메뉴바
     def show_screen1(self):
@@ -145,9 +131,9 @@ class MainWindow(QMainWindow):
         tableWidget.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
         tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         tableWidget.setStyleSheet("""
+            QTableWidget {background-color: rgba(0,0,0,80);}
             #label_notice:hover {
                 color: rgba(131,96,53,255);
-                background-color: rgba(0,0,0,80);
             }   
         """)
                 
@@ -155,7 +141,7 @@ class MainWindow(QMainWindow):
         header.setSectionResizeMode(QHeaderView.ResizeMode.Interactive)
         header.setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         header.setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
-        header.resizeSection(1,100)
+        header.resizeSection(1,50)
 
         for idx, post in enumerate(list):
             # title 추가
@@ -166,19 +152,8 @@ class MainWindow(QMainWindow):
             label.setObjectName('label_notice')
             label.setToolTip(post['title'])
             label.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-            # font_metrics = QFontMetrics(label.font())
-            # elided_text = font_metrics.elidedText(post['title'], Qt.TextElideMode.ElideRight, label.width()-250)
-            # test = f"""<a href="{post['link']}">{elided_text}</a>"""
-            # label.setText(test)
-            # font_metrics = QFontMetrics(label.font())
-            # elided_text = font_metrics.elidedText(post['title'], Qt.TextElideMode.ElideRight, label.width()-250)
-            # test = f"""<a href="{post['link']}">{elided_text}</a>"""
-            # label.setText(test)
-            # style="color: black; text-decoration:none;"
-            # label.setTextFormat(Qt.TextFormat.RichText)
-
-
-            
+            if post['new']==1:
+                label.setStyleSheet("color: red ; font-weight: bold;")
 
             tableWidget.setCellWidget(idx,0,label)
             # date 추가
@@ -228,7 +203,16 @@ class ClickableLabel(QLabel):
     def mouseReleaseEvent(self, event):
         QDesktopServices.openUrl(QUrl(self.link))
 
+
 if __name__ == '__main__':
+    # pid_file = 'my.pid'
+    # if os.path.isfile(pid_file):
+    #     print('Already running')
+    # else:
+    #     with open(pid_file, 'w') as f:
+    #         f.write(str(os.getpid()))
+    #     print('Start program')
+
     app = QApplication(sys.argv)
     ttime_2 = time.time()
     window = MainWindow()
