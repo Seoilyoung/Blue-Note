@@ -36,8 +36,9 @@ from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QGraphicsDropShadowEffect, 
-    QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel
+    QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QTableWidget
 )
+from PyQt6 import uic
 
 import ApGuide.FunctionApGuide as ApGuide
 from Posts.FunctionPosts import Posts
@@ -54,7 +55,6 @@ class MainWindow(QMainWindow):
         window_title = '블루 스케줄러'
 
         loadUi('Gui\Screen.ui',self)
-        
         pixmap = QPixmap(img_back_path)
         self.label.setPixmap(pixmap)
         self.label.setScaledContents(True)
