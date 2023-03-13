@@ -93,7 +93,8 @@ class MainWindow(QMainWindow):
 
         @atexit.register
         def close_driver():
-            # os.remove(pid_file)
+            if os.path.isfile(pid_file):
+                os.remove(pid_file)
             posts.driver.quit()
 
         # AP 가이드
@@ -205,13 +206,13 @@ class ClickableLabel(QLabel):
 
 
 if __name__ == '__main__':
-    # pid_file = 'my.pid'
-    # if os.path.isfile(pid_file):
-    #     print('Already running')
-    # else:
-    #     with open(pid_file, 'w') as f:
-    #         f.write(str(os.getpid()))
-    #     print('Start program')
+    pid_file = 'my.pid'
+    if os.path.isfile(pid_file):
+        print('Already running')
+    else:
+        with open(pid_file, 'w') as f:
+            f.write(str(os.getpid()))
+        print('Start program')
 
     app = QApplication(sys.argv)
     ttime_2 = time.time()
