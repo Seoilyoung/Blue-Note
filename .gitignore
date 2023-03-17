@@ -1,5 +1,7 @@
 # 임시파일
 *.pyc
+*.pid
+test.py
 __pycache__/
 
 #결과 이미지 폴더

@@ -44,11 +44,14 @@ from Posts.FunctionPosts import Posts
 
 import time
 
-img_back_path = 'Gui/Useimages/28.png'
-icon_path = 'Gui/Useimages/1-9.png'
+img_back_path = 'Gui/Useimages/background.png'
+icon_path = 'Gui/Useimages/icon.png'
 window_title = '블루 스케줄러'
 mainscreen_path = 'Gui\Screen.ui'
 container_cal_path = 'Gui\Container.ui'
+list_oparts = ["네브라", "파에스토스","볼프세크","님루드","만드라고라","로혼치","에테르","안티키테라","보이니치","하니와",
+            "토템폴","전지","콜간테","위니페소키"]
+list_academy = ["백귀야행", "붉은겨울","트리니티","게헨나","아비도스","밀레니엄","아리우스","산해경","발키리"]
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -69,41 +72,41 @@ class MainWindow(QMainWindow):
         self.button_screen_menu3.clicked.connect(self.show_screen3)
         self.button_screen_menu4.clicked.connect(self.show_screen4)
         
-        # Home - 슬라이드쇼
-        posts = Posts()
-        self.url_slideshow = posts.getUpdateUrl()
-        asyncio.run(posts.getImages(self.url_slideshow))
-        self.label_slide_home.setScaledContents(True)
-        self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
-        if os.path.isdir('Posts/Images'):
-            files = os.listdir('Posts/Images')
-            files_path = ['Posts/Images/' + file for file in files]
-            self.images = files_path
-            self.current_image = 0
-            self.setImage()
-            self.timer = QTimer()
-            self.timer.timeout.connect(self.next_image)
-            self.timer.start(3000)
-        self.pushButton_slide_home.clicked.connect(self.clicked_image)
+        # # Home - 슬라이드쇼
+        # posts = Posts()
+        # self.url_slideshow = posts.getUpdateUrl()
+        # asyncio.run(posts.getImages(self.url_slideshow))
+        # self.label_slide_home.setScaledContents(True)
+        # self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+        # if os.path.isdir('Posts/Images'):
+        #     files = os.listdir('Posts/Images')
+        #     files_path = ['Posts/Images/' + file for file in files]
+        #     self.images = files_path
+        #     self.current_image = 0
+        #     self.setImage()
+        #     self.timer = QTimer()
+        #     self.timer.timeout.connect(self.next_image)
+        #     self.timer.start(3000)
+        # self.pushButton_slide_home.clicked.connect(self.clicked_image)
 
-        # Home - 공지사항, 주요소식
-        list_mainTopic, list_notice = posts.getNotice()
-        self.createTable(self.tableWidget_home1, list_notice)
-        self.createTable(self.tableWidget_home2, list_mainTopic)
+        # # Home - 공지사항, 주요소식
+        # list_mainTopic, list_notice = posts.getNotice()
+        # self.createTable(self.tableWidget_home1, list_notice)
+        # self.createTable(self.tableWidget_home2, list_mainTopic)
 
-        @atexit.register
-        def close_driver():
-            if os.path.isfile(pid_file):
-                os.remove(pid_file)
-            posts.driver.quit()
+        # @atexit.register
+        # def close_driver():
+        #     if os.path.isfile(pid_file):
+        #         os.remove(pid_file)
+        #     posts.driver.quit()
 
         # 재화계산
-        container_cal = loadUi(container_cal_path)
-        
-        item = QListWidgetItem(self.listWidget_cal2)
-        item.setSizeHint(container_cal.sizeHint())
-        self.listWidget_cal2.addItem(item)
-        self.listWidget_cal2.setItemWidget(item, container_cal)
+        time_cal1 = time.time()
+        self.layout_cal(list_oparts, 'oparts', self.listWidget_cal2)
+        self.layout_cal(list_academy, 'academy', self.listWidget_cal3)
+        self.layout_cal(list_academy, 'academy', self.listWidget_cal4)
+        time_cal2 = time.time()
+        print('재화계산 소요시간 {}'.format(time_cal2-time_cal1))
 
         # AP 가이드
         self.dateEdit_ap1.setDate(QDate.currentDate())
@@ -168,6 +171,24 @@ class MainWindow(QMainWindow):
             # date 추가
             date_item = QTableWidgetItem(post['date'])
             tableWidget.setItem(idx, 1, date_item)
+    # 재화계산 - layout
+    def layout_cal(self, list_item, item_type, listwidget):
+        for i in range(len(list_item)):
+            img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
+            pixmap = QPixmap(img_path)
+            container_cal = loadUi(container_cal_path)
+            item = QListWidgetItem(listwidget)
+            item.setSizeHint(QSize(0,50))
+            container_cal.label_back.setStyleSheet("border: 1px solid rgb(130,135,144);")
+            container_cal.label.setContentsMargins(5,5,5,5)
+            container_cal.label.setText(list_item[i])
+            container_cal.label.setPixmap(pixmap)
+            # for row in range(container_cal.tableWidget.rowCount()):
+            #     for column in range(container_cal.tableWidget.columnCount()):
+            #          item_value = ...  # 적절한 값을 가져옵니다.
+            #          container_cal.tableWidget.setItem(row, column, QTableWidgetItem(str(item_value)))
+            listwidget.addItem(item)
+            listwidget.setItemWidget(item, container_cal)
 
     # 버튼 기능 - AP 가이드
     def ap_image_save(self):
