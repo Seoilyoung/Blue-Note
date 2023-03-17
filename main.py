@@ -21,6 +21,7 @@
 #   종류가 많음. 메모리 먹는거 확인하면서 선택.
 # - 트위치 스트리머 확인
 #   특정 스트리머 방송 켰는지 확인
+# - 함수들 각 py파일로 이동할 수 있으면 옮기자. main이 더럽다
 
 # - 이미지 출처 : 블루 아카이브 디지털 굿즈샵 (https://forum.nexon.com/bluearchive/board_view?thread=1881343)
 
@@ -31,30 +32,29 @@ import webbrowser
 import asyncio
 import atexit
 
-from PyQt6.QtCore import QDate, QTimer, Qt, QUrl
+from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize
 from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QGraphicsDropShadowEffect, 
-    QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QTableWidget
+    QApplication, QMainWindow, QGraphicsDropShadowEffect, QStyledItemDelegate,
+    QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem
 )
-from PyQt6 import uic
-
 import ApGuide.FunctionApGuide as ApGuide
 from Posts.FunctionPosts import Posts
 
-
 import time
+
+img_back_path = 'Gui/Useimages/28.png'
+icon_path = 'Gui/Useimages/1-9.png'
+window_title = '블루 스케줄러'
+mainscreen_path = 'Gui\Screen.ui'
+container_cal_path = 'Gui\Container.ui'
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        img_back_path = 'Gui/Useimages/28.png'
-        icon_path = 'Gui/Useimages/1-9.png'
-        window_title = '블루 스케줄러'
-
-        loadUi('Gui\Screen.ui',self)
+        loadUi(mainscreen_path,self)
         pixmap = QPixmap(img_back_path)
         self.label.setPixmap(pixmap)
         self.label.setScaledContents(True)
@@ -97,12 +97,20 @@ class MainWindow(QMainWindow):
                 os.remove(pid_file)
             posts.driver.quit()
 
+        # 재화계산
+        container_cal = loadUi(container_cal_path)
+        
+        item = QListWidgetItem(self.listWidget_cal2)
+        item.setSizeHint(container_cal.sizeHint())
+        self.listWidget_cal2.addItem(item)
+        self.listWidget_cal2.setItemWidget(item, container_cal)
+
         # AP 가이드
         self.dateEdit_ap1.setDate(QDate.currentDate())
         self.button_ap1.clicked.connect(self.ap_image_save)
         self.button_ap2.clicked.connect(self.ap_image_link)
 
-    # 버튼 기능 - 메뉴바
+    # 메뉴바
     def show_screen1(self):
         self.stackedWidget.setCurrentIndex(0)
     def show_screen2(self):
@@ -112,7 +120,7 @@ class MainWindow(QMainWindow):
     def show_screen4(self):
         self.stackedWidget.setCurrentIndex(3)
 
-    # 슬라이드쇼 - Home
+    # Home - 슬라이드쇼
     def setImage(self):
         pixmap = QPixmap(self.images[self.current_image])
         self.label_slide_home.setPixmap(pixmap)
@@ -203,7 +211,6 @@ class ClickableLabel(QLabel):
 
     def mouseReleaseEvent(self, event):
         QDesktopServices.openUrl(QUrl(self.link))
-
 
 if __name__ == '__main__':
     pid_file = 'my.pid'

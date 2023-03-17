@@ -162,7 +162,7 @@ QPushButton:clicked{
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page">
       <widget class="QLabel" name="label_slide_home">
@@ -341,7 +341,7 @@ QPushButton:clicked{
         <string/>
        </property>
       </widget>
-      <widget class="QTableWidget" name="tableWidget">
+      <widget class="QListWidget" name="listWidget_cal2">
        <property name="geometry">
         <rect>
          <x>425</x>
@@ -350,11 +350,14 @@ QPushButton:clicked{
          <height>700</height>
         </rect>
        </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="lineWidth">
+        <number>1</number>
+       </property>
+       <property name="midLineWidth">
+        <number>0</number>
        </property>
        <property name="verticalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -362,55 +365,8 @@ QPushButton:clicked{
        <property name="horizontalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
-       <attribute name="horizontalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="horizontalHeaderDefaultSectionSize">
-        <number>50</number>
-       </attribute>
-       <attribute name="verticalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="verticalHeaderDefaultSectionSize">
-        <number>25</number>
-       </attribute>
-       <row>
-        <property name="text">
-         <string>New Row</string>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string>New Row</string>
-        </property>
-       </row>
-       <column>
-        <property name="text">
-         <string>오파츠</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T1</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T2</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T3</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T4</string>
-        </property>
-       </column>
       </widget>
-      <widget class="QTableWidget" name="tableWidget_2">
+      <widget class="QListWidget" name="listWidget_cal3">
        <property name="geometry">
         <rect>
          <x>680</x>
@@ -419,72 +375,14 @@ QPushButton:clicked{
          <height>600</height>
         </rect>
        </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="verticalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
        <property name="horizontalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
-       <attribute name="horizontalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="horizontalHeaderDefaultSectionSize">
-        <number>50</number>
-       </attribute>
-       <attribute name="verticalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="verticalHeaderDefaultSectionSize">
-        <number>25</number>
-       </attribute>
-       <row>
-        <property name="text">
-         <string>New Row</string>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string>New Row</string>
-        </property>
-       </row>
-       <column>
-        <property name="text">
-         <string>오파츠</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T1</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T2</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T3</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T4</string>
-        </property>
-       </column>
-       <item row="0" column="0">
-        <property name="text">
-         <string>백귀야행</string>
-        </property>
-       </item>
       </widget>
-      <widget class="QTableWidget" name="tableWidget_3">
+      <widget class="QListWidget" name="listWidget_cal4">
        <property name="geometry">
         <rect>
          <x>935</x>
@@ -493,67 +391,14 @@ QPushButton:clicked{
          <height>600</height>
         </rect>
        </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="verticalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
        <property name="horizontalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
-       <attribute name="horizontalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="horizontalHeaderDefaultSectionSize">
-        <number>50</number>
-       </attribute>
-       <attribute name="verticalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="verticalHeaderDefaultSectionSize">
-        <number>25</number>
-       </attribute>
-       <row>
-        <property name="text">
-         <string>New Row</string>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string>New Row</string>
-        </property>
-       </row>
-       <column>
-        <property name="text">
-         <string>오파츠</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T1</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T2</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T3</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T4</string>
-        </property>
-       </column>
       </widget>
-      <widget class="QTableWidget" name="tableWidget_4">
+      <widget class="QListWidget" name="listWidget_cal1">
        <property name="geometry">
         <rect>
          <x>15</x>
@@ -562,65 +407,9 @@ QPushButton:clicked{
          <height>700</height>
         </rect>
        </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="verticalScrollBarPolicy">
-        <enum>Qt::ScrollBarAlwaysOff</enum>
-       </property>
        <property name="horizontalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
-       <attribute name="horizontalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="horizontalHeaderDefaultSectionSize">
-        <number>50</number>
-       </attribute>
-       <attribute name="verticalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="verticalHeaderDefaultSectionSize">
-        <number>25</number>
-       </attribute>
-       <row>
-        <property name="text">
-         <string>New Row</string>
-        </property>
-       </row>
-       <row>
-        <property name="text">
-         <string>New Row</string>
-        </property>
-       </row>
-       <column>
-        <property name="text">
-         <string>오파츠</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T1</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T2</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T3</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>T4</string>
-        </property>
-       </column>
       </widget>
      </widget>
      <widget class="QWidget" name="page_4">

@@ -20,7 +20,7 @@ class Posts():
         self.driver = webdriver.Edge(self.driver_path, options=options)
 
     def getUpdateUrl(self):
-        url_search = BASE_URL + '/board_list?keywords=%EC%83%81%EC%84%B8&board=1076&searchKeywordType=THREAD_TITLE'
+        url_search = BASE_URL + 'board_list?keywords=%EC%83%81%EC%84%B8&board=1076&searchKeywordType=THREAD_TITLE'
         self.driver.get(url_search)
         soup_search = BeautifulSoup(self.driver.page_source, 'lxml')
         post_url = BASE_URL + soup_search.select_one('body div.list-box a')['href']
