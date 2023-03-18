@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QTableWidget" name="tableWidget_cal">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -80,7 +80,7 @@
     </property>
    </column>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_img">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -112,15 +112,15 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">border: 1px solid rgb(130,135,144);</string>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
   <zorder>label_back</zorder>
-  <zorder>tableWidget</zorder>
-  <zorder>label</zorder>
+  <zorder>tableWidget_cal</zorder>
+  <zorder>label_img</zorder>
  </widget>
  <resources/>
  <connections/>

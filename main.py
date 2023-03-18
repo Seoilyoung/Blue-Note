@@ -36,7 +36,7 @@ from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize
 from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QGraphicsDropShadowEffect, QStyledItemDelegate,
+    QApplication, QMainWindow,
     QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem
 )
 import ApGuide.FunctionApGuide as ApGuide
@@ -49,6 +49,8 @@ icon_path = 'Gui/Useimages/icon.png'
 window_title = '블루 스케줄러'
 mainscreen_path = 'Gui\Screen.ui'
 container_cal_path = 'Gui\Container.ui'
+container_char_path = 'Gui\Container_char.ui'
+list_char = []
 list_oparts = ["네브라", "파에스토스","볼프세크","님루드","만드라고라","로혼치","에테르","안티키테라","보이니치","하니와",
             "토템폴","전지","콜간테","위니페소키"]
 list_academy = ["백귀야행", "붉은겨울","트리니티","게헨나","아비도스","밀레니엄","아리우스","산해경","발키리"]
@@ -102,9 +104,11 @@ class MainWindow(QMainWindow):
 
         # 재화계산
         time_cal1 = time.time()
-        self.layout_cal(list_oparts, 'oparts', self.listWidget_cal2)
-        self.layout_cal(list_academy, 'academy', self.listWidget_cal3)
-        self.layout_cal(list_academy, 'academy', self.listWidget_cal4)
+        list_char = ['시로코','아즈사','아루','카즈사']
+        self.layout_cal(list_char, 'character', container_char_path, self.listWidget_cal1)
+        self.layout_cal(list_oparts, 'oparts', container_cal_path, self.listWidget_cal2)
+        self.layout_cal(list_academy, 'academy', container_cal_path, self.listWidget_cal3)
+        self.layout_cal(list_academy, 'academy', container_cal_path, self.listWidget_cal4)
         time_cal2 = time.time()
         print('재화계산 소요시간 {}'.format(time_cal2-time_cal1))
 
@@ -171,24 +175,48 @@ class MainWindow(QMainWindow):
             # date 추가
             date_item = QTableWidgetItem(post['date'])
             tableWidget.setItem(idx, 1, date_item)
+
     # 재화계산 - layout
-    def layout_cal(self, list_item, item_type, listwidget):
+    def layout_cal(self, list_item, item_type, container_path, listwidget):
+        if item_type is 'character':
+                listwidget.setDragEnabled(True)
+                listwidget.setDragDropMode(QAbstractItemView.DragDropMode.InternalMove)
+                listwidget.setDropIndicatorShown(True)
+                listwidget.setAcceptDrops(True)
+                listwidget.viewport().setAcceptDrops(True)
+                listwidget.dropEvent = self.dropEvent
         for i in range(len(list_item)):
             img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
             pixmap = QPixmap(img_path)
-            container_cal = loadUi(container_cal_path)
-            item = QListWidgetItem(listwidget)
-            item.setSizeHint(QSize(0,50))
-            container_cal.label_back.setStyleSheet("border: 1px solid rgb(130,135,144);")
-            container_cal.label.setContentsMargins(5,5,5,5)
-            container_cal.label.setText(list_item[i])
-            container_cal.label.setPixmap(pixmap)
-            # for row in range(container_cal.tableWidget.rowCount()):
-            #     for column in range(container_cal.tableWidget.columnCount()):
-            #          item_value = ...  # 적절한 값을 가져옵니다.
-            #          container_cal.tableWidget.setItem(row, column, QTableWidgetItem(str(item_value)))
-            listwidget.addItem(item)
-            listwidget.setItemWidget(item, container_cal)
+            container_ui = loadUi(container_path)
+            container = QListWidgetItem(listwidget)
+            container.setSizeHint(QSize(0,50))
+            container_ui.label_img.setContentsMargins(5,5,5,5)
+            container_ui.label_img.setText(list_item[i])
+            container_ui.label_img.setPixmap(pixmap)
+            for row in range(container_ui.tableWidget_cal.rowCount()):
+                for column in range(container_ui.tableWidget_cal.columnCount()):
+                     item_value = row+column
+                     item = QTableWidgetItem(str(item_value))
+                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                     container_ui.tableWidget_cal.setItem(row, column, item)
+
+            if item_type is 'character':
+                container_ui.comboBox.setCurrentText('호시도')
+            listwidget.addItem(container)
+            listwidget.setItemWidget(container, container_ui)
+    
+    def dropEvent(self, event):
+        # 대상이 None이면 이벤트를 무시하도록 처리
+        if event.source() == self.listWidget_cal1 and not event.mimeData().hasUrls():
+            drop_index = self.listWidget_cal1.indexAt(event.position().toPoint())
+            if not drop_index.isValid():
+                event.ignore()
+                return
+
+        super().dropEvent(event)
+
+
 
     # 버튼 기능 - AP 가이드
     def ap_image_save(self):
