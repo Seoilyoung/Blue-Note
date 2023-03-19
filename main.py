@@ -32,7 +32,7 @@ import webbrowser
 import asyncio
 import atexit
 
-from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize
+from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent
 from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
@@ -178,13 +178,12 @@ class MainWindow(QMainWindow):
 
     # 재화계산 - layout
     def layout_cal(self, list_item, item_type, container_path, listwidget):
-        if item_type is 'character':
+        if listwidget is self.listWidget_cal1:
                 listwidget.setDragEnabled(True)
                 listwidget.setDragDropMode(QAbstractItemView.DragDropMode.InternalMove)
                 listwidget.setDropIndicatorShown(True)
-                listwidget.setAcceptDrops(True)
-                listwidget.viewport().setAcceptDrops(True)
-                listwidget.dropEvent = self.dropEvent
+                listwidget.viewport().installEventFilter(self)
+
         for i in range(len(list_item)):
             img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
             pixmap = QPixmap(img_path)
@@ -202,21 +201,18 @@ class MainWindow(QMainWindow):
                      container_ui.tableWidget_cal.setItem(row, column, item)
 
             if item_type is 'character':
-                container_ui.comboBox.setCurrentText('호시도')
+                container_ui.comboBox.setCurrentText(list_item[i])
             listwidget.addItem(container)
             listwidget.setItemWidget(container, container_ui)
     
-    def dropEvent(self, event):
-        # 대상이 None이면 이벤트를 무시하도록 처리
-        if event.source() == self.listWidget_cal1 and not event.mimeData().hasUrls():
-            drop_index = self.listWidget_cal1.indexAt(event.position().toPoint())
-            if not drop_index.isValid():
-                event.ignore()
-                return
-
-        super().dropEvent(event)
-
-
+    def eventFilter(self, source, event):
+        if event.type() == QEvent.Type.Drop:
+            pos = event.position()
+            index = self.listWidget_cal1.indexAt(QPoint(int(pos.x()), int(pos.y())))
+            current_row = self.listWidget_cal1.currentRow()
+            if current_row == self.listWidget_cal1.count()-1 and index.row()==-1:
+                return True
+        return super().eventFilter(source, event)
 
     # 버튼 기능 - AP 가이드
     def ap_image_save(self):
