@@ -29,9 +29,8 @@ import sys
 import os
 import subprocess
 import webbrowser
-import asyncio
-import atexit
 
+import PyQt6
 from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent
 from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices
 from PyQt6.uic import loadUi
@@ -103,15 +102,17 @@ class MainWindow(QMainWindow):
         #     posts.driver.quit()
 
         # 재화계산
-        time_cal1 = time.time()
         list_char = ['시로코','아즈사','아루','카즈사']
-        self.layout_cal(list_char, 'character', container_char_path, self.listWidget_cal1)
-        self.layout_cal(list_oparts, 'oparts', container_cal_path, self.listWidget_cal2)
-        self.layout_cal(list_academy, 'academy', container_cal_path, self.listWidget_cal3)
-        self.layout_cal(list_academy, 'academy', container_cal_path, self.listWidget_cal4)
-        time_cal2 = time.time()
-        print('재화계산 소요시간 {}'.format(time_cal2-time_cal1))
-
+        self.calgrowth_layout(list_char, 'character', container_char_path, self.listWidget_cal1)
+        self.calgrowth_layout(list_oparts, 'oparts', container_cal_path, self.listWidget_cal2)
+        self.calgrowth_layout(list_academy, 'academy', container_cal_path, self.listWidget_cal3)
+        self.calgrowth_layout(list_academy, 'academy', container_cal_path, self.listWidget_cal4)
+        
+        self.button_calgrowth_insert.clicked.connect(self.calgrowth_insert)
+        self.button_calgrowth_delete.clicked.connect(self.calgrowth_delete)
+        # item = self.listWidget_cal1.item(2)
+        # label_img = item.data(Qt.ItemDataRole.DisplayRole)
+        # print(label_img.text())
         # AP 가이드
         self.dateEdit_ap1.setDate(QDate.currentDate())
         self.button_ap1.clicked.connect(self.ap_image_save)
@@ -177,7 +178,7 @@ class MainWindow(QMainWindow):
             tableWidget.setItem(idx, 1, date_item)
 
     # 재화계산 - layout
-    def layout_cal(self, list_item, item_type, container_path, listwidget):
+    def calgrowth_layout(self, list_item, item_type, container_path, listwidget):
         if listwidget is self.listWidget_cal1:
                 listwidget.setDragEnabled(True)
                 listwidget.setDragDropMode(QAbstractItemView.DragDropMode.InternalMove)
@@ -204,6 +205,35 @@ class MainWindow(QMainWindow):
                 container_ui.comboBox.setCurrentText(list_item[i])
             listwidget.addItem(container)
             listwidget.setItemWidget(container, container_ui)
+    
+    def calgrowth_insert(self):
+        listwidget = self.listWidget_cal1
+        container_path = 'Gui\Container_char.ui'
+        container_ui = loadUi(container_path)
+        container = QListWidgetItem(listwidget)
+        container.setSizeHint(QSize(0,50))
+        container_ui.label_img.setContentsMargins(5,5,5,5)
+        # img_path = f"Gui/Useimages/'character'/{i+1:02}.webp"
+        # pixmap = QPixmap(img_path)
+        # container_ui.label_img.setPixmap(pixmap)
+        for row in range(container_ui.tableWidget_cal.rowCount()):
+            for column in range(container_ui.tableWidget_cal.columnCount()):
+                    item = QTableWidgetItem('0')
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    container_ui.tableWidget_cal.setItem(row, column, item)
+
+        listwidget.addItem(container)
+        listwidget.setItemWidget(container, container_ui)
+    
+    def printChanged(self, row, column):
+        item = self.item(row, column)
+        print(f'Cell ({row}, {column}) 값이 변경됨: {item.text()}')
+
+    def calgrowth_delete(self):
+        listwidget = self.listWidget_cal1
+        index = self.listWidget_cal1.currentRow()
+        if index >= 0:
+            listwidget.takeItem(index)
     
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.Drop:

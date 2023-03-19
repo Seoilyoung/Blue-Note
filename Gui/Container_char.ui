@@ -16,9 +16,9 @@
   <widget class="QTableWidget" name="tableWidget_cal">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>223</x>
      <y>0</y>
-     <width>160</width>
+     <width>136</width>
      <height>50</height>
     </rect>
    </property>
@@ -38,7 +38,10 @@
     <bool>false</bool>
    </attribute>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>40</number>
+    <number>34</number>
+   </attribute>
+   <attribute name="horizontalHeaderMinimumSectionSize">
+    <number>20</number>
    </attribute>
    <attribute name="verticalHeaderVisible">
     <bool>false</bool>
@@ -48,32 +51,32 @@
    </attribute>
    <row>
     <property name="text">
-     <string>New Row</string>
+     <string>C</string>
     </property>
    </row>
    <row>
     <property name="text">
-     <string>New Row</string>
+     <string>S</string>
     </property>
    </row>
    <column>
     <property name="text">
-     <string>New Column</string>
+     <string>T1</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>New Column</string>
+     <string>T2</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>New Column</string>
+     <string>T3</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>New Column</string>
+     <string>T4</string>
     </property>
    </column>
   </widget>
@@ -86,17 +89,22 @@
      <height>50</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">border: 1px solid rgb(130,135,144);</string>
    </property>
    <property name="text">
-    <string/>
+    <string>Default</string>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
    </property>
    <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    <set>Qt::AlignCenter</set>
    </property>
    <property name="textInteractionFlags">
     <set>Qt::NoTextInteraction</set>
@@ -107,7 +115,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>380</width>
+     <width>356</width>
      <height>50</height>
     </rect>
    </property>
@@ -121,9 +129,9 @@
   <widget class="QTableWidget" name="tableWidget_oparts">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>157</x>
      <y>0</y>
-     <width>70</width>
+     <width>66</width>
      <height>50</height>
     </rect>
    </property>
@@ -177,7 +185,7 @@
     <rect>
      <x>50</x>
      <y>25</y>
-     <width>100</width>
+     <width>107</width>
      <height>25</height>
     </rect>
    </property>
@@ -185,7 +193,7 @@
     <string notr="true"/>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>test</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -199,9 +207,12 @@
     <rect>
      <x>50</x>
      <y>1</y>
-     <width>100</width>
+     <width>107</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::WheelFocus</enum>
    </property>
    <property name="editable">
     <bool>true</bool>
@@ -212,6 +223,11 @@
    <property name="frame">
     <bool>true</bool>
    </property>
+   <item>
+    <property name="text">
+     <string>유우카(운동회)</string>
+    </property>
+   </item>
    <item>
     <property name="text">
      <string>시로코</string>
@@ -230,11 +246,6 @@
    <item>
     <property name="text">
      <string>정월(하루나)</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>유우카(운동회)</string>
     </property>
    </item>
    <item>

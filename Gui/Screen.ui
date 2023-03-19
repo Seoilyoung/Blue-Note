@@ -24,8 +24,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-</string>
+     <string notr="true"/>
     </property>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
@@ -471,7 +470,7 @@ QPushButton:clicked{
         <number>100</number>
        </property>
       </widget>
-      <widget class="QPushButton" name="button_screen_insert">
+      <widget class="QPushButton" name="button_calgrowth_insert">
        <property name="geometry">
         <rect>
          <x>395</x>
@@ -490,7 +489,7 @@ QPushButton:clicked{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	background-color: rgba(0,0,0,80);
+	background-color: rgba(255,255,255,80);
 	color:rgba(0,0,255,240);
 	border-radius:15px;
 }
@@ -507,7 +506,7 @@ QPushButton:clicked{
         <string></string>
        </property>
       </widget>
-      <widget class="QPushButton" name="button_screen_del">
+      <widget class="QPushButton" name="button_calgrowth_delete">
        <property name="geometry">
         <rect>
          <x>395</x>
@@ -526,7 +525,7 @@ QPushButton:clicked{
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-	background-color: rgba(0,0,0,80);
+	background-color: rgba(255,255,255,80);
 	color:rgba(255,0,0,240);
 	border-radius:15px;
 }
