@@ -24,6 +24,7 @@
 # - 함수들 각 py파일로 이동할 수 있으면 옮기자. main이 더럽다
 
 # - 이미지 출처 : 블루 아카이브 디지털 굿즈샵 (https://forum.nexon.com/bluearchive/board_view?thread=1881343)
+#                블루아카이브 - 나무위키
 
 import sys
 import os
@@ -35,7 +36,7 @@ from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent
 from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
-    QApplication, QMainWindow,
+    QApplication, QMainWindow,QCompleter,
     QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem
 )
 import ApGuide.FunctionApGuide as ApGuide
@@ -186,14 +187,11 @@ class MainWindow(QMainWindow):
                 listwidget.viewport().installEventFilter(self)
 
         for i in range(len(list_item)):
-            img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
-            pixmap = QPixmap(img_path)
             container_ui = loadUi(container_path)
             container = QListWidgetItem(listwidget)
             container.setSizeHint(QSize(0,50))
             container_ui.label_img.setContentsMargins(5,5,5,5)
             container_ui.label_img.setText(list_item[i])
-            container_ui.label_img.setPixmap(pixmap)
             for row in range(container_ui.tableWidget_cal.rowCount()):
                 for column in range(container_ui.tableWidget_cal.columnCount()):
                      item_value = row+column
@@ -201,8 +199,15 @@ class MainWindow(QMainWindow):
                      item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                      container_ui.tableWidget_cal.setItem(row, column, item)
 
-            if item_type is 'character':
+            if listwidget is self.listWidget_cal1:
                 container_ui.comboBox.setCurrentText(list_item[i])
+                container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
+                char_name = container_ui.comboBox.currentText()
+                img_path = f"Gui/Useimages/{item_type}/{char_name}.webp"
+            else:
+                img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
+            pixmap = QPixmap(img_path)
+            container_ui.label_img.setPixmap(pixmap)
             listwidget.addItem(container)
             listwidget.setItemWidget(container, container_ui)
     
@@ -225,16 +230,27 @@ class MainWindow(QMainWindow):
         listwidget.addItem(container)
         listwidget.setItemWidget(container, container_ui)
     
-    def printChanged(self, row, column):
-        item = self.item(row, column)
-        print(f'Cell ({row}, {column}) 값이 변경됨: {item.text()}')
-
     def calgrowth_delete(self):
         listwidget = self.listWidget_cal1
         index = self.listWidget_cal1.currentRow()
         if index >= 0:
             listwidget.takeItem(index)
+
+    def on_combo_box_changed(self):
+        widget = self.sender().parent()
+        row = self.listWidget_cal1.indexAt(widget.pos()).row()
+        print(f"콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
+        self.listWidget_cal1.setCurrentRow(row)
+        container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
+        char_name = container_ui.comboBox.currentText()
+        img_path = f"Gui/Useimages/character/{char_name}.webp"            
+        pixmap = QPixmap(img_path)
+        widget.label_img.setPixmap(pixmap)
     
+    def printChanged(self, row, column):
+        item = self.item(row, column)
+        print(f'Cell ({row}, {column}) 값이 변경됨: {item.text()}')
+
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.Drop:
             pos = event.position()
