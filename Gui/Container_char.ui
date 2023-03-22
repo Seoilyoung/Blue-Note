@@ -176,7 +176,12 @@
    </column>
    <item row="0" column="0">
     <property name="text">
-     <string>파에스토스</string>
+     <string>주오파츠</string>
+    </property>
+   </item>
+   <item row="1" column="0">
+    <property name="text">
+     <string>보조오파츠</string>
     </property>
    </item>
   </widget>
@@ -193,7 +198,7 @@
     <string notr="true"/>
    </property>
    <property name="text">
-    <string>test</string>
+    <string>아카데미</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -223,86 +228,6 @@
    <property name="frame">
     <bool>true</bool>
    </property>
-   <item>
-    <property name="text">
-     <string>유우카(운동회)</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>시로코</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>아루</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>호시노</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>정월(하루나)</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>아루(정월)</string>
-    </property>
-   </item>
   </widget>
   <zorder>label_back</zorder>
   <zorder>tableWidget_cal</zorder>

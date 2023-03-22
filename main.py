@@ -30,17 +30,20 @@ import sys
 import os
 import subprocess
 import webbrowser
+import asyncio
+import atexit
 
-import PyQt6
 from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent
 from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
-    QApplication, QMainWindow,QCompleter,
+    QApplication, QMainWindow, QGraphicsDropShadowEffect,
     QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem
 )
 import ApGuide.FunctionApGuide as ApGuide
+from CalGrowth import *
 from Posts.FunctionPosts import Posts
+
 
 import time
 
@@ -98,12 +101,15 @@ class MainWindow(QMainWindow):
 
         # @atexit.register
         # def close_driver():
+        #     posts.driver.quit()
         #     if os.path.isfile(pid_file):
         #         os.remove(pid_file)
-        #     posts.driver.quit()
+        #     FunctionCalGrowth.closeDB(self.j_database)
 
         # 재화계산
-        list_char = ['시로코','아즈사','아루','카즈사']
+        self.j_database, self.json_datas, self.json_table_exp, self.json_table_credit, self.json_table_skill = FunctionCalGrowth.openDB()
+        self.db_list_char = FunctionCalGrowth.readCharList(self.json_datas)
+        
         self.calgrowth_layout(list_char, 'character', container_char_path, self.listWidget_cal1)
         self.calgrowth_layout(list_oparts, 'oparts', container_cal_path, self.listWidget_cal2)
         self.calgrowth_layout(list_academy, 'academy', container_cal_path, self.listWidget_cal3)
@@ -114,6 +120,7 @@ class MainWindow(QMainWindow):
         # item = self.listWidget_cal1.item(2)
         # label_img = item.data(Qt.ItemDataRole.DisplayRole)
         # print(label_img.text())
+
         # AP 가이드
         self.dateEdit_ap1.setDate(QDate.currentDate())
         self.button_ap1.clicked.connect(self.ap_image_save)
@@ -191,7 +198,6 @@ class MainWindow(QMainWindow):
             container = QListWidgetItem(listwidget)
             container.setSizeHint(QSize(0,50))
             container_ui.label_img.setContentsMargins(5,5,5,5)
-            container_ui.label_img.setText(list_item[i])
             for row in range(container_ui.tableWidget_cal.rowCount()):
                 for column in range(container_ui.tableWidget_cal.columnCount()):
                      item_value = row+column
@@ -200,7 +206,7 @@ class MainWindow(QMainWindow):
                      container_ui.tableWidget_cal.setItem(row, column, item)
 
             if listwidget is self.listWidget_cal1:
-                container_ui.comboBox.setCurrentText(list_item[i])
+                container_ui.comboBox.addItems(self.db_list_char)
                 container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
                 char_name = container_ui.comboBox.currentText()
                 img_path = f"Gui/Useimages/{item_type}/{char_name}.webp"
@@ -226,7 +232,10 @@ class MainWindow(QMainWindow):
                     item = QTableWidgetItem('0')
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     container_ui.tableWidget_cal.setItem(row, column, item)
-
+        
+        container_ui.comboBox.addItems(self.db_list_char)
+        container_ui.comboBox.setCurrentText("")
+        container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
         listwidget.addItem(container)
         listwidget.setItemWidget(container, container_ui)
     
