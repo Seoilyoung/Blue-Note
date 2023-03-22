@@ -1,4 +1,488 @@
 {
+    "나기사" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "나츠" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "네루" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "네루(바니걸)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "노노미" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "노노미(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "노도카" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "노도카(온천)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "노아" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "마리" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "마리(체육복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "마리나" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "마시로" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "마시로(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "마키" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "메구" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "모모이" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "모에" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "무츠키" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "무츠키(새해)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "미네" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "미도리" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "미모리" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "미사키" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "미야코" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "미유" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "미치루" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "미카" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "미쿠" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "사야" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "사야(사복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "사오리" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "사쿠라코" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "사키" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "세나" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "세리나" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "세리나(크리스마스)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "세리카" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "세리카(새해)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "슌" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "슌(어린이)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "스미레" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "스즈미" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "시구레" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
     "시로코" : {
         "Academy":"아비도스", "MainOparts":"파에스토스", "SubOparts":"보이니치",
         "Skill_Bd": {
@@ -8,6 +492,842 @@
         "Skill_Note": {
             "Main":[0,0,5,3,12,2,3,8],
             "Sub":[0,0,0,10,19,17,9,16]
+        }
+    },
+    "시로코(라이딩)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "시미코" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "시즈코" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "시즈코(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아루" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아루(새해)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아리스" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아스나" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아스나(바니걸)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아야네" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아야네(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아이리" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아즈사" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아즈사(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아츠코" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아카네" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아카네(바니걸)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아카리" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "아코" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "에이미" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "와카모" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "와카모(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "요시미" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "우이" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "우타하" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "우타하(응원단)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "유우카" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "유우카(체육복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "유즈" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "이로하" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "이오리" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "이오리(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "이즈나" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "이즈나(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "이즈미" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "이즈미(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "주리" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "준코" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "준코(새해)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "체리노" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "체리노(온천)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "츠루기" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "츠루기(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "츠바키" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "츠쿠요" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "치나츠" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "치나츠(온천)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "치세" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "치세(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "치히로" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "카린" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "카린(바니걸)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "카에데" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "카요코" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "카요코(새해)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "카즈사" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "칸나" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "코유키" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "코코나" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "코타마" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "코토리" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "코하루" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "키리노" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "토모에" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "토키" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "피나" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "하나에" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "하나에(크리스마스)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "하나코" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "하레" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "하루나" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "하루나(새해)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "하루카" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "하루카(새해)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "하스미" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "하스미(체육복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
         }
     },
     "호시노" : {
@@ -21,7 +1341,139 @@
             "Sub":[0,0,0,13,21,16,9,14]
         }
     },
-    "Default" : {
+    "호시노(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "후부키" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "후우카" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "후우카(새해)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "히나" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "히나(수영복)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "히나타" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "히마리" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "히비키" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "히비키(응원단)" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "히요리" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "히후미" : {
+        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Skill_Bd": {
+            "Main":[0,0,0,0],
+            "Sub":[0,0,0,0]
+        },
+        "Skill_Note": {
+            "Main":[0,0,0,0,0,0,0,0],
+            "Sub":[0,0,0,0,0,0,0,0]
+        }
+    },
+    "히후미(수영복)" : {
         "Academy":"", "MainOparts":"", "SubOparts":"",
         "Skill_Bd": {
             "Main":[0,0,0,0],
