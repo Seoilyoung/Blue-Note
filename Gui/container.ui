@@ -47,7 +47,7 @@
     <bool>false</bool>
    </attribute>
    <attribute name="verticalHeaderDefaultSectionSize">
-    <number>25</number>
+    <number>24</number>
    </attribute>
    <row>
     <property name="text">
@@ -98,7 +98,7 @@
     <string notr="true"/>
    </property>
    <property name="text">
-    <string>Default</string>
+    <string/>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -126,9 +126,44 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="label_name">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>35</y>
+     <width>50</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>배달의민족 주아</family>
+     <pointsize>8</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:rgba(0,0,0,80);
+color:rgb(255,255,255);</string>
+   </property>
+   <property name="text">
+    <string>Default</string>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::NoTextInteraction</set>
+   </property>
+  </widget>
   <zorder>label_back</zorder>
   <zorder>tableWidget_cal</zorder>
   <zorder>label_img</zorder>
+  <zorder>label_name</zorder>
  </widget>
  <resources/>
  <connections/>

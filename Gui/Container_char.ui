@@ -16,9 +16,9 @@
   <widget class="QTableWidget" name="tableWidget_cal">
    <property name="geometry">
     <rect>
-     <x>223</x>
+     <x>224</x>
      <y>0</y>
-     <width>136</width>
+     <width>156</width>
      <height>50</height>
     </rect>
    </property>
@@ -31,6 +31,9 @@
    <property name="sizeAdjustPolicy">
     <enum>QAbstractScrollArea::AdjustIgnored</enum>
    </property>
+   <property name="verticalScrollMode">
+    <enum>QAbstractItemView::ScrollPerPixel</enum>
+   </property>
    <attribute name="horizontalHeaderVisible">
     <bool>false</bool>
    </attribute>
@@ -38,7 +41,7 @@
     <bool>false</bool>
    </attribute>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>34</number>
+    <number>39</number>
    </attribute>
    <attribute name="horizontalHeaderMinimumSectionSize">
     <number>20</number>
@@ -47,7 +50,7 @@
     <bool>false</bool>
    </attribute>
    <attribute name="verticalHeaderDefaultSectionSize">
-    <number>25</number>
+    <number>24</number>
    </attribute>
    <row>
     <property name="text">
@@ -131,7 +134,7 @@
     <rect>
      <x>157</x>
      <y>0</y>
-     <width>66</width>
+     <width>67</width>
      <height>50</height>
     </rect>
    </property>

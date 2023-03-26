@@ -412,6 +412,12 @@ QPushButton:clicked{
        <property name="horizontalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
+       <property name="verticalScrollMode">
+        <enum>QAbstractItemView::ScrollPerItem</enum>
+       </property>
+       <property name="movement">
+        <enum>QListView::Static</enum>
+       </property>
       </widget>
       <widget class="QListWidget" name="listWidget_cal3">
        <property name="geometry">
@@ -427,6 +433,9 @@ QPushButton:clicked{
        </property>
        <property name="horizontalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="verticalScrollMode">
+        <enum>QAbstractItemView::ScrollPerItem</enum>
        </property>
       </widget>
       <widget class="QListWidget" name="listWidget_cal4">
@@ -444,6 +453,9 @@ QPushButton:clicked{
        <property name="horizontalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
+       <property name="verticalScrollMode">
+        <enum>QAbstractItemView::ScrollPerItem</enum>
+       </property>
       </widget>
       <widget class="QListWidget" name="listWidget_cal1">
        <property name="geometry">
@@ -457,6 +469,9 @@ QPushButton:clicked{
        <property name="acceptDrops">
         <bool>true</bool>
        </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
        <property name="horizontalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
@@ -465,6 +480,9 @@ QPushButton:clicked{
        </property>
        <property name="textElideMode">
         <enum>Qt::ElideNone</enum>
+       </property>
+       <property name="verticalScrollMode">
+        <enum>QAbstractItemView::ScrollPerItem</enum>
        </property>
        <property name="batchSize">
         <number>100</number>

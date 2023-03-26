@@ -55,7 +55,7 @@ container_cal_path = 'Gui\Container.ui'
 container_char_path = 'Gui\Container_char.ui'
 list_char = []
 list_oparts = ["네브라", "파에스토스","볼프세크","님루드","만드라고라","로혼치","에테르","안티키테라","보이니치","하니와",
-            "토템폴","전지","콜간테","위니페소키"]
+            "토템폴","전지","콜간테","위니페소키","인형","아틀란티스"]
 list_academy = ["백귀야행", "붉은겨울","트리니티","게헨나","아비도스","밀레니엄","아리우스","산해경","발키리"]
 
 class MainWindow(QMainWindow):
@@ -197,7 +197,8 @@ class MainWindow(QMainWindow):
             container_ui = loadUi(container_path)
             container = QListWidgetItem(listwidget)
             container.setSizeHint(QSize(0,50))
-            container_ui.label_img.setContentsMargins(5,5,5,5)
+            container_ui.label_img.setScaledContents(True)
+            container_ui.label_img.setContentsMargins(3,3,3,3)
             for row in range(container_ui.tableWidget_cal.rowCount()):
                 for column in range(container_ui.tableWidget_cal.columnCount()):
                      item_value = row+column
@@ -210,10 +211,12 @@ class MainWindow(QMainWindow):
                 container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
                 char_name = container_ui.comboBox.currentText()
                 img_path = f"Gui/Useimages/{item_type}/{char_name}.webp"
+                # 여기다가 오파츠, 아카데미
             else:
                 img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
             pixmap = QPixmap(img_path)
             container_ui.label_img.setPixmap(pixmap)
+            container_ui.label_name.setText(list_item[i])
             listwidget.addItem(container)
             listwidget.setItemWidget(container, container_ui)
     
@@ -223,7 +226,8 @@ class MainWindow(QMainWindow):
         container_ui = loadUi(container_path)
         container = QListWidgetItem(listwidget)
         container.setSizeHint(QSize(0,50))
-        container_ui.label_img.setContentsMargins(5,5,5,5)
+        container_ui.label_img.setScaledContents(True)
+        container_ui.label_img.setContentsMargins(3,3,3,3)
         # img_path = f"Gui/Useimages/'character'/{i+1:02}.webp"
         # pixmap = QPixmap(img_path)
         # container_ui.label_img.setPixmap(pixmap)
