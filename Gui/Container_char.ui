@@ -22,6 +22,9 @@
      <height>50</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="verticalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
@@ -30,9 +33,6 @@
    </property>
    <property name="sizeAdjustPolicy">
     <enum>QAbstractScrollArea::AdjustIgnored</enum>
-   </property>
-   <property name="verticalScrollMode">
-    <enum>QAbstractItemView::ScrollPerPixel</enum>
    </property>
    <attribute name="horizontalHeaderVisible">
     <bool>false</bool>
@@ -94,6 +94,7 @@
    </property>
    <property name="font">
     <font>
+     <family>배달의민족 주아</family>
      <pointsize>8</pointsize>
     </font>
    </property>
@@ -118,7 +119,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>356</width>
+     <width>380</width>
      <height>50</height>
     </rect>
    </property>
@@ -129,65 +130,6 @@
     <string/>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidget_oparts">
-   <property name="geometry">
-    <rect>
-     <x>157</x>
-     <y>0</y>
-     <width>67</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="verticalScrollBarPolicy">
-    <enum>Qt::ScrollBarAlwaysOff</enum>
-   </property>
-   <property name="horizontalScrollBarPolicy">
-    <enum>Qt::ScrollBarAlwaysOff</enum>
-   </property>
-   <property name="sizeAdjustPolicy">
-    <enum>QAbstractScrollArea::AdjustIgnored</enum>
-   </property>
-   <attribute name="horizontalHeaderVisible">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="horizontalHeaderCascadingSectionResizes">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>70</number>
-   </attribute>
-   <attribute name="verticalHeaderVisible">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="verticalHeaderDefaultSectionSize">
-    <number>25</number>
-   </attribute>
-   <row>
-    <property name="text">
-     <string>New Row</string>
-    </property>
-   </row>
-   <row>
-    <property name="text">
-     <string>New Row</string>
-    </property>
-   </row>
-   <column>
-    <property name="text">
-     <string>New Column</string>
-    </property>
-   </column>
-   <item row="0" column="0">
-    <property name="text">
-     <string>주오파츠</string>
-    </property>
-   </item>
-   <item row="1" column="0">
-    <property name="text">
-     <string>보조오파츠</string>
-    </property>
-   </item>
-  </widget>
   <widget class="QLabel" name="label_academy">
    <property name="geometry">
     <rect>
@@ -196,6 +138,11 @@
      <width>107</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>맑은 고딕</family>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true"/>
@@ -216,8 +163,13 @@
      <x>50</x>
      <y>1</y>
      <width>107</width>
-     <height>25</height>
+     <height>24</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>맑은 고딕</family>
+    </font>
    </property>
    <property name="focusPolicy">
     <enum>Qt::WheelFocus</enum>
@@ -232,12 +184,70 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QLabel" name="label_oparts_main">
+   <property name="geometry">
+    <rect>
+     <x>157</x>
+     <y>0</y>
+     <width>67</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>맑은 고딕</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid rgb(130,135,144);
+border-right: none;</string>
+   </property>
+   <property name="text">
+    <string>주오파츠</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::NoTextInteraction</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_oparts_sub">
+   <property name="geometry">
+    <rect>
+     <x>157</x>
+     <y>25</y>
+     <width>67</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>맑은 고딕</family>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid rgb(130,135,144);
+border-right: none;
+border-top:none;</string>
+   </property>
+   <property name="text">
+    <string>보조오파츠</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::NoTextInteraction</set>
+   </property>
+  </widget>
   <zorder>label_back</zorder>
   <zorder>tableWidget_cal</zorder>
-  <zorder>tableWidget_oparts</zorder>
   <zorder>label_academy</zorder>
   <zorder>label_img</zorder>
   <zorder>comboBox</zorder>
+  <zorder>label_oparts_main</zorder>
+  <zorder>label_oparts_sub</zorder>
  </widget>
  <resources/>
  <connections/>

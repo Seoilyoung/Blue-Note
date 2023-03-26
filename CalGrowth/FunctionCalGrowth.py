@@ -50,6 +50,23 @@ def closeDB(database):
 def readCharList(datas):
     return datas.keys()
 
+def readCharAcademy(datas, char_name):
+    try:
+        return datas[char_name]['Academy']
+    except:
+        return
+
+def readCharMainOparts(datas, char_name):
+    try:
+        return datas[char_name]['MainOparts']
+    except:
+        return
+    
+def readCharSubOparts(datas, char_name):
+    try:
+        return datas[char_name]['SubOparts']
+    except:
+        return
 # # 학생 레벨업 재화 계산
 # for exp in json_table_exp['level']:
 #     if  (char_test.Level_current < int(exp)) and (int(exp) <= char_test.Level_goal):

@@ -1,6 +1,6 @@
 {
     "나기사" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"볼프세크", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -11,7 +11,7 @@
         }
     },
     "나츠" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"만드라고라", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -22,7 +22,7 @@
         }
     },
     "네루" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"안티키테라", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -33,7 +33,7 @@
         }
     },
     "네루(바니걸)" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"하니와", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -44,7 +44,7 @@
         }
     },
     "노노미" : {
-        "Academy":"아비도스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아비도스", "MainOparts":"네브라", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -55,7 +55,7 @@
         }
     },
     "노노미(수영복)" : {
-        "Academy":"아비도스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아비도스", "MainOparts":"에테르", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -66,7 +66,7 @@
         }
     },
     "노도카" : {
-        "Academy":"붉은겨울", "MainOparts":"", "SubOparts":"",
+        "Academy":"붉은겨울", "MainOparts":"에테르", "SubOparts":"파에스토스",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -77,7 +77,7 @@
         }
     },
     "노도카(온천)" : {
-        "Academy":"붉은겨울", "MainOparts":"", "SubOparts":"",
+        "Academy":"붉은겨울", "MainOparts":"님루드", "SubOparts":"파에스토스",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -88,7 +88,7 @@
         }
     },
     "노아" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"파에스토스", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -99,7 +99,7 @@
         }
     },
     "마리" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"로혼치", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -110,7 +110,7 @@
         }
     },
     "마리(체육복)" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"하니와", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -121,7 +121,7 @@
         }
     },
     "마리나" : {
-        "Academy":"붉은겨울", "MainOparts":"", "SubOparts":"",
+        "Academy":"붉은겨울", "MainOparts":"볼프세크", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -132,7 +132,7 @@
         }
     },
     "마시로" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"네브라", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -143,7 +143,7 @@
         }
     },
     "마시로(수영복)" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"님루드", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -154,7 +154,7 @@
         }
     },
     "마키" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"님루드", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -165,7 +165,7 @@
         }
     },
     "메구" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"안티키테라", "SubOparts":"파에스토스",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -176,7 +176,7 @@
         }
     },
     "모모이" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"안티키테라", "SubOparts":"파에스토스",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -187,7 +187,7 @@
         }
     },
     "모에" : {
-        "Academy":"SRT/발키리", "MainOparts":"", "SubOparts":"",
+        "Academy":"SRT/발키리", "MainOparts":"에테르", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -198,7 +198,7 @@
         }
     },
     "무츠키" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"보이니치", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -209,7 +209,7 @@
         }
     },
     "무츠키(새해)" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"보이니치", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -220,7 +220,7 @@
         }
     },
     "미네" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"토템폴", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -231,7 +231,7 @@
         }
     },
     "미도리" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"파에스토스", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -242,7 +242,7 @@
         }
     },
     "미모리" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"로혼치", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -253,7 +253,7 @@
         }
     },
     "미사키" : {
-        "Academy":"아리우스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아리우스", "MainOparts":"네브라", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -264,7 +264,7 @@
         }
     },
     "미야코" : {
-        "Academy":"SRT/발키리", "MainOparts":"", "SubOparts":"",
+        "Academy":"SRT/발키리", "MainOparts":"안티키테라", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -275,7 +275,7 @@
         }
     },
     "미유" : {
-        "Academy":"SRT/발키리", "MainOparts":"", "SubOparts":"",
+        "Academy":"SRT/발키리", "MainOparts":"토템폴", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -286,7 +286,7 @@
         }
     },
     "미치루" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"파에스토스", "SubOparts":"콜간테",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -297,7 +297,7 @@
         }
     },
     "미카" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"에테르", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -319,7 +319,7 @@
         }
     },
     "사야" : {
-        "Academy":"산해경", "MainOparts":"", "SubOparts":"",
+        "Academy":"산해경", "MainOparts":"에테르", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -330,7 +330,7 @@
         }
     },
     "사야(사복)" : {
-        "Academy":"산해경", "MainOparts":"", "SubOparts":"",
+        "Academy":"산해경", "MainOparts":"에테르", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -341,7 +341,7 @@
         }
     },
     "사오리" : {
-        "Academy":"아리우스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아리우스", "MainOparts":"전지", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -352,7 +352,7 @@
         }
     },
     "사쿠라코" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"하니와", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -363,7 +363,7 @@
         }
     },
     "사키" : {
-        "Academy":"SRT/발키리", "MainOparts":"", "SubOparts":"",
+        "Academy":"SRT/발키리", "MainOparts":"볼프세크", "SubOparts":"전지",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -374,7 +374,7 @@
         }
     },
     "세나" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"에테르", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -385,7 +385,7 @@
         }
     },
     "세리나" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"보이니치", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -396,7 +396,7 @@
         }
     },
     "세리나(크리스마스)" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"만드라고라", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -407,7 +407,7 @@
         }
     },
     "세리카" : {
-        "Academy":"아비도스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아비도스", "MainOparts":"파에스토스", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -418,7 +418,7 @@
         }
     },
     "세리카(새해)" : {
-        "Academy":"아비도스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아비도스", "MainOparts":"파에스토스", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -429,7 +429,7 @@
         }
     },
     "슌" : {
-        "Academy":"산해경", "MainOparts":"", "SubOparts":"",
+        "Academy":"산해경", "MainOparts":"에테르", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -440,7 +440,7 @@
         }
     },
     "슌(어린이)" : {
-        "Academy":"산해경", "MainOparts":"", "SubOparts":"",
+        "Academy":"산해경", "MainOparts":"님루드", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -451,7 +451,7 @@
         }
     },
     "스미레" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"안티키테라", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -462,7 +462,7 @@
         }
     },
     "스즈미" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"에테르", "SubOparts":"파에스토스",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -473,7 +473,7 @@
         }
     },
     "시구레" : {
-        "Academy":"붉은겨울", "MainOparts":"", "SubOparts":"",
+        "Academy":"붉은겨울", "MainOparts":"안티키테라", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -495,7 +495,7 @@
         }
     },
     "시로코(라이딩)" : {
-        "Academy":"아비도스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아비도스", "MainOparts":"파에스토스", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -506,7 +506,7 @@
         }
     },
     "시미코" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"볼프세크", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -517,7 +517,7 @@
         }
     },
     "시즈코" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"만드라고라", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -528,7 +528,7 @@
         }
     },
     "시즈코(수영복)" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"보이니치", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -539,7 +539,7 @@
         }
     },
     "아루" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"로혼치", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -550,7 +550,7 @@
         }
     },
     "아루(새해)" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"토템폴", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -561,7 +561,7 @@
         }
     },
     "아리스" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"네브라", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -572,7 +572,7 @@
         }
     },
     "아스나" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"안티키테라", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -583,7 +583,7 @@
         }
     },
     "아스나(바니걸)" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"로혼치", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -594,7 +594,7 @@
         }
     },
     "아야네" : {
-        "Academy":"아비도스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아비도스", "MainOparts":"네브라", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -605,7 +605,7 @@
         }
     },
     "아야네(수영복)" : {
-        "Academy":"아비도스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아비도스", "MainOparts":"볼프세크", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -616,7 +616,7 @@
         }
     },
     "아이리" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"파에스토스", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -627,7 +627,7 @@
         }
     },
     "아즈사" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"네브라", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -638,7 +638,7 @@
         }
     },
     "아즈사(수영복)" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"파에스토스", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -649,7 +649,7 @@
         }
     },
     "아츠코" : {
-        "Academy":"아리우스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아리우스", "MainOparts":"에테르", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -660,7 +660,7 @@
         }
     },
     "아카네" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"님루드", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -671,7 +671,7 @@
         }
     },
     "아카네(바니걸)" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"로혼치", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -682,7 +682,7 @@
         }
     },
     "아카리" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"로혼치", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -693,7 +693,7 @@
         }
     },
     "아코" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"파에스토스", "SubOparts":"전지",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -704,7 +704,7 @@
         }
     },
     "에이미" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"님루드", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -715,7 +715,7 @@
         }
     },
     "와카모" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"전지", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -726,7 +726,7 @@
         }
     },
     "와카모(수영복)" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"위니페소키", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -737,7 +737,7 @@
         }
     },
     "요시미" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"님루드", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -748,7 +748,7 @@
         }
     },
     "우이" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"님루드", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -759,7 +759,7 @@
         }
     },
     "우타하" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"볼프세크", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -770,7 +770,7 @@
         }
     },
     "우타하(응원단)" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"안티키테라", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -781,7 +781,7 @@
         }
     },
     "유우카" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"님루드", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -792,7 +792,7 @@
         }
     },
     "유우카(체육복)" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"님루드", "SubOparts":"위니페소키",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -803,7 +803,7 @@
         }
     },
     "유즈" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"파에스토스", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -814,7 +814,7 @@
         }
     },
     "이로하" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"볼프세크", "SubOparts":"위니페소키",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -825,7 +825,7 @@
         }
     },
     "이오리" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"보이니치", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -836,7 +836,7 @@
         }
     },
     "이오리(수영복)" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"님루드", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -847,7 +847,7 @@
         }
     },
     "이즈나" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"볼프세크", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -858,7 +858,7 @@
         }
     },
     "이즈나(수영복)" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"만드라고라", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -869,7 +869,7 @@
         }
     },
     "이즈미" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"만드라고라", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -880,7 +880,7 @@
         }
     },
     "이즈미(수영복)" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"만드라고라", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -891,7 +891,7 @@
         }
     },
     "주리" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"보이니치", "SubOparts":"파에스토스",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -902,7 +902,7 @@
         }
     },
     "준코" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"만드라고라", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -913,7 +913,7 @@
         }
     },
     "준코(새해)" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"하니와", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -924,7 +924,7 @@
         }
     },
     "체리노" : {
-        "Academy":"붉은겨울", "MainOparts":"", "SubOparts":"",
+        "Academy":"붉은겨울", "MainOparts":"에테르", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -935,7 +935,7 @@
         }
     },
     "체리노(온천)" : {
-        "Academy":"붉은겨울", "MainOparts":"", "SubOparts":"",
+        "Academy":"붉은겨울", "MainOparts":"볼프세크", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -946,7 +946,7 @@
         }
     },
     "츠루기" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"에테르", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -957,7 +957,7 @@
         }
     },
     "츠루기(수영복)" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"안티키테라", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -968,7 +968,7 @@
         }
     },
     "츠바키" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"하니와", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -979,7 +979,7 @@
         }
     },
     "츠쿠요" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"네브라", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -990,7 +990,7 @@
         }
     },
     "치나츠" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"로혼치", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1001,7 +1001,7 @@
         }
     },
     "치나츠(온천)" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"만드라고라", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1012,7 +1012,7 @@
         }
     },
     "치세" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"하니와", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1023,7 +1023,7 @@
         }
     },
     "치세(수영복)" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"님루드", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1034,7 +1034,7 @@
         }
     },
     "치히로" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"네브라", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1045,7 +1045,7 @@
         }
     },
     "카린" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"볼프세크", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1056,7 +1056,7 @@
         }
     },
     "카린(바니걸)" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"만드라고라", "SubOparts":"파에스토스",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1067,7 +1067,7 @@
         }
     },
     "카에데" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"하니와", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1078,7 +1078,7 @@
         }
     },
     "카요코" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"보이니치", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1089,7 +1089,7 @@
         }
     },
     "카요코(새해)" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"볼프세크", "SubOparts":"아틀란티스",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1100,7 +1100,7 @@
         }
     },
     "카즈사" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"콜간테", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1111,7 +1111,7 @@
         }
     },
     "칸나" : {
-        "Academy":"발키리", "MainOparts":"", "SubOparts":"",
+        "Academy":"발키리", "MainOparts":"로혼치", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1122,7 +1122,7 @@
         }
     },
     "코유키" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"보이니치", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1133,7 +1133,7 @@
         }
     },
     "코코나" : {
-        "Academy":"산해경", "MainOparts":"", "SubOparts":"",
+        "Academy":"산해경", "MainOparts":"네브라", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1144,7 +1144,7 @@
         }
     },
     "코타마" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"안티키테라", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1155,7 +1155,7 @@
         }
     },
     "코토리" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"안티키테라", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1166,7 +1166,7 @@
         }
     },
     "코하루" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"하니와", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1177,7 +1177,7 @@
         }
     },
     "키리노" : {
-        "Academy":"발키리", "MainOparts":"", "SubOparts":"",
+        "Academy":"발키리", "MainOparts":"로혼치", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1188,7 +1188,7 @@
         }
     },
     "토모에" : {
-        "Academy":"붉은겨울", "MainOparts":"", "SubOparts":"",
+        "Academy":"붉은겨울", "MainOparts":"보이니치", "SubOparts":"토템폴",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1199,7 +1199,7 @@
         }
     },
     "토키" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"위니페소키", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1210,7 +1210,7 @@
         }
     },
     "피나" : {
-        "Academy":"백귀야행", "MainOparts":"", "SubOparts":"",
+        "Academy":"백귀야행", "MainOparts":"하니와", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1221,7 +1221,7 @@
         }
     },
     "하나에" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"하니와", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1232,7 +1232,7 @@
         }
     },
     "하나에(크리스마스)" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"파에스토스", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1243,7 +1243,7 @@
         }
     },
     "하나코" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"안티키테라", "SubOparts":"파에스토스",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1254,7 +1254,7 @@
         }
     },
     "하레" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"볼프세크", "SubOparts":"로혼치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1265,7 +1265,7 @@
         }
     },
     "하루나" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"로혼치", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1276,7 +1276,7 @@
         }
     },
     "하루나(새해)" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"만드라고라", "SubOparts":"전지",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1287,7 +1287,7 @@
         }
     },
     "하루카" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"만드라고라", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1298,7 +1298,7 @@
         }
     },
     "하루카(새해)" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"만드라고라", "SubOparts":"인형",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1309,7 +1309,7 @@
         }
     },
     "하스미" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"에테르", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1320,7 +1320,7 @@
         }
     },
     "하스미(체육복)" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"보이니치", "SubOparts":"파에스토스",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1342,7 +1342,7 @@
         }
     },
     "호시노(수영복)" : {
-        "Academy":"아비도스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아비도스", "MainOparts":"네브라", "SubOparts":"토템폴",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1353,7 +1353,7 @@
         }
     },
     "후부키" : {
-        "Academy":"발키리", "MainOparts":"", "SubOparts":"",
+        "Academy":"발키리", "MainOparts":"보이니치", "SubOparts":"만드라고라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1364,7 +1364,7 @@
         }
     },
     "후우카" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"만드라고라", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1375,7 +1375,7 @@
         }
     },
     "후우카(새해)" : {
-        "Academy":"", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"네브라", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1386,7 +1386,7 @@
         }
     },
     "히나" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"보이니치", "SubOparts":"보이니치",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1397,7 +1397,7 @@
         }
     },
     "히나(수영복)" : {
-        "Academy":"게헨나", "MainOparts":"", "SubOparts":"",
+        "Academy":"게헨나", "MainOparts":"보이니치", "SubOparts":"파에스토스",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1408,7 +1408,7 @@
         }
     },
     "히나타" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"로혼치", "SubOparts":"토템폴",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1419,7 +1419,7 @@
         }
     },
     "히마리" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"콜간테", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1430,7 +1430,7 @@
         }
     },
     "히비키" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"볼프세크", "SubOparts":"네브라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1441,7 +1441,7 @@
         }
     },
     "히비키(응원단)" : {
-        "Academy":"밀레니엄", "MainOparts":"", "SubOparts":"",
+        "Academy":"밀레니엄", "MainOparts":"하니와", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1452,7 +1452,7 @@
         }
     },
     "히요리" : {
-        "Academy":"아리우스", "MainOparts":"", "SubOparts":"",
+        "Academy":"아리우스", "MainOparts":"하니와", "SubOparts":"볼프세크",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1463,7 +1463,7 @@
         }
     },
     "히후미" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"에테르", "SubOparts":"하니와",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -1474,7 +1474,7 @@
         }
     },
     "히후미(수영복)" : {
-        "Academy":"트리니티", "MainOparts":"", "SubOparts":"",
+        "Academy":"트리니티", "MainOparts":"볼프세크", "SubOparts":"안티키테라",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]

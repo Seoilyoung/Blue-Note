@@ -211,7 +211,13 @@ class MainWindow(QMainWindow):
                 container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
                 char_name = container_ui.comboBox.currentText()
                 img_path = f"Gui/Useimages/{item_type}/{char_name}.webp"
-                # 여기다가 오파츠, 아카데미
+                academy = FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
+                oparts_main = FunctionCalGrowth.readCharMainOparts(self.json_datas, char_name)
+                oparts_sub = FunctionCalGrowth.readCharSubOparts(self.json_datas, char_name)
+                if academy is not None and oparts_main is not None and oparts_sub is not None:
+                    container_ui.label_academy.setText(academy)
+                    container_ui.label_oparts_main.setText(oparts_main)
+                    container_ui.label_oparts_sub.setText(oparts_sub)
             else:
                 img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
             pixmap = QPixmap(img_path)
@@ -259,6 +265,13 @@ class MainWindow(QMainWindow):
         img_path = f"Gui/Useimages/character/{char_name}.webp"            
         pixmap = QPixmap(img_path)
         widget.label_img.setPixmap(pixmap)
+        academy = FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
+        oparts_main = FunctionCalGrowth.readCharMainOparts(self.json_datas, char_name)
+        oparts_sub = FunctionCalGrowth.readCharSubOparts(self.json_datas, char_name)
+        if academy is not None and oparts_main is not None and oparts_sub is not None:
+            container_ui.label_academy.setText(academy)
+            container_ui.label_oparts_main.setText(oparts_main)
+            container_ui.label_oparts_sub.setText(oparts_sub)
     
     def printChanged(self, row, column):
         item = self.item(row, column)
