@@ -425,7 +425,7 @@ QPushButton:clicked{
          <x>680</x>
          <y>15</y>
          <width>250</width>
-         <height>600</height>
+         <height>454</height>
         </rect>
        </property>
        <property name="verticalScrollBarPolicy">
@@ -444,7 +444,7 @@ QPushButton:clicked{
          <x>935</x>
          <y>15</y>
          <width>250</width>
-         <height>600</height>
+         <height>454</height>
         </rect>
        </property>
        <property name="verticalScrollBarPolicy">

@@ -209,6 +209,7 @@ class MainWindow(QMainWindow):
             if listwidget is self.listWidget_cal1:
                 container_ui.comboBox.addItems(self.db_list_char)
                 container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
+                container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
                 char_name = container_ui.comboBox.currentText()
                 img_path = f"Gui/Useimages/{item_type}/{char_name}.webp"
                 academy = FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
@@ -246,6 +247,7 @@ class MainWindow(QMainWindow):
         container_ui.comboBox.addItems(self.db_list_char)
         container_ui.comboBox.setCurrentText("")
         container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
+        container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
         listwidget.addItem(container)
         listwidget.setItemWidget(container, container_ui)
     
@@ -254,7 +256,7 @@ class MainWindow(QMainWindow):
         index = self.listWidget_cal1.currentRow()
         if index >= 0:
             listwidget.takeItem(index)
-
+    # 콤보박스 값 변경 이벤트 처리
     def on_combo_box_changed(self):
         widget = self.sender().parent()
         row = self.listWidget_cal1.indexAt(widget.pos()).row()
@@ -272,11 +274,19 @@ class MainWindow(QMainWindow):
             container_ui.label_academy.setText(academy)
             container_ui.label_oparts_main.setText(oparts_main)
             container_ui.label_oparts_sub.setText(oparts_sub)
-    
-    def printChanged(self, row, column):
-        item = self.item(row, column)
-        print(f'Cell ({row}, {column}) 값이 변경됨: {item.text()}')
-
+    # 테이블 셀 값 변경 이벤트 처리
+    def on_table_cell_changed(self,cell_row,cell_column):
+        widget = self.sender().parent()
+        row = self.listWidget_cal1.indexAt(widget.pos()).row()
+        print(f"콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
+        self.listWidget_cal1.setCurrentRow(row)
+        container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
+        item = container_ui.tableWidget_cal.item(cell_row, cell_column)
+        if item is not None:
+            print(f"Cell ({cell_row}, {cell_column}) 값 변경: {item.text()}")
+        else:
+            print(f"Cell ({cell_row}, {cell_column}) 값 변경: None")
+    # 리스트뷰 공백으로 드래그 때 아이템 사라지는 버그 수정
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.Drop:
             pos = event.position()
