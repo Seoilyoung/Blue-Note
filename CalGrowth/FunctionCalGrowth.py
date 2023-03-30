@@ -1,4 +1,5 @@
 import json
+import re
 # import DataUser, DataCharacter
 
 # 필요값은 화면에서 캐릭터 목표 정보 받아오기, 변수에 저장, json에 옮기기
@@ -33,15 +34,17 @@ import json
 
 def openDB():
     # DB 열기
-    j_database = open('CalGrowth/Database.json','r',encoding='UTF-8')
-    json_datas = json.load(j_database)
+    with open('CalGrowth/DatabaseUser.json','r',encoding='UTF-8') as j_databaseUser:
+        json_Userdatas = json.load(j_databaseUser)
+    with open('CalGrowth/Database.json','r',encoding='UTF-8') as j_database:
+        json_datas = json.load(j_database)
     with open('CalGrowth/TableExp.json','r',encoding='UTF-8') as j_tableexp:
         json_table_exp = json.load(j_tableexp)
     with open('CalGrowth/TableCredit.json','r',encoding='UTF-8') as j_tablecredit:
         json_table_credit = json.load(j_tablecredit)
     with open('CalGrowth/TableSkill.json','r',encoding='UTF-8') as j_tableskill:
         json_table_skill = json.load(j_tableskill)
-    return j_database, json_datas, json_table_exp, json_table_credit, json_table_skill
+    return json_Userdatas, json_datas, json_table_exp, json_table_credit, json_table_skill
 
 def closeDB(database):
     # DB 닫기
@@ -67,6 +70,42 @@ def readCharSubOparts(datas, char_name):
         return datas[char_name]['SubOparts']
     except:
         return
+    
+def insertStudent(data, char_name):
+    data["Default"]["Student"][char_name] = {'level_current' : 0, 'level_goal' : 0, 'skill_current' : [0,0,0,0], 'skill_goal' : [0,0,0,0]}
+    json_data = json.dumps(data, ensure_ascii=False, indent=4)
+    json_data = re.sub(r'\[\n\s+','[', json_data)
+    json_data = re.sub(r',\n\s+',',', json_data)
+    json_data = re.sub(r'\n\s+\]',']', json_data)
+    with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
+        f.write(json_data)
+    print(data["Default"]["Student"])
+    return data
+
+def deleteStudent(data, char_name):
+    if char_name in data["Default"]["Student"]:
+        del data["Default"]["Student"][char_name]
+    json_data = json.dumps(data, ensure_ascii=False, indent=4)
+    json_data = re.sub(r'\[\n\s+','[', json_data)
+    json_data = re.sub(r',\n\s+',',', json_data)
+    json_data = re.sub(r'\n\s+\]',']', json_data)
+    with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
+        f.write(json_data)
+    print(data["Default"]["Student"])
+    return data
+
+def updateStudent(data, char_name_before, char_name_after):
+    if char_name_before in data["Default"]["Student"]:
+        data["Default"]["Student"][char_name_after] = data["Default"]["Student"].pop(char_name_before)
+    json_data = json.dumps(data, ensure_ascii=False, indent=4)
+    json_data = re.sub(r'\[\n\s+','[', json_data)
+    json_data = re.sub(r',\n\s+',',', json_data)
+    json_data = re.sub(r'\n\s+\]',']', json_data)
+    with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
+        f.write(json_data)
+    print(data["Default"]["Student"])
+    return data
+
 # # 학생 레벨업 재화 계산
 # for exp in json_table_exp['level']:
 #     if  (char_test.Level_current < int(exp)) and (int(exp) <= char_test.Level_goal):

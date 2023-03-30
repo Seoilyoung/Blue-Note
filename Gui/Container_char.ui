@@ -179,6 +179,9 @@
    <property name="editable">
     <bool>true</bool>
    </property>
+   <property name="currentText">
+    <string>이름</string>
+   </property>
    <property name="insertPolicy">
     <enum>QComboBox::NoInsert</enum>
    </property>
@@ -245,6 +248,39 @@ border-top:none;</string>
     <set>Qt::NoTextInteraction</set>
    </property>
   </widget>
+  <widget class="QLabel" name="label_name">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>35</y>
+     <width>50</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>배달의민족 주아</family>
+     <pointsize>8</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:rgba(255,255,255,0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::NoTextInteraction</set>
+   </property>
+  </widget>
   <zorder>label_back</zorder>
   <zorder>tableWidget_cal</zorder>
   <zorder>label_academy</zorder>
@@ -252,6 +288,7 @@ border-top:none;</string>
   <zorder>comboBox</zorder>
   <zorder>label_oparts_main</zorder>
   <zorder>label_oparts_sub</zorder>
+  <zorder>label_name</zorder>
  </widget>
  <resources/>
  <connections/>

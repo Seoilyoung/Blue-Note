@@ -104,13 +104,13 @@ class MainWindow(QMainWindow):
         #     posts.driver.quit()
         #     if os.path.isfile(pid_file):
         #         os.remove(pid_file)
-        #     FunctionCalGrowth.closeDB(self.j_database)
 
         # 재화계산
-        self.j_database, self.json_datas, self.json_table_exp, self.json_table_credit, self.json_table_skill = FunctionCalGrowth.openDB()
+        self.json_Userdatas, self.json_datas, self.json_table_exp, self.json_table_credit, self.json_table_skill = FunctionCalGrowth.openDB()
+
         self.db_list_char = FunctionCalGrowth.readCharList(self.json_datas)
         
-        self.calgrowth_layout(list_char, 'character', container_char_path, self.listWidget_cal1)
+        self.calgrowth_layout(list(self.json_Userdatas["Default"]["Student"].keys()), 'character', container_char_path, self.listWidget_cal1)
         self.calgrowth_layout(list_oparts, 'oparts', container_cal_path, self.listWidget_cal2)
         self.calgrowth_layout(list_academy, 'academy', container_cal_path, self.listWidget_cal3)
         self.calgrowth_layout(list_academy, 'academy', container_cal_path, self.listWidget_cal4)
@@ -199,6 +199,7 @@ class MainWindow(QMainWindow):
             container.setSizeHint(QSize(0,50))
             container_ui.label_img.setScaledContents(True)
             container_ui.label_img.setContentsMargins(3,3,3,3)
+            # 테이블위젯. 변경필요
             for row in range(container_ui.tableWidget_cal.rowCount()):
                 for column in range(container_ui.tableWidget_cal.columnCount()):
                      item_value = row+column
@@ -207,9 +208,13 @@ class MainWindow(QMainWindow):
                      container_ui.tableWidget_cal.setItem(row, column, item)
 
             if listwidget is self.listWidget_cal1:
+                print(i)
+                # 콤보박스 드롭다운 목록 추가
                 container_ui.comboBox.addItems(self.db_list_char)
+                # 아이템 이벤트 추가
                 container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
                 container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
+                container_ui.comboBox.setCurrentText(list_item[i])
                 char_name = container_ui.comboBox.currentText()
                 img_path = f"Gui/Useimages/{item_type}/{char_name}.webp"
                 academy = FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
@@ -235,9 +240,6 @@ class MainWindow(QMainWindow):
         container.setSizeHint(QSize(0,50))
         container_ui.label_img.setScaledContents(True)
         container_ui.label_img.setContentsMargins(3,3,3,3)
-        # img_path = f"Gui/Useimages/'character'/{i+1:02}.webp"
-        # pixmap = QPixmap(img_path)
-        # container_ui.label_img.setPixmap(pixmap)
         for row in range(container_ui.tableWidget_cal.rowCount()):
             for column in range(container_ui.tableWidget_cal.columnCount()):
                     item = QTableWidgetItem('0')
@@ -254,26 +256,44 @@ class MainWindow(QMainWindow):
     def calgrowth_delete(self):
         listwidget = self.listWidget_cal1
         index = self.listWidget_cal1.currentRow()
+        container_ui = listwidget.itemWidget(self.listWidget_cal1.currentItem())
+        char_name = container_ui.comboBox.currentText()
         if index >= 0:
             listwidget.takeItem(index)
+            if container_ui.label_img.text() != "중복 학생":
+                self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, char_name)
+
     # 콤보박스 값 변경 이벤트 처리
-    def on_combo_box_changed(self):
+    def on_combo_box_changed(self, text):
         widget = self.sender().parent()
         row = self.listWidget_cal1.indexAt(widget.pos()).row()
         print(f"콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
         self.listWidget_cal1.setCurrentRow(row)
         container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
         char_name = container_ui.comboBox.currentText()
-        img_path = f"Gui/Useimages/character/{char_name}.webp"            
+        img_path = f"Gui/Useimages/character/{char_name}.webp"
         pixmap = QPixmap(img_path)
         widget.label_img.setPixmap(pixmap)
-        academy = FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
-        oparts_main = FunctionCalGrowth.readCharMainOparts(self.json_datas, char_name)
-        oparts_sub = FunctionCalGrowth.readCharSubOparts(self.json_datas, char_name)
-        if academy is not None and oparts_main is not None and oparts_sub is not None:
+        if os.path.isfile(img_path):
+            academy = FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
+            oparts_main = FunctionCalGrowth.readCharMainOparts(self.json_datas, char_name)
+            oparts_sub = FunctionCalGrowth.readCharSubOparts(self.json_datas, char_name)
             container_ui.label_academy.setText(academy)
             container_ui.label_oparts_main.setText(oparts_main)
             container_ui.label_oparts_sub.setText(oparts_sub)
+            # json 연동
+            if char_name in self.json_Userdatas['Default']['Student']:
+                if char_name != widget.label_name.text():
+                    widget.label_img.clear()
+                    widget.label_img.setText("중복 학생")
+                    self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, widget.label_name.text())
+                    widget.label_name.setText("")
+            else:
+                if widget.label_name.text() == "":
+                    self.json_Userdatas = FunctionCalGrowth.insertStudent(self.json_Userdatas, char_name)
+                else:
+                    self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, widget.label_name.text(), char_name)
+                widget.label_name.setText(char_name)
     # 테이블 셀 값 변경 이벤트 처리
     def on_table_cell_changed(self,cell_row,cell_column):
         widget = self.sender().parent()
