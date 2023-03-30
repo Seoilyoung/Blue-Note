@@ -71,7 +71,7 @@ def readCharSubOparts(datas, char_name):
     except:
         return
     
-def insertStudent(data, char_name):
+def insertStudent(data, char_name, index):
     data["Default"]["Student"][char_name] = {'level_current' : 0, 'level_goal' : 0, 'skill_current' : [0,0,0,0], 'skill_goal' : [0,0,0,0]}
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
     json_data = re.sub(r'\[\n\s+','[', json_data)

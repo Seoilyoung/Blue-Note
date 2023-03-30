@@ -109,8 +109,9 @@ class MainWindow(QMainWindow):
         self.json_Userdatas, self.json_datas, self.json_table_exp, self.json_table_credit, self.json_table_skill = FunctionCalGrowth.openDB()
 
         self.db_list_char = FunctionCalGrowth.readCharList(self.json_datas)
-        
-        self.calgrowth_layout(list(self.json_Userdatas["Default"]["Student"].keys()), 'character', container_char_path, self.listWidget_cal1)
+        sorted_list = sorted(self.json_Userdatas["Default"]["Student"], key=lambda k:self.json_Userdatas["Default"]["Student"][k]['index'])
+        print(sorted_list)
+        self.calgrowth_layout(sorted_list, 'character', container_char_path, self.listWidget_cal1)
         self.calgrowth_layout(list_oparts, 'oparts', container_cal_path, self.listWidget_cal2)
         self.calgrowth_layout(list_academy, 'academy', container_cal_path, self.listWidget_cal3)
         self.calgrowth_layout(list_academy, 'academy', container_cal_path, self.listWidget_cal4)
@@ -290,7 +291,7 @@ class MainWindow(QMainWindow):
                     widget.label_name.setText("")
             else:
                 if widget.label_name.text() == "":
-                    self.json_Userdatas = FunctionCalGrowth.insertStudent(self.json_Userdatas, char_name)
+                    self.json_Userdatas = FunctionCalGrowth.insertStudent(self.json_Userdatas, char_name, row)
                 else:
                     self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, widget.label_name.text(), char_name)
                 widget.label_name.setText(char_name)
@@ -310,9 +311,12 @@ class MainWindow(QMainWindow):
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.Drop:
             pos = event.position()
+            print(pos.y())
             index = self.listWidget_cal1.indexAt(QPoint(int(pos.x()), int(pos.y())))
             current_row = self.listWidget_cal1.currentRow()
-            if current_row == self.listWidget_cal1.count()-1 and index.row()==-1:
+            print(index.row())
+            print(current_row)
+            if (current_row == self.listWidget_cal1.count()-1 and index.row()==-1) or (index.row() == current_row+1 and pos.y()%50<25):
                 return True
         return super().eventFilter(source, event)
 
