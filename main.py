@@ -263,15 +263,13 @@ class MainWindow(QMainWindow):
                 self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, char_name)
 
     # 콤보박스 값 변경 이벤트 처리
-    def on_combo_box_changed(self, text):
-        print(text)
+    def on_combo_box_changed(self, char_name):
         widget = self.sender().parent()
         row = self.listWidget_cal1.indexAt(widget.pos()).row()
         print(f"콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
         self.listWidget_cal1.setCurrentRow(row)
         container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
         if container_ui is not None:
-            char_name = container_ui.comboBox.currentText()
             img_path = f"Gui/Useimages/character/{char_name}.webp"
             pixmap = QPixmap(img_path)
             widget.label_img.setPixmap(pixmap)
