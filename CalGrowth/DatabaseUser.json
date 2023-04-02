@@ -10,11 +10,11 @@
             "나기사": {
                 "index": 0,"level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0]
             },"나츠": {
-                "index": 1,"level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0]
+                "index": 3,"level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0]
             },"네루": {
                 "index": 2,"level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0]
             },"노노미": {
-                "index": 3,"level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0]
+                "index": 1,"level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0]
             }
         }
     },"Preset1": {

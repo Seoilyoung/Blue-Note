@@ -72,14 +72,14 @@ def readCharSubOparts(datas, char_name):
         return
     
 def insertStudent(data, char_name, index):
-    data["Default"]["Student"][char_name] = {'level_current' : 0, 'level_goal' : 0, 'skill_current' : [0,0,0,0], 'skill_goal' : [0,0,0,0]}
+    data["Default"]["Student"][char_name] = {'index' : 0, 'level_current' : 0, 'level_goal' : 0, 'skill_current' : [0,0,0,0], 'skill_goal' : [0,0,0,0]}
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
     json_data = re.sub(r'\[\n\s+','[', json_data)
     json_data = re.sub(r',\n\s+',',', json_data)
     json_data = re.sub(r'\n\s+\]',']', json_data)
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
-    print(data["Default"]["Student"])
+    # print(data["Default"]["Student"])
     return data
 
 def deleteStudent(data, char_name):
@@ -91,7 +91,7 @@ def deleteStudent(data, char_name):
     json_data = re.sub(r'\n\s+\]',']', json_data)
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
-    print(data["Default"]["Student"])
+    # print(data["Default"]["Student"])
     return data
 
 def updateStudent(data, char_name_before, char_name_after):
@@ -103,7 +103,25 @@ def updateStudent(data, char_name_before, char_name_after):
     json_data = re.sub(r'\n\s+\]',']', json_data)
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
-    print(data["Default"]["Student"])
+    # print(data["Default"]["Student"])
+    return data
+
+def updateIndex(data, index1, index2):
+    for name, info in data["Default"]["Student"].items():
+        index = info["index"]
+        if index1 < index2 and (index1 < index and index <= index2):
+            info["index"] -= 1
+        elif index2 < index1 and (index2 <= index and index < index1):
+            info["index"] += 1
+        elif index == index1:
+            info["index"] = index2
+    json_data = json.dumps(data, ensure_ascii=False, indent=4)
+    json_data = re.sub(r'\[\n\s+','[', json_data)
+    json_data = re.sub(r',\n\s+',',', json_data)
+    json_data = re.sub(r'\n\s+\]',']', json_data)
+    with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
+        f.write(json_data)
+    # print(data["Default"]["Student"])
     return data
 
 # # 학생 레벨업 재화 계산

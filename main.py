@@ -53,7 +53,6 @@ window_title = '블루 스케줄러'
 mainscreen_path = 'Gui\Screen.ui'
 container_cal_path = 'Gui\Container.ui'
 container_char_path = 'Gui\Container_char.ui'
-list_char = []
 list_oparts = ["네브라", "파에스토스","볼프세크","님루드","만드라고라","로혼치","에테르","안티키테라","보이니치","하니와",
             "토템폴","전지","콜간테","위니페소키","인형","아틀란티스"]
 list_academy = ["백귀야행", "붉은겨울","트리니티","게헨나","아비도스","밀레니엄","아리우스","산해경","발키리"]
@@ -209,7 +208,6 @@ class MainWindow(QMainWindow):
                      container_ui.tableWidget_cal.setItem(row, column, item)
 
             if listwidget is self.listWidget_cal1:
-                print(i)
                 # 콤보박스 드롭다운 목록 추가
                 container_ui.comboBox.addItems(self.db_list_char)
                 # 아이템 이벤트 추가
@@ -266,35 +264,37 @@ class MainWindow(QMainWindow):
 
     # 콤보박스 값 변경 이벤트 처리
     def on_combo_box_changed(self, text):
+        print(text)
         widget = self.sender().parent()
         row = self.listWidget_cal1.indexAt(widget.pos()).row()
         print(f"콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
         self.listWidget_cal1.setCurrentRow(row)
         container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
-        char_name = container_ui.comboBox.currentText()
-        img_path = f"Gui/Useimages/character/{char_name}.webp"
-        pixmap = QPixmap(img_path)
-        widget.label_img.setPixmap(pixmap)
-        if os.path.isfile(img_path):
-            academy = FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
-            oparts_main = FunctionCalGrowth.readCharMainOparts(self.json_datas, char_name)
-            oparts_sub = FunctionCalGrowth.readCharSubOparts(self.json_datas, char_name)
-            container_ui.label_academy.setText(academy)
-            container_ui.label_oparts_main.setText(oparts_main)
-            container_ui.label_oparts_sub.setText(oparts_sub)
-            # json 연동
-            if char_name in self.json_Userdatas['Default']['Student']:
-                if char_name != widget.label_name.text():
-                    widget.label_img.clear()
-                    widget.label_img.setText("중복 학생")
-                    self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, widget.label_name.text())
-                    widget.label_name.setText("")
-            else:
-                if widget.label_name.text() == "":
-                    self.json_Userdatas = FunctionCalGrowth.insertStudent(self.json_Userdatas, char_name, row)
+        if container_ui is not None:
+            char_name = container_ui.comboBox.currentText()
+            img_path = f"Gui/Useimages/character/{char_name}.webp"
+            pixmap = QPixmap(img_path)
+            widget.label_img.setPixmap(pixmap)
+            if os.path.isfile(img_path):
+                academy = FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
+                oparts_main = FunctionCalGrowth.readCharMainOparts(self.json_datas, char_name)
+                oparts_sub = FunctionCalGrowth.readCharSubOparts(self.json_datas, char_name)
+                container_ui.label_academy.setText(academy)
+                container_ui.label_oparts_main.setText(oparts_main)
+                container_ui.label_oparts_sub.setText(oparts_sub)
+                # json 연동
+                if char_name in self.json_Userdatas['Default']['Student']:
+                    if char_name != widget.label_name.text():
+                        widget.label_img.clear()
+                        widget.label_img.setText("중복 학생")
+                        self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, widget.label_name.text())
+                        widget.label_name.setText("")
                 else:
-                    self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, widget.label_name.text(), char_name)
-                widget.label_name.setText(char_name)
+                    if widget.label_name.text() == "":
+                        self.json_Userdatas = FunctionCalGrowth.insertStudent(self.json_Userdatas, char_name, row)
+                    else:
+                        self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, widget.label_name.text(), char_name)
+                    widget.label_name.setText(char_name)
     # 테이블 셀 값 변경 이벤트 처리
     def on_table_cell_changed(self,cell_row,cell_column):
         widget = self.sender().parent()
@@ -311,13 +311,11 @@ class MainWindow(QMainWindow):
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.Drop:
             pos = event.position()
-            print(pos.y())
             index = self.listWidget_cal1.indexAt(QPoint(int(pos.x()), int(pos.y())))
             current_row = self.listWidget_cal1.currentRow()
-            print(index.row())
-            print(current_row)
             if (current_row == self.listWidget_cal1.count()-1 and index.row()==-1) or (index.row() == current_row+1 and pos.y()%50<25):
                 return True
+            self.json_Userdatas = FunctionCalGrowth.updateIndex(self.json_Userdatas, current_row, index.row())
         return super().eventFilter(source, event)
 
     # 버튼 기능 - AP 가이드
