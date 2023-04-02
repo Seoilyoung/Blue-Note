@@ -8,13 +8,13 @@
             "백귀야행": [0,0,0,0],"붉은겨울": [0,0,0,0],"트리니티": [0,0,0,0],"게헨나": [0,0,0,0],"아비도스": [0,0,0,0],"밀레니엄": [0,0,0,0],"아리우스": [0,0,0,0],"산해경": [0,0,0,0],"발키리": [0,0,0,0]
         },"Student": {
             "세리나": {
-                "index": 1,"level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0]
+                "index": 1,"level_current": 0,"level_goal": 0,"skill_current": [0,0,3,8],"skill_goal": [0,0,3,4]
             },"모에": {
-                "index": 0,"level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0]
+                "index": 0,"level_current": 0,"level_goal": 0,"skill_current": [1,2,3,4],"skill_goal": [5,2,6,7]
             },"네루(바니걸)": {
-                "index": 2,"level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0]
+                "index": 2,"level_current": 0,"level_goal": 0,"skill_current": [0,0,5,0],"skill_goal": [0,6,0,0]
             },"무츠키(새해)": {
-                "index": 3,"level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0]
+                "index": 3,"level_current": 0,"level_goal": 0,"skill_current": [7,0,0,0],"skill_goal": [0,8,0,0]
             }
         }
     },"Preset1": {

@@ -109,7 +109,6 @@ class MainWindow(QMainWindow):
 
         self.db_list_char = FunctionCalGrowth.readCharList(self.json_datas)
         sorted_list = sorted(self.json_Userdatas["Default"]["Student"], key=lambda k:self.json_Userdatas["Default"]["Student"][k]['index'])
-        print(sorted_list)
         self.calgrowth_layout(sorted_list, 'character', container_char_path, self.listWidget_cal1)
         self.calgrowth_layout(list_oparts, 'oparts', container_cal_path, self.listWidget_cal2)
         self.calgrowth_layout(list_academy, 'academy', container_cal_path, self.listWidget_cal3)
@@ -199,13 +198,6 @@ class MainWindow(QMainWindow):
             container.setSizeHint(QSize(0,50))
             container_ui.label_img.setScaledContents(True)
             container_ui.label_img.setContentsMargins(3,3,3,3)
-            # 테이블위젯. 변경필요
-            for row in range(container_ui.tableWidget_cal.rowCount()):
-                for column in range(container_ui.tableWidget_cal.columnCount()):
-                     item_value = row+column
-                     item = QTableWidgetItem(str(item_value))
-                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                     container_ui.tableWidget_cal.setItem(row, column, item)
 
             if listwidget is self.listWidget_cal1:
                 # 콤보박스 드롭다운 목록 추가
@@ -213,8 +205,8 @@ class MainWindow(QMainWindow):
                 # 아이템 이벤트 추가
                 container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
                 container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
-                container_ui.comboBox.setCurrentText(list_item[i])
-                char_name = container_ui.comboBox.currentText()
+                char_name = list_item[i]
+                container_ui.comboBox.setCurrentText(char_name)
                 img_path = f"Gui/Useimages/{item_type}/{char_name}.webp"
                 academy = FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
                 oparts_main = FunctionCalGrowth.readCharMainOparts(self.json_datas, char_name)
@@ -223,6 +215,14 @@ class MainWindow(QMainWindow):
                     container_ui.label_academy.setText(academy)
                     container_ui.label_oparts_main.setText(oparts_main)
                     container_ui.label_oparts_sub.setText(oparts_sub)
+                # 테이블위젯. 
+                for i in range(4):
+                    item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_current"][i]))
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    container_ui.tableWidget_cal.setItem(0, i, item)
+                    item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_goal"][i]))
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    container_ui.tableWidget_cal.setItem(1, i, item)
             else:
                 img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
             pixmap = QPixmap(img_path)
@@ -266,7 +266,7 @@ class MainWindow(QMainWindow):
     def on_combo_box_changed(self, char_name):
         widget = self.sender().parent()
         row = self.listWidget_cal1.indexAt(widget.pos()).row()
-        print(f"콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
+        print(f"on_combo_box_changed 콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
         self.listWidget_cal1.setCurrentRow(row)
         container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
         if container_ui is not None:
@@ -297,15 +297,14 @@ class MainWindow(QMainWindow):
     def on_table_cell_changed(self,cell_row,cell_column):
         widget = self.sender().parent()
         row = self.listWidget_cal1.indexAt(widget.pos()).row()
-        print(f"콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
+        print(f"on_table_cell_changed 콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
         self.listWidget_cal1.setCurrentRow(row)
         container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
-        item = container_ui.tableWidget_cal.item(cell_row, cell_column)
-        if item is not None:
-            print(f"Cell ({cell_row}, {cell_column}) 값 변경: {item.text()}")
-        else:
-            print(f"Cell ({cell_row}, {cell_column}) 값 변경: None")
-    # 리스트뷰 공백으로 드래그 때 아이템 사라지는 버그 수정
+        if container_ui is not None:
+            char_name = container_ui.comboBox.currentText()
+            item = container_ui.tableWidget_cal.item(cell_row, cell_column)
+            self.json_Userdatas = FunctionCalGrowth.updateTable(self.json_Userdatas, char_name, cell_row, cell_column, int(item.text()))
+    # listwidget 순서 변경 이벤트
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.Drop:
             pos = event.position()

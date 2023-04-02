@@ -124,6 +124,21 @@ def updateIndex(data, index1, index2):
     # print(data["Default"]["Student"])
     return data
 
+def updateTable(data, char_name, row, column, value):
+    if row == 0:
+        menu = "skill_current"
+    elif row == 1:
+        menu = "skill_goal"
+    data["Default"]["Student"][char_name][menu][column] = value
+    json_data = json.dumps(data, ensure_ascii=False, indent=4)
+    json_data = re.sub(r'\[\n\s+','[', json_data)
+    json_data = re.sub(r',\n\s+',',', json_data)
+    json_data = re.sub(r'\n\s+\]',']', json_data)
+    with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
+        f.write(json_data)
+    # print(data["Default"]["Student"])
+    return data
+
 # # 학생 레벨업 재화 계산
 # for exp in json_table_exp['level']:
 #     if  (char_test.Level_current < int(exp)) and (int(exp) <= char_test.Level_goal):
