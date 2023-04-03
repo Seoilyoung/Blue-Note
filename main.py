@@ -53,9 +53,6 @@ window_title = '블루 스케줄러'
 mainscreen_path = 'Gui\Screen.ui'
 container_cal_path = 'Gui\Container.ui'
 container_char_path = 'Gui\Container_char.ui'
-list_oparts = ["네브라", "파에스토스","볼프세크","님루드","만드라고라","로혼치","에테르","안티키테라","보이니치","하니와",
-            "토템폴","전지","콜간테","위니페소키","인형","아틀란티스"]
-list_academy = ["백귀야행", "붉은겨울","트리니티","게헨나","아비도스","밀레니엄","아리우스","산해경","발키리"]
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -109,10 +106,12 @@ class MainWindow(QMainWindow):
 
         self.db_list_char = FunctionCalGrowth.readCharList(self.json_datas)
         sorted_list = sorted(self.json_Userdatas["Default"]["Student"], key=lambda k:self.json_Userdatas["Default"]["Student"][k]['index'])
-        self.calgrowth_layout(sorted_list, 'character', container_char_path, self.listWidget_cal1)
-        self.calgrowth_layout(list_oparts, 'oparts', container_cal_path, self.listWidget_cal2)
-        self.calgrowth_layout(list_academy, 'academy', container_cal_path, self.listWidget_cal3)
-        self.calgrowth_layout(list_academy, 'academy', container_cal_path, self.listWidget_cal4)
+        list_oparts = list(self.json_Userdatas["Default"]["Oparts"].keys())
+        list_academy = list(self.json_Userdatas["Default"]["BD"].keys())
+        self.calgrowth_layout(sorted_list, 'Character', container_char_path, self.listWidget_cal1)
+        self.calgrowth_layout(list_oparts, 'Oparts', container_cal_path, self.listWidget_cal2)
+        self.calgrowth_layout(list_academy, 'BD', container_cal_path, self.listWidget_cal3)
+        self.calgrowth_layout(list_academy, 'Note', container_cal_path, self.listWidget_cal4)
         
         self.button_calgrowth_insert.clicked.connect(self.calgrowth_insert)
         self.button_calgrowth_delete.clicked.connect(self.calgrowth_delete)
@@ -191,7 +190,6 @@ class MainWindow(QMainWindow):
                 listwidget.setDragDropMode(QAbstractItemView.DragDropMode.InternalMove)
                 listwidget.setDropIndicatorShown(True)
                 listwidget.viewport().installEventFilter(self)
-
         for i in range(len(list_item)):
             container_ui = loadUi(container_path)
             container = QListWidgetItem(listwidget)
@@ -207,7 +205,10 @@ class MainWindow(QMainWindow):
                 container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
                 char_name = list_item[i]
                 container_ui.comboBox.setCurrentText(char_name)
-                img_path = f"Gui/Useimages/{item_type}/{char_name}.webp"
+                if item_type == 'BD' or item_type == 'Note':
+                    img_path = f"Gui/Useimages/Academy/{char_name}.webp"
+                else:
+                    img_path = f"Gui/Useimages/{item_type}/{char_name}.webp"
                 academy = FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
                 oparts_main = FunctionCalGrowth.readCharMainOparts(self.json_datas, char_name)
                 oparts_sub = FunctionCalGrowth.readCharSubOparts(self.json_datas, char_name)
@@ -216,15 +217,29 @@ class MainWindow(QMainWindow):
                     container_ui.label_oparts_main.setText(oparts_main)
                     container_ui.label_oparts_sub.setText(oparts_sub)
                 # 테이블위젯. 
-                for i in range(4):
-                    item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_current"][i]))
+                for j in range(4):
+                    item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_current"][j]))
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                    container_ui.tableWidget_cal.setItem(0, i, item)
-                    item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_goal"][i]))
+                    container_ui.tableWidget_cal.setItem(0, j, item)
+                    item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_goal"][j]))
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                    container_ui.tableWidget_cal.setItem(1, i, item)
+                    container_ui.tableWidget_cal.setItem(1, j, item)
             else:
-                img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
+                if item_type == 'BD' or item_type == 'Note':
+                    img_path = f"Gui/Useimages/Academy/{i+1:02}.webp"
+                else:
+                    img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
+                # 테이블위젯. 
+                container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed2)
+                for j in range(4):
+                    item = QTableWidgetItem(item_type)
+                    item.setFlags(Qt.ItemFlag.ItemIsSelectable)
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    container_ui.tableWidget_cal.setItem(0, j, item)
+                    item2 = QTableWidgetItem(str(self.json_Userdatas["Default"][item_type][list_item[i]][j]))
+                    item2.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    container_ui.tableWidget_cal.setItem(1, j, item2)
+ 
             pixmap = QPixmap(img_path)
             container_ui.label_img.setPixmap(pixmap)
             container_ui.label_name.setText(list_item[i])
@@ -314,7 +329,28 @@ class MainWindow(QMainWindow):
                 return True
             self.json_Userdatas = FunctionCalGrowth.updateIndex(self.json_Userdatas, current_row, index.row())
         return super().eventFilter(source, event)
+    # 오파츠, BD, 노트 테이블 변경 이벤트
+    def on_table_cell_changed2(self,cell_row,cell_column):
+        widget = self.sender().parent()
+        if widget.parent() is not None:
+            listWidget = widget.parent().parent()
+            if listWidget == self.listWidget_cal2:
+                item_type = "Oparts"
+            if listWidget == self.listWidget_cal3:
+                item_type = "BD"
+            if listWidget == self.listWidget_cal4:
+                item_type = "Note"
+            row = listWidget.indexAt(widget.pos()).row()
+            listWidget.setCurrentRow(row)
+            container_ui = listWidget.itemWidget(listWidget.currentItem())
+            if container_ui is not None:
+                item_name = container_ui.label_name.text()
+                item = container_ui.tableWidget_cal.item(cell_row, cell_column)
+                self.json_Userdatas = FunctionCalGrowth.updateTable2(self.json_Userdatas, item_type, item_name, cell_column, int(item.text()))
 
+        #     char_name = container_ui.comboBox.currentText()
+        #     item = container_ui.tableWidget_cal.item(cell_row, cell_column)
+        #     self.json_Userdatas = FunctionCalGrowth.updateTable(self.json_Userdatas, char_name, cell_row, cell_column, int(item.text()))
     # 버튼 기능 - AP 가이드
     def ap_image_save(self):
         event_str = self.textEdit_ap1.toPlainText()
