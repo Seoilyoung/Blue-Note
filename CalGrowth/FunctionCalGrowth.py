@@ -150,6 +150,9 @@ def updateTable2(data, item_type, item_name, column, value):
     # print(data["Default"]["Student"])
     return data
 
+def updateSkillLevel(char_name, cell_column, level_goal, level_current):
+    print("캐릭터 :",char_name, "스킬 순서 :", cell_column, "목표", level_goal, "현재", level_current)
+
 # # 학생 레벨업 재화 계산
 # for exp in json_table_exp['level']:
 #     if  (char_test.Level_current < int(exp)) and (int(exp) <= char_test.Level_goal):

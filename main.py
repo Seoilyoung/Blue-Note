@@ -318,6 +318,7 @@ class MainWindow(QMainWindow):
         if container_ui is not None:
             char_name = container_ui.comboBox.currentText()
             item = container_ui.tableWidget_cal.item(cell_row, cell_column)
+            FunctionCalGrowth.updateSkillLevel(char_name, cell_column, container_ui.tableWidget_cal.item(0, cell_column).text(), container_ui.tableWidget_cal.item(1, cell_column).text())
             self.json_Userdatas = FunctionCalGrowth.updateTable(self.json_Userdatas, char_name, cell_row, cell_column, int(item.text()))
     # listwidget 순서 변경 이벤트
     def eventFilter(self, source, event):
