@@ -34,16 +34,15 @@ import asyncio
 import atexit
 
 from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent
-from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices
+from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices, QIntValidator
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QGraphicsDropShadowEffect,
-    QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem
+    QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem, QItemDelegate, QLineEdit
 )
 import ApGuide.FunctionApGuide as ApGuide
 from CalGrowth import *
 from Posts.FunctionPosts import Posts
-
 
 import time
 
@@ -203,6 +202,8 @@ class MainWindow(QMainWindow):
                 # 아이템 이벤트 추가
                 container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
                 container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
+                delegate = RangeDelegate()
+                container_ui.tableWidget_cal.setItemDelegate(delegate)
                 char_name = list_item[i]
                 container_ui.comboBox.setCurrentText(char_name)
                 if item_type == 'BD' or item_type == 'Note':
@@ -218,12 +219,14 @@ class MainWindow(QMainWindow):
                     container_ui.label_oparts_sub.setText(oparts_sub)
                 # 테이블위젯. 
                 for j in range(4):
-                    item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_current"][j]))
-                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                    container_ui.tableWidget_cal.setItem(0, j, item)
                     item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_goal"][j]))
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    container_ui.tableWidget_cal.setItem(0, j, item)
+                    item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_current"][j]))
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     container_ui.tableWidget_cal.setItem(1, j, item)
+                
+
             else:
                 if item_type == 'BD' or item_type == 'Note':
                     img_path = f"Gui/Useimages/Academy/{i+1:02}.webp"
@@ -304,9 +307,9 @@ class MainWindow(QMainWindow):
                         widget.label_name.setText("")
                 else:
                     if widget.label_name.text() == "":
-                        self.json_Userdatas = FunctionCalGrowth.insertStudent(self.json_Userdatas, char_name, row)
+                        self.json_Userdatas = FunctionCalGrowth.insertStudent(self.json_Userdatas, char_name, row, academy, oparts_main, oparts_sub)
                     else:
-                        self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, widget.label_name.text(), char_name)
+                        self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, widget.label_name.text(), char_name, academy, oparts_main, oparts_sub)
                     widget.label_name.setText(char_name)
     # 테이블 셀 값 변경 이벤트 처리
     def on_table_cell_changed(self,cell_row,cell_column):
@@ -318,8 +321,9 @@ class MainWindow(QMainWindow):
         if container_ui is not None:
             char_name = container_ui.comboBox.currentText()
             item = container_ui.tableWidget_cal.item(cell_row, cell_column)
-            FunctionCalGrowth.updateSkillLevel(char_name, cell_column, container_ui.tableWidget_cal.item(0, cell_column).text(), container_ui.tableWidget_cal.item(1, cell_column).text())
+                    
             self.json_Userdatas = FunctionCalGrowth.updateTable(self.json_Userdatas, char_name, cell_row, cell_column, int(item.text()))
+            self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, char_name)
     # listwidget 순서 변경 이벤트
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.Drop:
@@ -348,10 +352,6 @@ class MainWindow(QMainWindow):
                 item_name = container_ui.label_name.text()
                 item = container_ui.tableWidget_cal.item(cell_row, cell_column)
                 self.json_Userdatas = FunctionCalGrowth.updateTable2(self.json_Userdatas, item_type, item_name, cell_column, int(item.text()))
-
-        #     char_name = container_ui.comboBox.currentText()
-        #     item = container_ui.tableWidget_cal.item(cell_row, cell_column)
-        #     self.json_Userdatas = FunctionCalGrowth.updateTable(self.json_Userdatas, char_name, cell_row, cell_column, int(item.text()))
     # 버튼 기능 - AP 가이드
     def ap_image_save(self):
         event_str = self.textEdit_ap1.toPlainText()
@@ -394,6 +394,22 @@ class ClickableLabel(QLabel):
 
     def mouseReleaseEvent(self, event):
         QDesktopServices.openUrl(QUrl(self.link))
+
+class RangeDelegate(QItemDelegate):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+    
+    def setModelData(self, editor, model, index):
+        try:
+            value = int(editor.text())
+            if index.column() == 0:
+                range_min, range_max = 0, 5
+            else:
+                range_min, range_max = 0, 10
+            value = min(max(range_min, value), range_max)
+            model.setData(index, value, Qt.ItemDataRole.EditRole)
+        except ValueError:
+            pass
 
 if __name__ == '__main__':
     pid_file = 'my.pid'

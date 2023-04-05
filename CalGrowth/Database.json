@@ -187,7 +187,7 @@
         }
     },
     "모에" : {
-        "Academy":"SRT/발키리", "MainOparts":"에테르", "SubOparts":"님루드",
+        "Academy":"SRT", "MainOparts":"에테르", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -264,7 +264,7 @@
         }
     },
     "미야코" : {
-        "Academy":"SRT/발키리", "MainOparts":"안티키테라", "SubOparts":"님루드",
+        "Academy":"SRT", "MainOparts":"안티키테라", "SubOparts":"님루드",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -275,7 +275,7 @@
         }
     },
     "미유" : {
-        "Academy":"SRT/발키리", "MainOparts":"토템폴", "SubOparts":"에테르",
+        "Academy":"SRT", "MainOparts":"토템폴", "SubOparts":"에테르",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
@@ -363,7 +363,7 @@
         }
     },
     "사키" : {
-        "Academy":"SRT/발키리", "MainOparts":"볼프세크", "SubOparts":"전지",
+        "Academy":"SRT", "MainOparts":"볼프세크", "SubOparts":"전지",
         "Skill_Bd": {
             "Main":[0,0,0,0],
             "Sub":[0,0,0,0]
