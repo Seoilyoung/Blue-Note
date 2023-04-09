@@ -199,9 +199,6 @@ class MainWindow(QMainWindow):
             if listwidget is self.listWidget_cal1:
                 # 콤보박스 드롭다운 목록 추가
                 container_ui.comboBox.addItems(self.db_list_char)
-                # 아이템 이벤트 추가
-                container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
-                container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
                 delegate = RangeDelegate()
                 container_ui.tableWidget_cal.setItemDelegate(delegate)
                 char_name = list_item[i]
@@ -225,6 +222,10 @@ class MainWindow(QMainWindow):
                     item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_current"][j]))
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     container_ui.tableWidget_cal.setItem(1, j, item)
+                # 아이템 이벤트 추가
+                # 마지막에 추가하는 이유는 처음 초기값에서 JSON의 목록을 불러올 때 이벤트가 발생하고 그로 인해 버그가 발생하는데 이를 예방하기 위함
+                container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
+                container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
                 
 
             else:
