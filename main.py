@@ -278,7 +278,7 @@ class MainWindow(QMainWindow):
         if index >= 0:
             listwidget.takeItem(index)
             if container_ui.label_img.text() != "중복 학생":
-                self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, char_name)
+                self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, char_name, index)
 
     # 콤보박스 값 변경 이벤트 처리
     def on_combo_box_changed(self, char_name):
@@ -303,7 +303,7 @@ class MainWindow(QMainWindow):
                     if char_name != widget.label_name.text():
                         widget.label_img.clear()
                         widget.label_img.setText("중복 학생")
-                        self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, widget.label_name.text())
+                        self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, widget.label_name.text(),-1)
                         widget.label_name.setText("")
                 else:
                     if widget.label_name.text() == "":
@@ -323,7 +323,7 @@ class MainWindow(QMainWindow):
             item = container_ui.tableWidget_cal.item(cell_row, cell_column)
                     
             self.json_Userdatas = FunctionCalGrowth.updateTable(self.json_Userdatas, char_name, cell_row, cell_column, int(item.text()))
-            self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, char_name)
+            self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, char_name)
     # listwidget 순서 변경 이벤트
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.Drop:
@@ -403,9 +403,9 @@ class RangeDelegate(QItemDelegate):
         try:
             value = int(editor.text())
             if index.column() == 0:
-                range_min, range_max = 0, 5
+                range_min, range_max = 1, 5
             else:
-                range_min, range_max = 0, 10
+                range_min, range_max = 1, 10
             value = min(max(range_min, value), range_max)
             model.setData(index, value, Qt.ItemDataRole.EditRole)
         except ValueError:
