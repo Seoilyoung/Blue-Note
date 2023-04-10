@@ -372,6 +372,9 @@ QPushButton:clicked{
       </widget>
      </widget>
      <widget class="QWidget" name="page_3">
+      <property name="styleSheet">
+       <string notr="true">QListWidget::item:selected { background-color: white; }</string>
+      </property>
       <widget class="QLabel" name="label_3">
        <property name="geometry">
         <rect>
@@ -396,6 +399,9 @@ QPushButton:clicked{
          <width>250</width>
          <height>700</height>
         </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
        </property>
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>

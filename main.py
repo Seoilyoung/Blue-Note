@@ -105,12 +105,16 @@ class MainWindow(QMainWindow):
 
         self.db_list_char = FunctionCalGrowth.readCharList(self.json_datas)
         sorted_list = sorted(self.json_Userdatas["Default"]["Student"], key=lambda k:self.json_Userdatas["Default"]["Student"][k]['index'])
-        list_oparts = list(self.json_Userdatas["Default"]["Oparts"].keys())
-        list_academy = list(self.json_Userdatas["Default"]["BD"].keys())
+        self.list_oparts = list(self.json_Userdatas["Default"]["Oparts"].keys())
+        self.list_academy = list(self.json_Userdatas["Default"]["BD"].keys())
         self.calgrowth_layout(sorted_list, 'Character', container_char_path, self.listWidget_cal1)
-        self.calgrowth_layout(list_oparts, 'Oparts', container_cal_path, self.listWidget_cal2)
-        self.calgrowth_layout(list_academy, 'BD', container_cal_path, self.listWidget_cal3)
-        self.calgrowth_layout(list_academy, 'Note', container_cal_path, self.listWidget_cal4)
+        # class 생성 및 값 입력
+        self.data_default = DataUser.dataset('default')
+        self.data_default.update(self.json_Userdatas)
+
+        self.calgrowth_layout(self.list_oparts, 'Oparts', container_cal_path, self.listWidget_cal2)
+        self.calgrowth_layout(self.list_academy, 'BD', container_cal_path, self.listWidget_cal3)
+        self.calgrowth_layout(self.list_academy, 'Note', container_cal_path, self.listWidget_cal4)
         
         self.button_calgrowth_insert.clicked.connect(self.calgrowth_insert)
         self.button_calgrowth_delete.clicked.connect(self.calgrowth_delete)
@@ -189,13 +193,15 @@ class MainWindow(QMainWindow):
                 listwidget.setDragDropMode(QAbstractItemView.DragDropMode.InternalMove)
                 listwidget.setDropIndicatorShown(True)
                 listwidget.viewport().installEventFilter(self)
+
         for i in range(len(list_item)):
             container_ui = loadUi(container_path)
             container = QListWidgetItem(listwidget)
             container.setSizeHint(QSize(0,50))
             container_ui.label_img.setScaledContents(True)
             container_ui.label_img.setContentsMargins(3,3,3,3)
-
+            
+            # 캐릭터 리스트
             if listwidget is self.listWidget_cal1:
                 # 콤보박스 드롭다운 목록 추가
                 container_ui.comboBox.addItems(self.db_list_char)
@@ -223,24 +229,26 @@ class MainWindow(QMainWindow):
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     container_ui.tableWidget_cal.setItem(1, j, item)
                 # 아이템 이벤트 추가
-                # 마지막에 추가하는 이유는 처음 초기값에서 JSON의 목록을 불러올 때 이벤트가 발생하고 그로 인해 버그가 발생하는데 이를 예방하기 위함
+                # 마지막에 추가하는 이유는 처음 초기값에서 JSON의 값을 넣을 때 마다 이벤트가 발생하고 그로 인해 버그가 발생하는데 이를 예방하기 위함
                 container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
                 container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
-                
 
+            # 오파츠/BD/노트 리스트
             else:
+                # 이미지
                 if item_type == 'BD' or item_type == 'Note':
                     img_path = f"Gui/Useimages/Academy/{i+1:02}.webp"
                 else:
                     img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
                 # 테이블위젯. 
-                container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed2)
+                container_ui.tableWidget_cal.cellChanged.connect(lambda row, column: self.on_table_cell_changed2(row, column) if row == 1 else None)
+                list_insert = self.data_default.printList(item_type,list_item[i])
                 for j in range(4):
-                    item = QTableWidgetItem(item_type)
+                    item = QTableWidgetItem(str(list_insert[3-j]))
                     item.setFlags(Qt.ItemFlag.ItemIsSelectable)
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     container_ui.tableWidget_cal.setItem(0, j, item)
-                    item2 = QTableWidgetItem(str(self.json_Userdatas["Default"][item_type][list_item[i]][j]))
+                    item2 = QTableWidgetItem(str(self.json_Userdatas["Default"][item_type][list_item[i]][3-j]))
                     item2.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     container_ui.tableWidget_cal.setItem(1, j, item2)
  
@@ -324,7 +332,29 @@ class MainWindow(QMainWindow):
             item = container_ui.tableWidget_cal.item(cell_row, cell_column)
                     
             self.json_Userdatas = FunctionCalGrowth.updateTable(self.json_Userdatas, char_name, cell_row, cell_column, int(item.text()))
-            self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, char_name)
+            self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
+            # class 생성 및 값 입력
+            self.data_default = DataUser.dataset('default')
+            self.data_default.update(self.json_Userdatas)
+            oparts_main = container_ui.label_oparts_main.text()
+            oparts_sub = container_ui.label_oparts_sub.text()
+            academy = container_ui.label_academy.text()
+            self.update_table(self.list_oparts, 'Oparts', self.listWidget_cal2, oparts_main, oparts_sub)
+            self.update_table(self.list_academy, 'BD', self.listWidget_cal3, academy)
+            self.update_table(self.list_academy, 'Note', self.listWidget_cal4, academy)
+
+    def update_table(self, list_item, item_type, listWidget, item1, item2=None):
+        for i in range(len(list_item)):
+            if list_item[i] == item1 or list_item[i] == item2:
+                container_ui = listWidget.itemWidget(listWidget.item(i))
+                # 오파츠/BD/노트 리스트
+                list_insert = self.data_default.printList(item_type,list_item[i])
+                for j in range(4):
+                    item = QTableWidgetItem(str(list_insert[3-j]))
+                    item.setFlags(Qt.ItemFlag.ItemIsSelectable)
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    container_ui.tableWidget_cal.setItem(0, j, item)
+
     # listwidget 순서 변경 이벤트
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.Drop:

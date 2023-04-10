@@ -48,6 +48,28 @@ class dataset:
         print("ID :", self.ID, "\n보고서 :", format(self.Report,','), "\n크레딧[ 스킬 , 레벨 ] : [", format(self.Credit[0], ','), ",", format(self.Credit[1],","),"]", "\n비의서 :", self.ScretNote, "\n오파츠 :",
               self.Oparts, "\nBD :", self.Bd, "\n노트 :", self.Note)
         
+    def update(self, data):
+        datas = data["Default"]["Student"]
+        for student, info in datas.items():
+            academy = info["academy"]
+            mainoparts = info["mainoparts"]
+            suboparts = info["suboparts"]
+            for i in range(4):
+                self.Bd[academy][i] += info["bd"][i]
+                self.Note[academy][i] += info["note"][i]
+                self.ScretNote += info["secretnote"]
+                self.Oparts[mainoparts][i] += info["oparts_main"][i]
+                self.Oparts[suboparts][i] += info["oparts_sub"][i]
+
+    def printList(self, itemtype, item_name):
+        if itemtype == 'Oparts':
+            list_test = self.Oparts[item_name]
+        elif itemtype == 'BD':
+            list_test = self.Bd[item_name]
+        elif itemtype == 'Note':
+            list_test = self.Note[item_name]
+        return list_test
+
     def increase(self, A, B, list):
         if A == 'Bd':
             for i in range(0,4):
@@ -98,4 +120,4 @@ class dataset:
         else:
             print('Target Error')
         for i in range(0,4):
-            target[0][B][i] -= list[i]  
+            target[0][B][i] -= list[i]

@@ -155,7 +155,7 @@ def updateTable(data, char_name, row, column, value):
     return data
 # 재화 테이블 수정
 def updateTable2(data, item_type, item_name, column, value):
-    data["Default"][item_type][item_name][column] = value
+    data["Default"][item_type][item_name][3-column] = value
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
     json_data = re.sub(r'\[\n\s+','[', json_data)
     json_data = re.sub(r',\n\s+',',', json_data)
@@ -164,35 +164,54 @@ def updateTable2(data, item_type, item_name, column, value):
         f.write(json_data)
     # print(data["Default"]["Student"])
     return data
-# 학생 스킬 레벨 수정 연동
-def updateSkillLevel(char_name, cell_column, level_goal, level_current):
-    print("캐릭터 :",char_name, "스킬 순서 :", cell_column, "목표", level_goal, "현재", level_current)
 # 학생 테이블 계산
-def calSkillTable(data, data_skill, char_name):
+def calSkillTable(data, data_skill, database, char_name):
     # 해당 함수에서는 스킬 변수 수정이 없으므로 변수로 저장해서 이용 가능
     list_goal = data["Default"]["Student"][char_name]['skill_goal']
     list_current = data["Default"]["Student"][char_name]['skill_current']
-    # BD 스킬 계산
+    list_oparts_main = [0,0,0,0]
+    list_oparts_sub = [0,0,0,0]
     list_bd = [0,0,0,0]
+    list_note = [0,0,0,0]
+    num_secretnote = 0
+    # BD 스킬 계산
     if list_goal[0] > list_current[0]:
         for i in range(list_current[0]+1, list_goal[0]+1):
             if i >= 2:
                 for j in range(4):
                     list_bd[j] += data_skill['Skill_Bd'][str(i)][j]
-    data["Default"]["Student"][char_name]['bd'] = list_bd
+                #BD 관련 오파츠 계산
+                list_oparts_main[i-2] += database[char_name]["Skill_Bd"]["Main"][i-2]
+                if i >= 3:
+                    list_oparts_sub[i-3] += database[char_name]["Skill_Bd"]["Sub"][i-2]
     # Note 스킬 계산
-    list_note = [0,0,0,0]
-    num_secretnote = 0
     for n in range(1,4):
         if list_goal[n] > list_current[n]:
             for i in range(list_current[n]+1, list_goal[n]+1):
+                if i == 10:
+                    num_secretnote += 1
                 if i >= 2 and i <= 9:
                     for j in range(4):
                         list_note[j] += data_skill['Skill_Note'][str(i)][j]
-                if i == 10:
-                    num_secretnote += 1
+                    #노트 관련 오파츠 계산
+                    if i == 4:
+                        num2 = 0
+                    elif i == 5 or i == 6:
+                        num2 = 1
+                    elif i == 7:
+                        num2 = 2
+                    elif i == 8 or i == 9:
+                        num2 = 3
+                    else:
+                        continue
+                    list_oparts_main[num2] += database[char_name]["Skill_Note"]["Main"][i-2]
+                    list_oparts_sub[num2-1] += database[char_name]["Skill_Note"]["Sub"][i-2]
+    # data에 입력                
+    data["Default"]["Student"][char_name]['bd'] = list_bd
     data["Default"]["Student"][char_name]['note'] = list_note
     data["Default"]["Student"][char_name]['secretnote'] = num_secretnote
+    data["Default"]["Student"][char_name]['oparts_main'] = list_oparts_main
+    data["Default"]["Student"][char_name]['oparts_sub'] = list_oparts_sub
     # json 형식 지정 / 저장
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
     json_data = re.sub(r'\[\n\s+','[', json_data)
