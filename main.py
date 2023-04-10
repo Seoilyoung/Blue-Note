@@ -75,7 +75,8 @@ class MainWindow(QMainWindow):
         # Home - 슬라이드쇼
         posts = Posts()
         self.url_slideshow = posts.getUpdateUrl()
-        asyncio.run(posts.getImages(self.url_slideshow))
+        if self.url_slideshow != None:
+            asyncio.run(posts.getImages(self.url_slideshow))
         self.label_slide_home.setScaledContents(True)
         self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
         if os.path.isdir('Posts/Images'):

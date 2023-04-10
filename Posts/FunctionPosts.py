@@ -19,18 +19,16 @@ class Posts():
         # 웹 드라이버 버전 확인을 위한 URL
         response = requests.get("https://msedgedriver.azureedge.net/LATEST_STABLE")
         version = response.text.strip()
+
+        # 웹드라이버 최신 버전 유무 확인 후 다운로드
         driver_path = './webdrivers/msedgedriver.exe'
-        with open("webdrivers/.version", "r") as f:
-            current_version = f.read()
-        # 최신 버전 다운로드 링크 생성
-        if current_version != version:
-            url = f"https://msedgedriver.azureedge.net/{version}/edgedriver_win64.zip"
-            response = requests.get(url)
-            with zipfile.ZipFile(io.BytesIO(response.content)) as zip_ref:
-                zip_ref.extractall("webdrivers")
-            os.chmod(driver_path, 0o755)
-            with open("webdrivers/.version", "w") as f:
-                f.write(version)
+        if os.path.exists("webdrivers/.version"):
+            with open("webdrivers/.version", "r") as f:
+                current_version = f.read()
+            if current_version != version:
+                self.downloadDriver(version, driver_path)
+        else:
+            self.downloadDriver(version, driver_path)
 
         # 옵션 적용
         edge_options = webdriver.EdgeOptions()
@@ -38,12 +36,32 @@ class Posts():
         edge_options.add_argument("headless")
         self.driver = webdriver.Edge(executable_path=driver_path, options=edge_options)
 
+    # 웹드라이버 다운    
+    def downloadDriver(self,version, driver_path):
+        url = f"https://msedgedriver.azureedge.net/{version}/edgedriver_win64.zip"
+        response = requests.get(url)
+        with zipfile.ZipFile(io.BytesIO(response.content)) as zip_ref:
+            zip_ref.extractall("webdrivers")
+        os.chmod(driver_path, 0o755)
+        with open("webdrivers/.version", "w") as f:
+            f.write(version)
+
     def getUpdateUrl(self):
         url_search = BASE_URL + 'board_list?keywords=상세&board=1076&searchKeywordType=THREAD_TITLE'
         self.driver.get(url_search)
         soup_search = BeautifulSoup(self.driver.page_source, 'lxml')
-        post_url = BASE_URL + soup_search.select_one('body div.list-box a')['href']
-        return post_url
+        post_url = soup_search.select_one('body div.list-box a')
+        post_title = post_url.text
+
+        if os.path.exists("Posts/.title"):
+            with open("Posts/.title", "r", encoding="utf-8") as f:
+                current_title = f.read()
+            if current_title != post_title:
+                with open("Posts/.title", "w", encoding="utf-8") as f:
+                    f.write(post_title)
+                return BASE_URL + post_url['href']
+            else:
+                return None
 
     async def download_image(self, session, url, filename):
         async with session.get(url) as response:
