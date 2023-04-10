@@ -34,7 +34,7 @@ import asyncio
 import atexit
 
 from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent
-from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices, QIntValidator
+from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices, QIntValidator, QColor, QBrush
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QGraphicsDropShadowEffect,
@@ -72,33 +72,33 @@ class MainWindow(QMainWindow):
         self.button_screen_menu3.clicked.connect(self.show_screen3)
         self.button_screen_menu4.clicked.connect(self.show_screen4)
         
-        # # Home - 슬라이드쇼
-        # posts = Posts()
-        # self.url_slideshow = posts.getUpdateUrl()
-        # asyncio.run(posts.getImages(self.url_slideshow))
-        # self.label_slide_home.setScaledContents(True)
-        # self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
-        # if os.path.isdir('Posts/Images'):
-        #     files = os.listdir('Posts/Images')
-        #     files_path = ['Posts/Images/' + file for file in files]
-        #     self.images = files_path
-        #     self.current_image = 0
-        #     self.setImage()
-        #     self.timer = QTimer()
-        #     self.timer.timeout.connect(self.next_image)
-        #     self.timer.start(3000)
-        # self.pushButton_slide_home.clicked.connect(self.clicked_image)
+        # Home - 슬라이드쇼
+        posts = Posts()
+        self.url_slideshow = posts.getUpdateUrl()
+        asyncio.run(posts.getImages(self.url_slideshow))
+        self.label_slide_home.setScaledContents(True)
+        self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+        if os.path.isdir('Posts/Images'):
+            files = os.listdir('Posts/Images')
+            files_path = ['Posts/Images/' + file for file in files]
+            self.images = files_path
+            self.current_image = 0
+            self.setImage()
+            self.timer = QTimer()
+            self.timer.timeout.connect(self.next_image)
+            self.timer.start(3000)
+        self.pushButton_slide_home.clicked.connect(self.clicked_image)
 
-        # # Home - 공지사항, 주요소식
-        # list_mainTopic, list_notice = posts.getNotice()
-        # self.createTable(self.tableWidget_home1, list_notice)
-        # self.createTable(self.tableWidget_home2, list_mainTopic)
+        # Home - 공지사항, 주요소식
+        list_mainTopic, list_notice = posts.getNotice()
+        self.createTable(self.tableWidget_home1, list_notice)
+        self.createTable(self.tableWidget_home2, list_mainTopic)
 
-        # @atexit.register
-        # def close_driver():
-        #     posts.driver.quit()
-        #     if os.path.isfile(pid_file):
-        #         os.remove(pid_file)
+        @atexit.register
+        def close_driver():
+            posts.driver.quit()
+            if os.path.isfile(pid_file):
+                os.remove(pid_file)
 
         # 재화계산
         self.json_Userdatas, self.json_datas, self.json_table_exp, self.json_table_credit, self.json_table_skill = FunctionCalGrowth.openDB()
@@ -118,9 +118,6 @@ class MainWindow(QMainWindow):
         
         self.button_calgrowth_insert.clicked.connect(self.calgrowth_insert)
         self.button_calgrowth_delete.clicked.connect(self.calgrowth_delete)
-        # item = self.listWidget_cal1.item(2)
-        # label_img = item.data(Qt.ItemDataRole.DisplayRole)
-        # print(label_img.text())
 
         # AP 가이드
         self.dateEdit_ap1.setDate(QDate.currentDate())
@@ -293,7 +290,7 @@ class MainWindow(QMainWindow):
     def on_combo_box_changed(self, char_name):
         widget = self.sender().parent()
         row = self.listWidget_cal1.indexAt(widget.pos()).row()
-        print(f"on_combo_box_changed 콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
+        # print(f"on_combo_box_changed 콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
         self.listWidget_cal1.setCurrentRow(row)
         container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
         if container_ui is not None:
@@ -324,7 +321,7 @@ class MainWindow(QMainWindow):
     def on_table_cell_changed(self,cell_row,cell_column):
         widget = self.sender().parent()
         row = self.listWidget_cal1.indexAt(widget.pos()).row()
-        print(f"on_table_cell_changed 콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
+        # print(f"on_table_cell_changed 콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
         self.listWidget_cal1.setCurrentRow(row)
         container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
         if container_ui is not None:
@@ -354,7 +351,9 @@ class MainWindow(QMainWindow):
                     item.setFlags(Qt.ItemFlag.ItemIsSelectable)
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     container_ui.tableWidget_cal.setItem(0, j, item)
-
+                if item2 is None:
+                    return
+                    
     # listwidget 순서 변경 이벤트
     def eventFilter(self, source, event):
         if event.type() == QEvent.Type.Drop:
