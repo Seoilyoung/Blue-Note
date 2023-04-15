@@ -54,12 +54,13 @@ class dataset:
             academy = info["academy"]
             mainoparts = info["mainoparts"]
             suboparts = info["suboparts"]
-            for i in range(4):
-                self.Bd[academy][i] += info["bd"][i]
-                self.Note[academy][i] += info["note"][i]
-                self.ScretNote += info["secretnote"]
-                self.Oparts[mainoparts][i] += info["oparts_main"][i]
-                self.Oparts[suboparts][i] += info["oparts_sub"][i]
+            if academy != "" and mainoparts != "" and suboparts != "":
+                for i in range(4):
+                    self.Bd[academy][i] += info["bd"][i]
+                    self.Note[academy][i] += info["note"][i]
+                    self.ScretNote += info["secretnote"]
+                    self.Oparts[mainoparts][i] += info["oparts_main"][i]
+                    self.Oparts[suboparts][i] += info["oparts_sub"][i]
 
     def printList(self, itemtype, item_name):
         if itemtype == 'Oparts':

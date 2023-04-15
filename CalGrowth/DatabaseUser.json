@@ -8,15 +8,13 @@
             "백귀야행": [842,346,177,65],"붉은겨울": [1082,502,327,103],"트리니티": [849,314,170,118],"게헨나": [587,172,142,123],"아비도스": [904,382,240,180],"밀레니엄": [614,195,192,12],"아리우스": [345,195,125,66],"산해경": [851,541,306,129],"발키리": [599,360,262,50]
         },"Student": {
             "아리스": {
-                "index": 0,"academy": "밀레니엄","mainoparts": "네브라","suboparts": "님루드","level_current": 0,"level_goal": 0,"skill_current": [2,4,4,4],"skill_goal": [5,10,10,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [18,30,30,8],"note": [0,60,75,60],"secretnote": 3
+                "index": 0,"academy": "밀레니엄","mainoparts": "네브라","suboparts": "님루드","level_current": 0,"level_goal": 0,"skill_current": [3,4,4,4],"skill_goal": [5,7,7,7],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,18,30,8],"note": [0,60,39,0],"secretnote": 0
             },"유우카(체육복)": {
                 "index": 1,"academy": "밀레니엄","mainoparts": "님루드","suboparts": "위니페소키","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [30,30,30,8],"note": [75,75,75,60],"secretnote": 3
             },"하스미(체육복)": {
                 "index": 2,"academy": "트리니티","mainoparts": "보이니치","suboparts": "파에스토스","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [30,30,30,8],"note": [75,75,75,60],"secretnote": 3
             },"사키": {
                 "index": 3,"academy": "발키리","mainoparts": "볼프세크","suboparts": "전지","level_current": 0,"level_goal": 0,"skill_current": [0,0,10,0],"skill_goal": [0,0,7,0],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,0,0,0],"note": [0,0,0,0],"secretnote": 0
-            },"아스나": {
-                "index": 4,"academy": "밀레니엄","mainoparts": "안티키테라","suboparts": "로혼치","level_current": 0,"level_goal": 0,"skill_current": [3,4,4,4],"skill_goal": [5,7,7,7],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,18,30,8],"note": [0,60,39,0],"secretnote": 0
             },"카요코": {
                 "index": 5,"academy": "게헨나","mainoparts": "보이니치","suboparts": "볼프세크","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,1,10,1],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [30,30,30,8],"note": [25,25,25,20],"secretnote": 1
             },"츠바키": {
@@ -25,10 +23,8 @@
                 "index": 8,"academy": "밀레니엄","mainoparts": "하니와","suboparts": "안티키테라","level_current": 0,"level_goal": 0,"skill_current": [3,1,1,1],"skill_goal": [5,1,7,7],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,18,30,8],"note": [50,50,26,0],"secretnote": 0
             },"모모이": {
                 "index": 9,"academy": "밀레니엄","mainoparts": "안티키테라","suboparts": "파에스토스","level_current": 0,"level_goal": 0,"skill_current": [0,0,7,0],"skill_goal": [0,0,10,0],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,0,0,0],"note": [0,0,12,20],"secretnote": 1
-            },"사야(사복)": {
-                "index": 11,"academy": "산해경","mainoparts": "에테르","suboparts": "네브라","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,7,7,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [30,30,30,8],"note": [75,75,51,20],"secretnote": 1
             },"아야네(수영복)": {
-                "index": 12,"academy": "아비도스","mainoparts": "볼프세크","suboparts": "안티키테라","level_current": 0,"level_goal": 0,"skill_current": [0,7,7,7],"skill_goal": [0,10,10,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,0,0,0],"note": [0,0,36,60],"secretnote": 3
+                "index": 12,"academy": "아비도스","mainoparts": "볼프세크","suboparts": "안티키테라","level_current": 0,"level_goal": 0,"skill_current": [1,7,7,7],"skill_goal": [1,10,10,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,0,0,0],"note": [0,0,36,60],"secretnote": 3
             },"마리(체육복)": {
                 "index": 14,"academy": "트리니티","mainoparts": "하니와","suboparts": "로혼치","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [30,30,30,8],"note": [75,75,75,60],"secretnote": 3
             },"히마리": {
@@ -36,7 +32,7 @@
             },"하루나(새해)": {
                 "index": 16,"academy": "게헨나","mainoparts": "만드라고라","suboparts": "전지","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [30,30,30,8],"note": [75,75,75,60],"secretnote": 3
             },"미카": {
-                "index": 18,"academy": "트리니티","mainoparts": "에테르","suboparts": "님루드","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [30,30,30,8],"note": [75,75,75,60],"secretnote": 3
+                "index": 18,"academy": "트리니티","mainoparts": "에테르","suboparts": "님루드","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [1,10,10,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,0,0,0],"note": [75,75,75,60],"secretnote": 3
             },"미도리": {
                 "index": 10,"academy": "밀레니엄","mainoparts": "파에스토스","suboparts": "안티키테라","level_current": 0,"level_goal": 0,"skill_current": [0,7,7,7],"skill_goal": [0,10,10,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,0,0,0],"note": [0,0,36,60],"secretnote": 3
             },"후우카(새해)": {
@@ -45,6 +41,10 @@
                 "index": 6,"academy": "트리니티","mainoparts": "에테르","suboparts": "하니와","level_current": 0,"level_goal": 0,"skill_current": [3,4,4,1],"skill_goal": [5,10,10,9],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,18,30,8],"note": [25,65,75,60],"secretnote": 2
             },"코코나": {
                 "index": 13,"academy": "산해경","mainoparts": "네브라","suboparts": "보이니치","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [30,30,30,8],"note": [75,75,75,60],"secretnote": 3
+            },"사야(사복)": {
+                "index": 11,"academy": "산해경","mainoparts": "에테르","suboparts": "네브라","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,7,7,10],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [30,30,30,8],"note": [75,75,51,20],"secretnote": 1
+            },"아스나": {
+                "index": 4,"academy": "밀레니엄","mainoparts": "안티키테라","suboparts": "로혼치","level_current": 0,"level_goal": 0,"skill_current": [3,4,4,4],"skill_goal": [5,7,7,7],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,18,30,8],"note": [0,60,39,0],"secretnote": 0
             }
         }
     },"Preset1": {

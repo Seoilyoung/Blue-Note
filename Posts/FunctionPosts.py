@@ -62,7 +62,9 @@ class Posts():
                 return BASE_URL + post_url['href']
             else:
                 return None
-
+        else:
+            with open("Posts/.title", "w", encoding="utf-8") as f:
+                    f.write(post_title)
     async def download_image(self, session, url, filename):
         async with session.get(url) as response:
             with open(filename, 'wb') as f:

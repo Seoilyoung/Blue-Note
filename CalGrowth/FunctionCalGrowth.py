@@ -72,7 +72,7 @@ def readCharSubOparts(datas, char_name):
         return
 
 # 학생 정보 생성
-def insertStudent(data, char_name, index, academy, mainoparts, suboparts):
+def insertStudent(data, index, char_name, academy, mainoparts, suboparts):
     if academy == 'SRT':
         academy = '발키리'
     data["Default"]["Student"][char_name] = {'index' : index, 'academy' : academy, 'mainoparts' : mainoparts, 'suboparts' : suboparts,
@@ -87,14 +87,20 @@ def insertStudent(data, char_name, index, academy, mainoparts, suboparts):
     # print(data["Default"]["Student"])
     return data
 # 학생 정보 삭제
-def deleteStudent(data, char_name, index):
-    if char_name in data["Default"]["Student"]:
-        del data["Default"]["Student"][char_name]
-    # index가 -1인 경우:중복학생 / 아니면 목록에서 사라지니까 아래 목록의 index를 다 1 줄인다.
+def deleteStudent(data, index):
+    for name, info in data["Default"]["Student"].items():
+        if index == info["index"]:
+            del data["Default"]["Student"][name]
+            break
+    # 목록에서 사라지니까 아래 목록의 index를 다 1 줄인다.
     if index >=0:
         for name, info in data["Default"]["Student"].items():
             if index < info["index"]:
                 info["index"] -= 1
+                if "Default" in name:
+                    char_name = "Default " + str(info["index"])
+                    data["Default"]["Student"][char_name] = data["Default"]["Student"].pop(name)
+
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
     json_data = re.sub(r'\[\n\s+','[', json_data)
     json_data = re.sub(r',\n\s+',',', json_data)
@@ -104,14 +110,18 @@ def deleteStudent(data, char_name, index):
     # print(data["Default"]["Student"])
     return data
 # 학생 정보 수정
-def updateStudent(data, char_name_before, char_name_after, academy, mainoparts, suboparts):
+def updateStudent(data, index, char_name, academy, mainoparts, suboparts):
     if academy == 'SRT':
         academy = '발키리'
-    if char_name_before in data["Default"]["Student"]:
-        data["Default"]["Student"][char_name_after] = data["Default"]["Student"].pop(char_name_before)
-        data["Default"]["Student"][char_name_after]["academy"] = academy
-        data["Default"]["Student"][char_name_after]["mainoparts"] = mainoparts
-        data["Default"]["Student"][char_name_after]["suboparts"] = suboparts
+
+    for name, info in data["Default"]["Student"].items():
+        if index == info["index"]:
+            data["Default"]["Student"][char_name] = data["Default"]["Student"].pop(name)
+            data["Default"]["Student"][char_name]["academy"] = academy
+            data["Default"]["Student"][char_name]["mainoparts"] = mainoparts
+            data["Default"]["Student"][char_name]["suboparts"] = suboparts
+            break
+
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
     json_data = re.sub(r'\[\n\s+','[', json_data)
     json_data = re.sub(r',\n\s+',',', json_data)
@@ -139,12 +149,20 @@ def updateIndex(data, index1, index2):
     # print(data["Default"]["Student"])
     return data
 # 학생 스킬 테이블 수정
-def updateTable(data, char_name, row, column, value):
+def updateTable(data, index, row, column, value):
     if row == 0:
         menu = "skill_goal"
     elif row == 1:
         menu = "skill_current"
-    data["Default"]["Student"][char_name][menu][column] = value
+
+    for name, info in data["Default"]["Student"].items():
+        if index == info["index"]:
+            data["Default"]["Student"][name][menu][column] = value
+            if info["academy"] != "":
+                result = 0
+            else:
+                result = 1
+            break
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
     json_data = re.sub(r'\[\n\s+','[', json_data)
     json_data = re.sub(r',\n\s+',',', json_data)
@@ -152,7 +170,7 @@ def updateTable(data, char_name, row, column, value):
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
     # print(data["Default"]["Student"])
-    return data
+    return data, result
 # 재화 테이블 수정
 def updateTable2(data, item_type, item_name, column, value):
     data["Default"][item_type][item_name][3-column] = value

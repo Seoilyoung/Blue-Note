@@ -290,16 +290,19 @@ class MainWindow(QMainWindow):
         container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
         listwidget.addItem(container)
         listwidget.setItemWidget(container, container_ui)
+        self.json_Userdatas = FunctionCalGrowth.insertStudent(self.json_Userdatas, listwidget.count()-1, "Default "+str(listwidget.count()-1), "", "", "")
     
+    # 버튼으로 캐릭터 제거
     def calgrowth_delete(self):
         listwidget = self.listWidget_cal1
         index = self.listWidget_cal1.currentRow()
         container_ui = listwidget.itemWidget(self.listWidget_cal1.currentItem())
         char_name = container_ui.comboBox.currentText()
         if index >= 0:
+            self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, index)
+            # class 반영
+            self.update_class(container_ui.label_oparts_main.text(), container_ui.label_oparts_sub.text(), container_ui.label_academy.text())
             listwidget.takeItem(index)
-            if container_ui.label_img.text() != "중복 학생":
-                self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, char_name, index)
 
     # 콤보박스 값 변경 이벤트 처리
     def on_combo_box_changed(self, char_name):
@@ -321,17 +324,21 @@ class MainWindow(QMainWindow):
                 container_ui.label_oparts_sub.setText(oparts_sub)
                 # json 연동
                 if char_name in self.json_Userdatas['Default']['Student']:
-                    if char_name != widget.label_name.text():
-                        widget.label_img.clear()
-                        widget.label_img.setText("중복 학생")
-                        self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, widget.label_name.text(),-1)
-                        widget.label_name.setText("")
+                    # if char_name != widget.label_name.text():
+                    widget.label_img.clear()
+                    widget.label_img.setText("중복 학생")
+                    widget.label_name.setText("")
+                    self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, row, "Default "+str(row), "", "", "")
                 else:
-                    if widget.label_name.text() == "":
-                        self.json_Userdatas = FunctionCalGrowth.insertStudent(self.json_Userdatas, char_name, row, academy, oparts_main, oparts_sub)
-                    else:
-                        self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, widget.label_name.text(), char_name, academy, oparts_main, oparts_sub)
+                    self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, row, char_name, academy, oparts_main, oparts_sub)
                     widget.label_name.setText(char_name)
+            else:
+                container_ui.label_academy.setText("")
+                container_ui.label_oparts_main.setText("")
+                container_ui.label_oparts_sub.setText("")
+                self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, row, char_name, "", "", "")
+            # class 반영
+            self.update_class(container_ui.label_oparts_main.text(), container_ui.label_oparts_sub.text(), container_ui.label_academy.text())
     # 테이블 셀 값 변경 이벤트 처리
     def on_table_cell_changed(self,cell_row,cell_column):
         widget = self.sender().parent()
@@ -343,18 +350,19 @@ class MainWindow(QMainWindow):
             char_name = container_ui.comboBox.currentText()
             item = container_ui.tableWidget_cal.item(cell_row, cell_column)
                     
-            self.json_Userdatas = FunctionCalGrowth.updateTable(self.json_Userdatas, char_name, cell_row, cell_column, int(item.text()))
-            self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
-            # class 생성 및 값 입력
-            self.data_default = DataUser.dataset('default')
-            self.data_default.update(self.json_Userdatas)
-            oparts_main = container_ui.label_oparts_main.text()
-            oparts_sub = container_ui.label_oparts_sub.text()
-            academy = container_ui.label_academy.text()
-            self.update_table(self.list_oparts, 'Oparts', self.listWidget_cal2, oparts_main, oparts_sub)
-            self.update_table(self.list_academy, 'BD', self.listWidget_cal3, academy)
-            self.update_table(self.list_academy, 'Note', self.listWidget_cal4, academy)
-
+            self.json_Userdatas, result = FunctionCalGrowth.updateTable(self.json_Userdatas, row, cell_row, cell_column, int(item.text()))
+            if result == 0:
+                self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
+                # class 반영
+                self.update_class(container_ui.label_oparts_main.text(), container_ui.label_oparts_sub.text(), container_ui.label_academy.text())
+    # class 생성 및 값 입력 / 테이블 반영
+    def update_class(self,oparts_main,oparts_sub,academy):
+        self.data_default = DataUser.dataset('default')
+        self.data_default.update(self.json_Userdatas)
+        self.update_table(self.list_oparts, 'Oparts', self.listWidget_cal2, oparts_main, oparts_sub)
+        self.update_table(self.list_academy, 'BD', self.listWidget_cal3, academy)
+        self.update_table(self.list_academy, 'Note', self.listWidget_cal4, academy)
+    # 테이블 수정
     def update_table(self, list_item, item_type, listWidget, item1, item2=None):
         for i in range(len(list_item)):
             if list_item[i] == item1 or list_item[i] == item2:
@@ -366,6 +374,19 @@ class MainWindow(QMainWindow):
                     item.setFlags(Qt.ItemFlag.ItemIsSelectable)
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     container_ui.tableWidget_cal.setItem(0, j, item)
+                    item_goal = container_ui.tableWidget_cal.item(0, j)
+                    item_current = container_ui.tableWidget_cal.item(1, j)
+
+                    if int(item_goal.text()) <= int(item_current.text()):
+                        item_current.setBackground(QColor(0, 0, 0, 80))
+                        item_current.setForeground(QColor(255, 255, 255))
+                        item_goal.setBackground(QColor(0, 0, 0,80))
+                        item_goal.setForeground(QColor(255, 255, 255))
+                    else:
+                        item_current.setBackground(QColor(255, 255, 255))
+                        item_current.setForeground(QColor(0, 0, 0))
+                        item_goal.setBackground(QColor(255, 255, 255))
+                        item_goal.setForeground(QColor(0, 0, 0, 150))
                 if item2 is None:
                     return
                     
@@ -381,7 +402,6 @@ class MainWindow(QMainWindow):
         return super().eventFilter(source, event)
     # 오파츠, BD, 노트 테이블 변경 이벤트
     def on_table_cell_changed2(self,cell_row,cell_column):
-        print("test")
         widget = self.sender().parent()
         if widget.parent() is not None:
             listWidget = widget.parent().parent()
