@@ -1,9 +1,12 @@
 # 임시파일
 *.pyc
 *.pid
-test.py
 __pycache__/
 캐릭터db생성.py
-#결과 이미지 폴더
+test.py
+
+#결과물 폴더
 Posts/Images
+Posts/.title
 Images
+webdrivers

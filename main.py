@@ -203,6 +203,7 @@ class MainWindow(QMainWindow):
             if listwidget is self.listWidget_cal1:
                 # 콤보박스 드롭다운 목록 추가
                 container_ui.comboBox.addItems(self.db_list_char)
+                # 테이블 숫자 범위 제한
                 delegate = RangeDelegate()
                 container_ui.tableWidget_cal.setItemDelegate(delegate)
                 char_name = list_item[i]
@@ -220,9 +221,9 @@ class MainWindow(QMainWindow):
                     container_ui.label_oparts_sub.setText(oparts_sub)
                 # 테이블위젯. 
                 for j in range(4):
-                    item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_goal"][j]))
-                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                    container_ui.tableWidget_cal.setItem(0, j, item)
+                    item_goal = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_goal"][j]))
+                    item_goal.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    container_ui.tableWidget_cal.setItem(0, j, item_goal)
                     item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_current"][j]))
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     container_ui.tableWidget_cal.setItem(1, j, item)
@@ -239,16 +240,27 @@ class MainWindow(QMainWindow):
                 else:
                     img_path = f"Gui/Useimages/{item_type}/{i+1:02}.webp"
                 # 테이블위젯. 
-                container_ui.tableWidget_cal.cellChanged.connect(lambda row, column: self.on_table_cell_changed2(row, column) if row == 1 else None)
                 list_insert = self.data_default.printList(item_type,list_item[i])
                 for j in range(4):
-                    item = QTableWidgetItem(str(list_insert[3-j]))
-                    item.setFlags(Qt.ItemFlag.ItemIsSelectable)
+                    item_goal = QTableWidgetItem(str(list_insert[3-j]))
+                    item_goal.setFlags(Qt.ItemFlag.ItemIsSelectable)
+                    item_goal.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    container_ui.tableWidget_cal.setItem(0, j, item_goal)
+                    item = QTableWidgetItem(str(self.json_Userdatas["Default"][item_type][list_item[i]][3-j]))
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                    container_ui.tableWidget_cal.setItem(0, j, item)
-                    item2 = QTableWidgetItem(str(self.json_Userdatas["Default"][item_type][list_item[i]][3-j]))
-                    item2.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                    container_ui.tableWidget_cal.setItem(1, j, item2)
+                    container_ui.tableWidget_cal.setItem(1, j, item)
+                    
+                    if int(item_goal.text()) <= int(item.text()):
+                        item.setBackground(QColor(0, 0, 0, 80))
+                        item.setForeground(QColor(255, 255, 255))
+                        item_goal.setBackground(QColor(0, 0, 0,80))
+                        item_goal.setForeground(QColor(255, 255, 255))
+                    else:
+                        item.setBackground(QColor(255, 255, 255))
+                        item.setForeground(QColor(0, 0, 0))
+                        item_goal.setBackground(QColor(255, 255, 255))
+                        item_goal.setForeground(QColor(0, 0, 0, 150))
+                container_ui.tableWidget_cal.cellChanged.connect(lambda row, column: self.on_table_cell_changed2(row, column) if row == 1 else None)
  
             pixmap = QPixmap(img_path)
             container_ui.label_img.setPixmap(pixmap)
@@ -272,6 +284,8 @@ class MainWindow(QMainWindow):
         
         container_ui.comboBox.addItems(self.db_list_char)
         container_ui.comboBox.setCurrentText("")
+        delegate = RangeDelegate()
+        container_ui.tableWidget_cal.setItemDelegate(delegate)
         container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
         container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
         listwidget.addItem(container)
@@ -367,6 +381,7 @@ class MainWindow(QMainWindow):
         return super().eventFilter(source, event)
     # 오파츠, BD, 노트 테이블 변경 이벤트
     def on_table_cell_changed2(self,cell_row,cell_column):
+        print("test")
         widget = self.sender().parent()
         if widget.parent() is not None:
             listWidget = widget.parent().parent()
@@ -382,6 +397,18 @@ class MainWindow(QMainWindow):
             if container_ui is not None:
                 item_name = container_ui.label_name.text()
                 item = container_ui.tableWidget_cal.item(cell_row, cell_column)
+                item_goal = container_ui.tableWidget_cal.item(0, cell_column)
+                
+                if int(item_goal.text()) <= int(item.text()):
+                    item.setBackground(QColor(0, 0, 0, 80))
+                    item.setForeground(QColor(255, 255, 255))
+                    item_goal.setBackground(QColor(0, 0, 0,80))
+                    item_goal.setForeground(QColor(255, 255, 255))
+                else:
+                    item.setBackground(QColor(255, 255, 255))
+                    item.setForeground(QColor(0, 0, 0))
+                    item_goal.setBackground(QColor(255, 255, 255))
+                    item_goal.setForeground(QColor(0, 0, 0, 150))
                 self.json_Userdatas = FunctionCalGrowth.updateTable2(self.json_Userdatas, item_type, item_name, cell_column, int(item.text()))
     # 버튼 기능 - AP 가이드
     def ap_image_save(self):

@@ -475,6 +475,10 @@ QPushButton:clicked{
        <property name="acceptDrops">
         <bool>true</bool>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QListWidget::item:selected { border: 2px solid black; }
+</string>
+       </property>
        <property name="verticalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
        </property>
