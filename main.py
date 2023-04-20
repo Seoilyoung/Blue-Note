@@ -37,7 +37,7 @@ from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent
 from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices, QIntValidator, QColor, QBrush
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QGraphicsDropShadowEffect,
+    QApplication, QMainWindow, QGraphicsDropShadowEffect, QComboBox,
     QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem, QItemDelegate, QLineEdit
 )
 import ApGuide.FunctionApGuide as ApGuide
@@ -202,6 +202,7 @@ class MainWindow(QMainWindow):
             # 캐릭터 리스트
             if listwidget is self.listWidget_cal1:
                 # 콤보박스 드롭다운 목록 추가
+                container_ui.comboBox.wheelEvent = self.ignore_wheel_event
                 container_ui.comboBox.addItems(self.db_list_char)
                 # 테이블 숫자 범위 제한
                 delegate = RangeDelegate()
@@ -465,6 +466,9 @@ class MainWindow(QMainWindow):
         folder_path = os.path.dirname(__file__)
         explorer_command = "explorer.exe"
         subprocess.Popen([explorer_command, folder_path+'\Images'])
+    #콤보박스 휠 이벤트 무시
+    def ignore_wheel_event(self, event):
+        event.ignore()
 
 class ClickableLabel(QLabel):
     def __init__(self, text, link):
