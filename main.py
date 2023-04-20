@@ -231,6 +231,8 @@ class MainWindow(QMainWindow):
                 # 마지막에 추가하는 이유는 처음 초기값에서 JSON의 값을 넣을 때 마다 이벤트가 발생하고 그로 인해 버그가 발생하는데 이를 예방하기 위함
                 container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
                 container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
+                # 캐릭터별 필요 재화 계산
+                self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
 
             # 오파츠/BD/노트 리스트
             else:
@@ -328,15 +330,16 @@ class MainWindow(QMainWindow):
                     widget.label_img.clear()
                     widget.label_img.setText("중복 학생")
                     widget.label_name.setText("")
-                    self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, row, "Default "+str(row), "", "", "")
+                    self.json_Userdatas = FunctionCalGrowth.initStudent(self.json_Userdatas, row, "Default "+str(row))
                 else:
                     self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, row, char_name, academy, oparts_main, oparts_sub)
                     widget.label_name.setText(char_name)
+                self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
             else:
                 container_ui.label_academy.setText("")
                 container_ui.label_oparts_main.setText("")
                 container_ui.label_oparts_sub.setText("")
-                self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, row, char_name, "", "", "")
+                self.json_Userdatas = FunctionCalGrowth.initStudent(self.json_Userdatas, row, char_name)
             # class 반영
             self.update_class(container_ui.label_oparts_main.text(), container_ui.label_oparts_sub.text(), container_ui.label_academy.text())
     # 테이블 셀 값 변경 이벤트 처리
@@ -357,38 +360,36 @@ class MainWindow(QMainWindow):
                 self.update_class(container_ui.label_oparts_main.text(), container_ui.label_oparts_sub.text(), container_ui.label_academy.text())
     # class 생성 및 값 입력 / 테이블 반영
     def update_class(self,oparts_main,oparts_sub,academy):
+        print("Update 클래스")
         self.data_default = DataUser.dataset('default')
         self.data_default.update(self.json_Userdatas)
-        self.update_table(self.list_oparts, 'Oparts', self.listWidget_cal2, oparts_main, oparts_sub)
-        self.update_table(self.list_academy, 'BD', self.listWidget_cal3, academy)
-        self.update_table(self.list_academy, 'Note', self.listWidget_cal4, academy)
+        self.update_table(self.list_oparts, 'Oparts', self.listWidget_cal2)
+        self.update_table(self.list_academy, 'BD', self.listWidget_cal3)
+        self.update_table(self.list_academy, 'Note', self.listWidget_cal4)
     # 테이블 수정
-    def update_table(self, list_item, item_type, listWidget, item1, item2=None):
+    def update_table(self, list_item, item_type, listWidget):
         for i in range(len(list_item)):
-            if list_item[i] == item1 or list_item[i] == item2:
-                container_ui = listWidget.itemWidget(listWidget.item(i))
-                # 오파츠/BD/노트 리스트
-                list_insert = self.data_default.printList(item_type,list_item[i])
-                for j in range(4):
-                    item = QTableWidgetItem(str(list_insert[3-j]))
-                    item.setFlags(Qt.ItemFlag.ItemIsSelectable)
-                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                    container_ui.tableWidget_cal.setItem(0, j, item)
-                    item_goal = container_ui.tableWidget_cal.item(0, j)
-                    item_current = container_ui.tableWidget_cal.item(1, j)
+            container_ui = listWidget.itemWidget(listWidget.item(i))
+            # 오파츠/BD/노트 리스트
+            list_insert = self.data_default.printList(item_type,list_item[i])
+            for j in range(4):
+                item = QTableWidgetItem(str(list_insert[3-j]))
+                item.setFlags(Qt.ItemFlag.ItemIsSelectable)
+                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                container_ui.tableWidget_cal.setItem(0, j, item)
+                item_goal = container_ui.tableWidget_cal.item(0, j)
+                item_current = container_ui.tableWidget_cal.item(1, j)
 
-                    if int(item_goal.text()) <= int(item_current.text()):
-                        item_current.setBackground(QColor(0, 0, 0, 80))
-                        item_current.setForeground(QColor(255, 255, 255))
-                        item_goal.setBackground(QColor(0, 0, 0,80))
-                        item_goal.setForeground(QColor(255, 255, 255))
-                    else:
-                        item_current.setBackground(QColor(255, 255, 255))
-                        item_current.setForeground(QColor(0, 0, 0))
-                        item_goal.setBackground(QColor(255, 255, 255))
-                        item_goal.setForeground(QColor(0, 0, 0, 150))
-                if item2 is None:
-                    return
+                if int(item_goal.text()) <= int(item_current.text()):
+                    item_current.setBackground(QColor(0, 0, 0, 80))
+                    item_current.setForeground(QColor(255, 255, 255))
+                    item_goal.setBackground(QColor(0, 0, 0,80))
+                    item_goal.setForeground(QColor(255, 255, 255))
+                else:
+                    item_current.setBackground(QColor(255, 255, 255))
+                    item_current.setForeground(QColor(0, 0, 0))
+                    item_goal.setBackground(QColor(255, 255, 255))
+                    item_goal.setForeground(QColor(0, 0, 0, 150))
                     
     # listwidget 순서 변경 이벤트
     def eventFilter(self, source, event):

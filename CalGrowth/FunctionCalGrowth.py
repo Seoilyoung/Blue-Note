@@ -130,6 +130,28 @@ def updateStudent(data, index, char_name, academy, mainoparts, suboparts):
         f.write(json_data)
     # print(data["Default"]["Student"])
     return data
+# 학생 정보 수정
+def initStudent(data, index, char_name):
+    for name, info in data["Default"]["Student"].items():
+        if index == info["index"]:
+            data["Default"]["Student"][char_name] = data["Default"]["Student"].pop(name)
+            data["Default"]["Student"][char_name]["academy"] = ""
+            data["Default"]["Student"][char_name]["mainoparts"] = ""
+            data["Default"]["Student"][char_name]["suboparts"] = ""
+            data["Default"]["Student"][char_name]["oparts_main"] = [0, 0, 0, 0]
+            data["Default"]["Student"][char_name]["oparts_sub"] = [0, 0, 0, 0]
+            data["Default"]["Student"][char_name]["bd"] = [0, 0, 0, 0]
+            data["Default"]["Student"][char_name]["note"] = [0, 0, 0, 0]
+            break
+
+    json_data = json.dumps(data, ensure_ascii=False, indent=4)
+    json_data = re.sub(r'\[\n\s+','[', json_data)
+    json_data = re.sub(r',\n\s+',',', json_data)
+    json_data = re.sub(r'\n\s+\]',']', json_data)
+    with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
+        f.write(json_data)
+    # print(data["Default"]["Student"])
+    return data
 # 리스트 순서 수정
 def updateIndex(data, index1, index2):
     for name, info in data["Default"]["Student"].items():
