@@ -15,36 +15,11 @@ BASE_URL = 'https://forum.nexon.com/bluearchive/'
 class Posts():
     def __init__(self):
         super().__init__()
-
-        # 웹 드라이버 버전 확인을 위한 URL
-        response = requests.get("https://msedgedriver.azureedge.net/LATEST_STABLE")
-        version = response.text.strip()
-
-        # 웹드라이버 최신 버전 유무 확인 후 다운로드
-        driver_path = './webdrivers/msedgedriver.exe'
-        if os.path.exists("webdrivers/.version"):
-            with open("webdrivers/.version", "r") as f:
-                current_version = f.read()
-            if current_version != version:
-                self.downloadDriver(version, driver_path)
-        else:
-            self.downloadDriver(version, driver_path)
-
         # 옵션 적용
         edge_options = webdriver.EdgeOptions()
         edge_options.add_argument("disable-logging")
         edge_options.add_argument("headless")
-        self.driver = webdriver.Edge(executable_path=driver_path, options=edge_options)
-
-    # 웹드라이버 다운    
-    def downloadDriver(self,version, driver_path):
-        url = f"https://msedgedriver.azureedge.net/{version}/edgedriver_win64.zip"
-        response = requests.get(url)
-        with zipfile.ZipFile(io.BytesIO(response.content)) as zip_ref:
-            zip_ref.extractall("webdrivers")
-        os.chmod(driver_path, 0o755)
-        with open("webdrivers/.version", "w") as f:
-            f.write(version)
+        self.driver = webdriver.Edge(options=edge_options)
 
     def getUpdateUrl(self):
         url_search = BASE_URL + 'board_list?keywords=상세&board=1076&searchKeywordType=THREAD_TITLE'

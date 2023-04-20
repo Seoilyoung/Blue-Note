@@ -48,3 +48,6 @@
 테이블 클릭했을 때 색 변경되는거 해제
 휠 기능 삭제
 캐릭터별 정보 입력
+
+[참고 자료]
+https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=python
