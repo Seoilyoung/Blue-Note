@@ -206,7 +206,7 @@ QPushButton:clicked{
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page">
       <widget class="QLabel" name="label_slide_home">
@@ -338,25 +338,8 @@ QPushButton:clicked{
         </widget>
        </widget>
       </widget>
-      <widget class="QLabel" name="label_6">
-       <property name="geometry">
-        <rect>
-         <x>620</x>
-         <y>40</y>
-         <width>391</width>
-         <height>641</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgba(0,0,0,80);</string>
-       </property>
-       <property name="text">
-        <string>트위터</string>
-       </property>
-      </widget>
       <zorder>label_slide_home</zorder>
       <zorder>tabWidget_home</zorder>
-      <zorder>label_6</zorder>
       <zorder>pushButton_slide_home</zorder>
      </widget>
      <widget class="QWidget" name="page_2">
