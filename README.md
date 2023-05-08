@@ -46,9 +46,8 @@
 
 
 당장 목표
-테이블 클릭했을 때 색 변경되는거 해제
-휠 기능 삭제
-캐릭터별 정보 입력
+1) 테이블 선택된 셀 배경,글자색 변경되는거 해제
+2) 크롤링 3부분 병렬처리로 초반 로딩속도 개선
 
 [참고 자료]
 https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=python
