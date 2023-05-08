@@ -3,9 +3,6 @@ import os
 import glob
 import aiohttp
 import re
-import requests
-import zipfile
-import io
 from selenium import webdriver
 from bs4 import BeautifulSoup, SoupStrainer
 from datetime import datetime
@@ -21,7 +18,7 @@ class Posts():
         edge_options.add_argument("headless")
         self.driver = webdriver.Edge(options=edge_options)
 
-    def getUpdateUrl(self):
+    async def getUpdateUrl(self):
         url_search = BASE_URL + 'board_list?keywords=상세&board=1076&searchKeywordType=THREAD_TITLE'
         self.driver.get(url_search)
         soup_search = BeautifulSoup(self.driver.page_source, 'lxml')
@@ -40,6 +37,8 @@ class Posts():
         else:
             with open("Posts/.title", "w", encoding="utf-8") as f:
                     f.write(post_title)
+            return BASE_URL + post_url['href']
+
     async def download_image(self, session, url, filename):
         async with session.get(url) as response:
             with open(filename, 'wb') as f:
@@ -74,7 +73,7 @@ class Posts():
             tasks = [self.download_image(session, img.get('src'), f"./Posts/Images/{i:02}.png") for i, img in enumerate(filtered_tags, 1)]
             await asyncio.gather(*tasks)
 
-    def getNotice(self):
+    async def getNotice(self):
         self.driver.get(BASE_URL)
         soup = BeautifulSoup(self.driver.page_source, 'lxml', parse_only=SoupStrainer('li'))
 

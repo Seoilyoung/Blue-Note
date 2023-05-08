@@ -1,14 +1,8 @@
 # 추가 기능
 # - 일정(이벤트, 총력전 등)
 # 	이건 수동으로 해야 하는거 아닌가? 달력형식, 목록형식으로 구현.
-# - 트위터 새 글 갱신
-# 이번에 오픈소스 공개된거 활용가능한가?
 # - 인게임 연동도 가능한가?(AP, 카페, 숙제, 순위 확인)
 # 	api 알아내려면 클뜯을 하면 나오나?
-# - 원스 출석 알리미 / 알림이 아니라 출석을 해주거나 출석을 안했을 때 푸시알림
-#   이것도 12시에 알리미는 프로그램 알림 기능을 사용하면 가능하겠지만 출석을 하지 않았을 때를 파악하려면 어떻게 해야 하나?
-# - 총력전 / 이벤트 조력자 매크로
-# 	다른 방식으로 이미 구현한 것 이용
 # - 함수들 각 py파일로 이동할 수 있으면 옮기자. main이 더럽다
 
 # - 이미지 출처 : 블루 아카이브 디지털 굿즈샵 (https://forum.nexon.com/bluearchive/board_view?thread=1881343)
@@ -22,11 +16,11 @@ import asyncio
 import atexit
 
 from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent
-from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices, QIntValidator, QColor, QBrush
+from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices, QColor
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
-    QApplication, QMainWindow, QGraphicsDropShadowEffect, QComboBox,
-    QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem, QItemDelegate, QLineEdit
+    QApplication, QMainWindow, QGraphicsDropShadowEffect,
+    QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem, QItemDelegate
 )
 import ApGuide.FunctionApGuide as ApGuide
 from CalGrowth import *
@@ -61,32 +55,12 @@ class MainWindow(QMainWindow):
         self.button_screen_menu3.clicked.connect(self.show_screen3)
         self.button_screen_menu4.clicked.connect(self.show_screen4)
         
-        # Home - 슬라이드쇼
-        posts = Posts()
-        self.url_slideshow = posts.getUpdateUrl()
-        if self.url_slideshow != None:
-            asyncio.run(posts.getImages(self.url_slideshow))
-        self.label_slide_home.setScaledContents(True)
-        self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
-        if os.path.isdir('Posts/Images'):
-            files = os.listdir('Posts/Images')
-            files_path = ['Posts/Images/' + file for file in files]
-            self.images = files_path
-            self.current_image = 0
-            self.setImage()
-            self.timer = QTimer()
-            self.timer.timeout.connect(self.next_image)
-            self.timer.start(3000)
-        self.pushButton_slide_home.clicked.connect(self.clicked_image)
-
-        # Home - 공지사항, 주요소식
-        list_mainTopic, list_notice = posts.getNotice()
-        self.createTable(self.tableWidget_home1, list_notice)
-        self.createTable(self.tableWidget_home2, list_mainTopic)
+        # home 게시물 구성
+        asyncio.run(self.home_crwaling())
 
         @atexit.register
         def close_driver():
-            posts.driver.quit()
+            self.posts.driver.quit()
             if os.path.isfile(pid_file):
                 os.remove(pid_file)
 
@@ -172,6 +146,39 @@ class MainWindow(QMainWindow):
             # date 추가
             date_item = QTableWidgetItem(post['date'])
             tableWidget.setItem(idx, 1, date_item)
+
+    # Home
+    async def home_crwaling(self):
+        # Home - 크롤링
+        self.posts = Posts()
+
+        tasks = [
+            self.posts.getUpdateUrl(),
+            self.posts.getNotice()
+        ]
+        results = await asyncio.gather(*tasks)
+        self.url_slideshow, (list_mainTopic, list_notice) = results
+
+        # Home - 슬라이드쇼
+        if self.url_slideshow != None:
+            await self.posts.getImages(self.url_slideshow)
+            # asyncio.run(self.posts.getImages(self.url_slideshow))
+        self.label_slide_home.setScaledContents(True)
+        self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+        if os.path.isdir('Posts/Images'):
+            files = os.listdir('Posts/Images')
+            files_path = ['Posts/Images/' + file for file in files]
+            self.images = files_path
+            self.current_image = 0
+            self.setImage()
+            self.timer = QTimer()
+            self.timer.timeout.connect(self.next_image)
+            self.timer.start(3000)
+        self.pushButton_slide_home.clicked.connect(self.clicked_image)
+        # Home - 공지사항, 주요소식
+        self.createTable(self.tableWidget_home1, list_notice)
+        self.createTable(self.tableWidget_home2, list_mainTopic)
+
 
     # 재화계산 - layout
     def calgrowth_layout(self, list_item, item_type, container_path, listwidget):
