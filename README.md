@@ -47,10 +47,10 @@
 
 당장 목표
 1) 테이블 선택된 셀 배경,글자색 변경되는거 해제
-2) 크롤링 3부분 초반 로딩속도 개선
+2) [계속 수정] 크롤링 3부분 초반 로딩속도 개선
     - 기존 문제 속도            16초
-    - async 적용 후            6.5초로 개선
-    - getImage도 병렬로 적용    5.8초로 개선
+    - getImage도 병렬로 적용    9.8초로 개선
+    - (업데이트 된 것이 없다면 크롤링 과정을 생략해서 속도 개선 4초)
 
 [참고 자료]
 https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=python

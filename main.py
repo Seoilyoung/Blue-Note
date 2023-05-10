@@ -118,7 +118,9 @@ class MainWindow(QMainWindow):
         tableWidget.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
         tableWidget.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         tableWidget.setStyleSheet("""
-            QTableWidget {background-color: rgba(0,0,0,80);}
+            QTableWidget {background-color: 
+                            rgba(0,0,0,80);
+            }
             #label_notice:hover {
                 color: rgba(131,96,53,255);
             }   
@@ -140,7 +142,10 @@ class MainWindow(QMainWindow):
             label.setToolTip(post['title'])
             label.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
             if post['new']==1:
-                label.setStyleSheet("color: red ; font-weight: bold;")
+                label.setStyleSheet("""QLabel {
+                    color: red ;
+                    font-weight: bold;
+                } """)
 
             tableWidget.setCellWidget(idx,0,label)
             # date 추가
