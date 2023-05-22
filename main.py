@@ -271,12 +271,14 @@ class MainWindow(QMainWindow):
             listwidget.addItem(container)
             listwidget.setItemWidget(container, container_ui)
     
+    # 버튼 - 캐릭터 추가
     def calgrowth_insert(self):
         listwidget = self.listWidget_cal1
         container_path = 'Gui\Container_char.ui'
         container_ui = loadUi(container_path)
         container = QListWidgetItem(listwidget)
         container.setSizeHint(QSize(0,50))
+        container_ui.comboBox.wheelEvent = self.ignore_wheel_event
         container_ui.label_img.setScaledContents(True)
         container_ui.label_img.setContentsMargins(3,3,3,3)
         for row in range(container_ui.tableWidget_cal.rowCount()):
@@ -294,8 +296,7 @@ class MainWindow(QMainWindow):
         listwidget.addItem(container)
         listwidget.setItemWidget(container, container_ui)
         self.json_Userdatas = FunctionCalGrowth.insertStudent(self.json_Userdatas, listwidget.count()-1, "Default "+str(listwidget.count()-1), "", "", "")
-    
-    # 버튼으로 캐릭터 제거
+    # 버튼 - 캐릭터 제거
     def calgrowth_delete(self):
         listwidget = self.listWidget_cal1
         index = self.listWidget_cal1.currentRow()
@@ -306,7 +307,6 @@ class MainWindow(QMainWindow):
             # class 반영
             self.update_class(container_ui.label_oparts_main.text(), container_ui.label_oparts_sub.text(), container_ui.label_academy.text())
             listwidget.takeItem(index)
-
     # 콤보박스 값 변경 이벤트 처리
     def on_combo_box_changed(self, char_name):
         widget = self.sender().parent()

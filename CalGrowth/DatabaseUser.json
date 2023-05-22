@@ -33,6 +33,14 @@
                 "index": 11,"academy": "게헨나","mainoparts": "네브라","suboparts": "보이니치","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"oparts_main": [30,55,18,42],"oparts_sub": [119,72,89,0],"bd": [30,30,30,8],"note": [75,75,75,60],"secretnote": 3
             },"미카": {
                 "index": 12,"academy": "트리니티","mainoparts": "에테르","suboparts": "님루드","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"oparts_main": [31,57,16,45],"oparts_sub": [109,75,93,0],"bd": [30,30,30,8],"note": [75,75,75,60],"secretnote": 3
+            },"아리스(메이드)": {
+                "index": 13,"academy": "","mainoparts": "","suboparts": "","level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,0,0,0],"note": [0,0,0,0],"secretnote": 0
+            },"토키(바니걸)": {
+                "index": 14,"academy": "","mainoparts": "","suboparts": "","level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,0,0,0],"note": [0,0,0,0],"secretnote": 0
+            },"세리나(크리스마스)": {
+                "index": 15,"academy": "트리니티","mainoparts": "만드라고라","suboparts": "볼프세크","level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,0,0,0],"note": [0,0,0,0],"secretnote": 0
+            },"레이사": {
+                "index": 16,"academy": "","mainoparts": "","suboparts": "","level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [0,0,0,0],"oparts_main": [0,0,0,0],"oparts_sub": [0,0,0,0],"bd": [0,0,0,0],"note": [0,0,0,0],"secretnote": 0
             }
         }
     },"Preset1": {
