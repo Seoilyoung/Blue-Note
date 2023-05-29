@@ -1,4 +1,7 @@
 import os
+import random
+import cv2
+import numpy as np
 from datetime import datetime, timedelta
 from PIL import Image, ImageDraw, ImageFont
 from typing import List
@@ -31,6 +34,8 @@ def ImgSave(event_name, date, time_start, time_end, remain_time):
     # 이미지 변수 정의
     img_table = Image.open('ApGuide/ap_background.webp')
     d = ImageDraw.Draw(img_table)
+
+
     fnt_title = ImageFont.truetype("BMJUA_ttf.ttf",40)
     fnt_content = ImageFont.truetype("BMJUA_ttf.ttf",25)
     fnt_underline = ImageFont.truetype("BMJUA_ttf.ttf",25)
@@ -117,7 +122,32 @@ def ImgSave(event_name, date, time_start, time_end, remain_time):
     d.text((500,120), txt_content_ap,font=fnt_content, fill=(0,0,0))
     d.text((60,134),txt_content_underline,font=fnt_content, fill=(200,200,200))
 
+        
+    sticker_folder_path = './Gui/Useimages/sticker/'
+    if os.path.isdir(sticker_folder_path):
+        count_sticker = len(os.listdir(sticker_folder_path))
+        # 스티커 번호 랜덤
+        num_sticker = random.randrange(1,count_sticker)
+        img_sticker = Image.open(sticker_folder_path + str(num_sticker) + '.png')
+
+        # 스티커 사이즈 변경
+        img_sticker = img_sticker.resize((100,100))
+
+        # 스티커 회전
+        img_sticker = img_sticker.rotate(-20)
+
+        # 동그라미 모양의 마스크 생성
+        mask = Image.new('L', img_sticker.size, 0)
+        draw = ImageDraw.Draw(mask)
+        draw.ellipse((0, 0, img_sticker.size[0]-1, img_sticker.size[1]-1), fill=255)
+
+        # 마스크를 적용하여 이미지를 원 형태로 변환
+        masked_image = Image.new('RGBA', img_sticker.size)
+        masked_image.paste(img_sticker, mask=mask)     
+        
+        # 이미지 추가
+        img_table.paste(masked_image, (600, 950), mask=masked_image)
 
     if os.path.isdir('Images') == False:
         os.mkdir('Images')
-    img_table.save('Images/' + event_name + ' AP 가이드.webp')
+    img_table.save('Images/' + event_name + ' AP 가이드.webp', format='WebP', lossless=True)
