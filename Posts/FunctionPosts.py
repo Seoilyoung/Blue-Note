@@ -31,13 +31,19 @@ class Posts():
             if current_title != post_title:
                 with open("Posts/.title", "w", encoding="utf-8") as f:
                     f.write(post_title)
-                return BASE_URL + post_url['href']
+                chk_file =  False
             else:
-                return None
+                chk_file = True
         else:
             with open("Posts/.title", "w", encoding="utf-8") as f:
                     f.write(post_title)
-            return BASE_URL + post_url['href']
+            chk_file = False
+        result_url = BASE_URL + post_url['href']
+
+        # 슬라이드쇼 이미지 저장
+        if chk_file is False:
+            await self.getImages(result_url)
+        return result_url
 
     async def download_image(self, session, url, filename):
         async with session.get(url) as response:

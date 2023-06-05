@@ -14,29 +14,106 @@ import webbrowser
 import asyncio
 import atexit
 
-from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent
+from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent, QThread, pyqtSignal
 from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices, QColor
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QGraphicsDropShadowEffect,
-    QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem, QItemDelegate
+    QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem, QItemDelegate,
+    QWidget
 )
 import ApGuide.FunctionApGuide as ApGuide
+import threading
 from CalGrowth import *
 from Posts.FunctionPosts import Posts
-
+import random
 import time
 
 img_back_path = 'Gui/Useimages/background.png'
 icon_path = 'Gui/Useimages/icon.png'
 window_title = '블루 스케줄러'
 mainscreen_path = 'Gui\Screen.ui'
+loadingscreen_path = 'Gui\Screen_Loading.ui'
 container_cal_path = 'Gui\Container.ui'
 container_char_path = 'Gui\Container_char.ui'
+
+class CrawlThread(QThread):
+    progressChanged = pyqtSignal(int)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+    def run(self):
+        self.crawl_complete = False  # 크롤링 완료 플래그
+        # 프로그래스바
+        progress_thread = threading.Thread(target=self.run_progress)
+        progress_thread.start()
+
+        # 크롤링
+        asyncio.run(self.home_crwaling())
+
+       
+        # 작업이 완료되면 프로그래스바 스레드 종료 및 finished 시그널 발생
+        progress_thread.join()
+        self.finished.emit()
+        self.posts.driver.quit()
+    
+    # 프로그래스바
+    def run_progress(self):
+        for i in range(101):
+            self.progressChanged.emit(i)
+            time.sleep(0.1)
+            if self.crawl_complete:
+                break
+
+    # Home
+    async def home_crwaling(self):
+        
+        self.posts = Posts()
+
+        tasks = [
+            self.posts.getUpdateUrl(),
+            self.posts.getNotice()
+        ]
+        results = await asyncio.gather(*tasks)
+        self.url_slideshow, (self.list_mainTopic, self.list_notice) = results
+
+        self.crawl_complete = True
+
+class LoadingWindow(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        # 스티커 지정
+        sticker_folder_path = './Gui/Useimages/sticker/'
+        if os.path.isdir(sticker_folder_path):
+            count_sticker = len(os.listdir(sticker_folder_path))
+        # 스티커 번호 랜덤
+        num_sticker = random.randrange(1,count_sticker)
+        loadUi(loadingscreen_path,self)
+        pixmap = QPixmap(sticker_folder_path + str(num_sticker) + '.png')
+        self.label.setPixmap(pixmap)
+        self.label.setScaledContents(True)
+
+        icon = QIcon(icon_path)
+        self.setWindowIcon(icon)
+        self.setWindowTitle(window_title)
+        self.setFixedSize(180,230)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+
+        self.loading_window = LoadingWindow()
+        self.loading_window.show()
+
+        self.crawl_thread = CrawlThread()
+        self.crawl_thread.progressChanged.connect(self.updateProgressBar)
+        self.crawl_thread.finished.connect(self.onCrawlFinished)
+        self.crawl_thread.finished.connect(self.loading_window.close)
+        self.crawl_thread.start()
         
         loadUi(mainscreen_path,self)
         pixmap = QPixmap(img_back_path)
@@ -54,12 +131,8 @@ class MainWindow(QMainWindow):
         self.button_screen_menu3.clicked.connect(self.show_screen3)
         self.button_screen_menu4.clicked.connect(self.show_screen4)
         
-        # home 게시물 구성
-        asyncio.run(self.home_crwaling())
-
         @atexit.register
         def close_driver():
-            self.posts.driver.quit()
             if os.path.isfile(pid_file):
                 os.remove(pid_file)
 
@@ -87,6 +160,34 @@ class MainWindow(QMainWindow):
         self.button_ap1.clicked.connect(self.ap_image_save)
         self.button_ap2.clicked.connect(self.ap_image_link)
 
+    def updateProgressBar(self, value):
+        self.loading_window.progressBar.setValue(value)
+        
+    def onCrawlFinished(self):
+        # 크롤링 작업이 완료되면 호출되는 콜백 함수
+        self.loading_window.progressBar.setValue(100)
+        time.sleep(0.5)
+        
+        # Home - 이미지쇼 링크
+        self.label_slide_home.setScaledContents(True)
+        self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+        if os.path.isdir('Posts/Images'):
+            files = os.listdir('Posts/Images')
+            files_path = ['Posts/Images/' + file for file in files]
+            self.images = files_path
+            self.current_image = 0
+            self.setImage()
+            self.timer = QTimer()
+            self.timer.timeout.connect(self.next_image)
+            self.timer.start(3000)
+        self.pushButton_slide_home.clicked.connect(self.clicked_image)
+        
+        # Home - 공지사항, 주요소식
+        self.createTable(self.tableWidget_home1, self.crawl_thread.list_notice)
+        self.createTable(self.tableWidget_home2, self.crawl_thread.list_mainTopic)
+
+        self.show()
+
     # 메뉴바
     def show_screen1(self):
         self.stackedWidget.setCurrentIndex(0)
@@ -105,7 +206,8 @@ class MainWindow(QMainWindow):
         self.current_image = (self.current_image + 1) % len(self.images)
         self.setImage()
     def clicked_image(self):
-        webbrowser.open_new_tab(self.url_slideshow)
+        print(self.crawl_thread.url_slideshow)
+        webbrowser.open_new_tab(self.crawl_thread.url_slideshow)
  
     # Home - 공지글 layout
     def createTable(self, tableWidget, list):
@@ -150,39 +252,6 @@ class MainWindow(QMainWindow):
             # date 추가
             date_item = QTableWidgetItem(post['date'])
             tableWidget.setItem(idx, 1, date_item)
-
-    # Home
-    async def home_crwaling(self):
-        # Home - 크롤링
-        self.posts = Posts()
-
-        tasks = [
-            self.posts.getUpdateUrl(),
-            self.posts.getNotice()
-        ]
-        results = await asyncio.gather(*tasks)
-        self.url_slideshow, (list_mainTopic, list_notice) = results
-
-        # Home - 슬라이드쇼
-        if self.url_slideshow != None:
-            await self.posts.getImages(self.url_slideshow)
-            # asyncio.run(self.posts.getImages(self.url_slideshow))
-        self.label_slide_home.setScaledContents(True)
-        self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
-        if os.path.isdir('Posts/Images'):
-            files = os.listdir('Posts/Images')
-            files_path = ['Posts/Images/' + file for file in files]
-            self.images = files_path
-            self.current_image = 0
-            self.setImage()
-            self.timer = QTimer()
-            self.timer.timeout.connect(self.next_image)
-            self.timer.start(3000)
-        self.pushButton_slide_home.clicked.connect(self.clicked_image)
-        # Home - 공지사항, 주요소식
-        self.createTable(self.tableWidget_home1, list_notice)
-        self.createTable(self.tableWidget_home2, list_mainTopic)
-
 
     # 재화계산 - layout
     def calgrowth_layout(self, list_item, item_type, container_path, listwidget):
@@ -507,7 +576,6 @@ if __name__ == '__main__':
     ttime_2 = time.time()
     window = MainWindow()
     ttime_3 = time.time()
-    window.show()
     print("----------------------------------")
     print('MainWIndow 시간' ,ttime_3 - ttime_2)
     sys.exit(app.exec())
