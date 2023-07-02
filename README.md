@@ -1,4 +1,4 @@
-# Blue-Scheduler
+# Blue Note
 블루아카이브 일정 관리 프로그램
 
 개발 언어 : python 3.11.2, PyQt6
