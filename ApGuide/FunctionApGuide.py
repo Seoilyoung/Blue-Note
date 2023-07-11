@@ -128,7 +128,7 @@ def ImgSave(event_name, date, time_start, time_end, remain_time):
         count_sticker = len(os.listdir(sticker_folder_path))
         # 스티커 번호 랜덤
         num_sticker = random.randrange(1,count_sticker)
-        img_sticker = Image.open(sticker_folder_path + str(num_sticker) + '.png')
+        img_sticker = Image.open(sticker_folder_path + str(num_sticker) + '.webp')
 
         # 스티커 사이즈 변경
         img_sticker = img_sticker.resize((100,100))

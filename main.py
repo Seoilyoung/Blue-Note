@@ -91,7 +91,7 @@ class LoadingWindow(QWidget):
         # 스티커 번호 랜덤
         num_sticker = random.randrange(1,count_sticker)
         loadUi(loadingscreen_path,self)
-        pixmap = QPixmap(sticker_folder_path + str(num_sticker) + '.png')
+        pixmap = QPixmap(sticker_folder_path + str(num_sticker) + '.webp')
         self.label.setPixmap(pixmap)
         self.label.setScaledContents(True)
 
