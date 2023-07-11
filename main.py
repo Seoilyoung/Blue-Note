@@ -29,8 +29,8 @@ from Posts.FunctionPosts import Posts
 import random
 import time
 
-img_back_path = 'Gui/Useimages/background.png'
-icon_path = 'Gui/Useimages/icon.png'
+img_back_path = 'Gui/Useimages/background.webp'
+icon_path = 'Gui/Useimages/icon.webp'
 window_title = '블루 스케줄러'
 mainscreen_path = 'Gui\Screen.ui'
 loadingscreen_path = 'Gui\Screen_Loading.ui'
