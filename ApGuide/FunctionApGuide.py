@@ -1,10 +1,7 @@
 import os
 import random
-import cv2
-import numpy as np
 from datetime import datetime, timedelta
 from PIL import Image, ImageDraw, ImageFont
-from typing import List
 # AP가이드 파일
 # 현상수배 티켓도 추가 예정
 # 일정에 추가 기능 - 버튼(gui로 구현)

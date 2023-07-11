@@ -12,7 +12,6 @@ import os
 import subprocess
 import webbrowser
 import asyncio
-import atexit
 
 from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent, QThread, pyqtSignal
 from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices, QColor
