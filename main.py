@@ -131,11 +131,6 @@ class MainWindow(QMainWindow):
         self.button_screen_menu3.clicked.connect(self.show_screen3)
         self.button_screen_menu4.clicked.connect(self.show_screen4)
         
-        @atexit.register
-        def close_driver():
-            if os.path.isfile(pid_file):
-                os.remove(pid_file)
-
         # 재화계산
         self.json_Userdatas, self.json_datas, self.json_table_exp, self.json_table_credit, self.json_table_skill = FunctionCalGrowth.openDB()
 
@@ -171,15 +166,22 @@ class MainWindow(QMainWindow):
         # Home - 이미지쇼 링크
         self.label_slide_home.setScaledContents(True)
         self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
-        if os.path.isdir('Posts/Images'):
-            files = os.listdir('Posts/Images')
-            files_path = ['Posts/Images/' + file for file in files]
-            self.images = files_path
-            self.current_image = 0
-            self.setImage()
-            self.timer = QTimer()
-            self.timer.timeout.connect(self.next_image)
-            self.timer.start(3000)
+
+        if not os.path.exists('Posts'):
+            os.makedirs('Posts')
+        if not os.path.exists('Posts/Images'):
+            os.makedirs('Posts/Images')
+
+        files = os.listdir('Posts/Images')
+        files_path = ['Posts/Images/' + file for file in files]
+        self.images = files_path
+        self.current_image = 0
+        self.setImage()
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.next_image)
+        self.timer.start(3000)
+            
+            
         self.pushButton_slide_home.clicked.connect(self.clicked_image)
         
         # Home - 공지사항, 주요소식
@@ -206,7 +208,7 @@ class MainWindow(QMainWindow):
         self.current_image = (self.current_image + 1) % len(self.images)
         self.setImage()
     def clicked_image(self):
-        print(self.crawl_thread.url_slideshow)
+        # print(self.crawl_thread.url_slideshow)
         webbrowser.open_new_tab(self.crawl_thread.url_slideshow)
  
     # Home - 공지글 layout
@@ -430,7 +432,7 @@ class MainWindow(QMainWindow):
                 self.update_class(container_ui.label_oparts_main.text(), container_ui.label_oparts_sub.text(), container_ui.label_academy.text())
     # class 생성 및 값 입력 / 테이블 반영
     def update_class(self,oparts_main,oparts_sub,academy):
-        print("Update 클래스")
+        # print("Update 클래스")
         self.data_default = DataUser.dataset('default')
         self.data_default.update(self.json_Userdatas)
         self.update_table(self.list_oparts, 'Oparts', self.listWidget_cal2)
@@ -514,8 +516,8 @@ class MainWindow(QMainWindow):
         if os.path.exists(filepath):
             self.label_ap5.setPixmap(QPixmap(filepath))
             self.label_ap5.setScaledContents(True) 
-        else:
-            print("NO FILE")
+        # else:
+        #     print("NO FILE")
        
         self.change_label_color1()
         self.timer = QTimer()
@@ -564,18 +566,6 @@ class RangeDelegate(QItemDelegate):
             pass
 
 if __name__ == '__main__':
-    pid_file = 'my.pid'
-    if os.path.isfile(pid_file):
-        print('Already running')
-    else:
-        with open(pid_file, 'w') as f:
-            f.write(str(os.getpid()))
-        print('Start program')
-
     app = QApplication(sys.argv)
-    ttime_2 = time.time()
     window = MainWindow()
-    ttime_3 = time.time()
-    print("----------------------------------")
-    print('MainWIndow 시간' ,ttime_3 - ttime_2)
     sys.exit(app.exec())

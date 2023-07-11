@@ -44,9 +44,6 @@ class dataset:
             "산해경" :[0,0,0,0],
             "발키리" :[0,0,0,0]
         }
-    def all(self):
-        print("ID :", self.ID, "\n보고서 :", format(self.Report,','), "\n크레딧[ 스킬 , 레벨 ] : [", format(self.Credit[0], ','), ",", format(self.Credit[1],","),"]", "\n비의서 :", self.ScretNote, "\n오파츠 :",
-              self.Oparts, "\nBD :", self.Bd, "\n노트 :", self.Note)
         
     def update(self, data):
         datas = data["Default"]["Student"]
@@ -78,8 +75,6 @@ class dataset:
         elif A == 'Note':
             for i in range(0,4):
                 self.Note[B][i] += list[i]
-        else:
-            print('Target Error')
 
     def increaseOparts(self, A, A_A, B, list, num):
         if A == 'OpartsBd':
@@ -104,12 +99,9 @@ class dataset:
                 if A_A == 'Sub':
                     num2 -= 1
             else:
-                print('Sub Target Error')
                 return
             if num2 >= 0:
                 self.Oparts[B][num2] += list[int(num)-2]
-        else:
-            print('Target Error')
 
     def decrease(self, A, B, list):
         if A == 'Bd':
@@ -118,7 +110,5 @@ class dataset:
             target = self.Note
         elif A == 'Oparts':
             target = self.Oparts
-        else:
-            print('Target Error')
         for i in range(0,4):
             target[0][B][i] -= list[i]

@@ -25,6 +25,8 @@ class Posts():
         post_url = soup_search.select_one('body div.list-box a')
         post_title = post_url.text
 
+        if not os.path.exists('Posts'):
+            os.makedirs('Posts')
         if os.path.exists("Posts/.title"):
             with open("Posts/.title", "r", encoding="utf-8") as f:
                 current_title = f.read()
@@ -69,8 +71,11 @@ class Posts():
                         filtered_tags.append(img_tag)
             elif img_tag.has_attr('width') and img_tag['width'] == '780' and (430 < int(img_tag['height']) and int(img_tag['height']) < 500):
                 filtered_tags.append(img_tag)
-        if not os.path.isdir('./Posts/Images'):
-            os.mkdir('./Posts/Images')
+
+        if not os.path.exists('Posts'):
+            os.makedirs('Posts')
+        if not os.path.exists('Posts/Images'):
+            os.makedirs('Posts/Images')
         
         for file in glob.glob("./Posts/Images/*.png"):
             os.remove(file)

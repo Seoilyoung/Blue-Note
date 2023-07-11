@@ -148,6 +148,6 @@ def ImgSave(event_name, date, time_start, time_end, remain_time):
         # 이미지 추가
         img_table.paste(masked_image, (600, 950), mask=masked_image)
 
-    if os.path.isdir('Images') == False:
-        os.mkdir('Images')
+    if not os.path.exists('Images'):
+        os.makedirs('Images')
     img_table.save('Images/' + event_name + ' AP 가이드.webp', format='WebP', lossless=True)

@@ -9,3 +9,8 @@ test.py
 Posts/Images
 Posts/.title
 Images
+
+#빌드 폴더/파일
+build
+dist
+main.spec
