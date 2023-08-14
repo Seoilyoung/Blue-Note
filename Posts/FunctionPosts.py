@@ -14,7 +14,7 @@ class Posts():
         super().__init__()
         # 옵션 적용
         edge_options = webdriver.EdgeOptions()
-        edge_options.add_argument("disable-logging")
+        edge_options.add_experimental_option('excludeSwitches', ['enable-logging'])
         edge_options.add_argument("headless")
         self.driver = webdriver.Edge(options=edge_options)
 
