@@ -1,0 +1,9 @@
+0. 공통
+- Gui-Useimages에 이미지 추가
+
+1. 학생 추가
+- Database.json에 db추가
+
+2. 오파츠 추가
+- DataUser.py에 추가
+- DatabaseUser.json에 추가

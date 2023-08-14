@@ -15,6 +15,11 @@ def openDB():
         json_table_skill = json.load(j_tableskill)
     return json_Userdatas, json_datas, json_table_exp, json_table_credit, json_table_skill
 
+def openDBuser():
+    with open('CalGrowth/DatabaseUser.json','r',encoding='UTF-8') as j_databaseUser:
+        json_Userdatas = json.load(j_databaseUser)
+    return json_Userdatas
+
 def closeDB(database):
     # DB 닫기
     database.close()
@@ -54,7 +59,6 @@ def insertStudent(data, index, char_name, academy, mainoparts, suboparts):
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
     # print(data["Default"]["Student"])
-    return data
 # 학생 정보 삭제
 def deleteStudent(data, index):
     for name, info in data["Default"]["Student"].items():
@@ -77,7 +81,6 @@ def deleteStudent(data, index):
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
     # print(data["Default"]["Student"])
-    return data
 # 학생 정보 수정
 def updateStudent(data, index, char_name, academy, mainoparts, suboparts):
     if academy == 'SRT':
@@ -98,7 +101,6 @@ def updateStudent(data, index, char_name, academy, mainoparts, suboparts):
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
     # print(data["Default"]["Student"])
-    return data
 # 학생 정보 수정
 def initStudent(data, index, char_name):
     for name, info in data["Default"]["Student"].items():
@@ -120,7 +122,6 @@ def initStudent(data, index, char_name):
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
     # print(data["Default"]["Student"])
-    return data
 # 리스트 순서 수정
 def updateIndex(data, index1, index2):
     for name, info in data["Default"]["Student"].items():
@@ -131,6 +132,10 @@ def updateIndex(data, index1, index2):
             info["index"] += 1
         elif index == index1:
             info["index"] = index2
+
+    sorted_student = dict(sorted(data["Default"]["Student"].items(), key=lambda x: x[1]["index"]))
+    data["Default"]["Student"] = sorted_student
+
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
     json_data = re.sub(r'\[\n\s+','[', json_data)
     json_data = re.sub(r',\n\s+',',', json_data)
@@ -138,7 +143,6 @@ def updateIndex(data, index1, index2):
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
     # print(data["Default"]["Student"])
-    return data
 # 학생 스킬 테이블 수정
 def updateTable(data, index, row, column, value):
     if row == 0:
@@ -172,60 +176,60 @@ def updateTable2(data, item_type, item_name, column, value):
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
     # print(data["Default"]["Student"])
-    return data
+    
 # 학생 테이블 계산
 def calSkillTable(data, data_skill, database, char_name):
     # 해당 함수에서는 스킬 변수 수정이 없으므로 변수로 저장해서 이용 가능
-    list_goal = data["Default"]["Student"][char_name]['skill_goal']
-    list_current = data["Default"]["Student"][char_name]['skill_current']
-    list_oparts_main = [0,0,0,0]
-    list_oparts_sub = [0,0,0,0]
-    list_bd = [0,0,0,0]
-    list_note = [0,0,0,0]
-    num_secretnote = 0
-    # BD 스킬 계산
-    if list_goal[0] > list_current[0]:
-        for i in range(list_current[0]+1, list_goal[0]+1):
-            if i >= 2:
-                for j in range(4):
-                    list_bd[j] += data_skill['Skill_Bd'][str(i)][j]
-                #BD 관련 오파츠 계산
-                list_oparts_main[i-2] += database[char_name]["Skill_Bd"]["Main"][i-2]
-                if i >= 3:
-                    list_oparts_sub[i-3] += database[char_name]["Skill_Bd"]["Sub"][i-2]
-    # Note 스킬 계산
-    for n in range(1,4):
-        if list_goal[n] > list_current[n]:
-            for i in range(list_current[n]+1, list_goal[n]+1):
-                if i == 10:
-                    num_secretnote += 1
-                if i >= 2 and i <= 9:
+    if char_name in database and char_name in data["Default"]["Student"]:
+        list_goal = data["Default"]["Student"][char_name]['skill_goal']
+        list_current = data["Default"]["Student"][char_name]['skill_current']
+        list_oparts_main = [0,0,0,0]
+        list_oparts_sub = [0,0,0,0]
+        list_bd = [0,0,0,0]
+        list_note = [0,0,0,0]
+        num_secretnote = 0
+        # BD 스킬 계산
+        if list_goal[0] > list_current[0]:
+            for i in range(list_current[0]+1, list_goal[0]+1):
+                if i >= 2:
                     for j in range(4):
-                        list_note[j] += data_skill['Skill_Note'][str(i)][j]
-                    #노트 관련 오파츠 계산
-                    if i == 4:
-                        num2 = 0
-                    elif i == 5 or i == 6:
-                        num2 = 1
-                    elif i == 7:
-                        num2 = 2
-                    elif i == 8 or i == 9:
-                        num2 = 3
-                    else:
-                        continue
-                    list_oparts_main[num2] += database[char_name]["Skill_Note"]["Main"][i-2]
-                    list_oparts_sub[num2-1] += database[char_name]["Skill_Note"]["Sub"][i-2]
-    # data에 입력                
-    data["Default"]["Student"][char_name]['bd'] = list_bd
-    data["Default"]["Student"][char_name]['note'] = list_note
-    data["Default"]["Student"][char_name]['secretnote'] = num_secretnote
-    data["Default"]["Student"][char_name]['oparts_main'] = list_oparts_main
-    data["Default"]["Student"][char_name]['oparts_sub'] = list_oparts_sub
-    # json 형식 지정 / 저장
-    json_data = json.dumps(data, ensure_ascii=False, indent=4)
-    json_data = re.sub(r'\[\n\s+','[', json_data)
-    json_data = re.sub(r',\n\s+',',', json_data)
-    json_data = re.sub(r'\n\s+\]',']', json_data)
-    with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
-        f.write(json_data)
-    return data
+                        list_bd[j] += data_skill['Skill_Bd'][str(i)][j]
+                    #BD 관련 오파츠 계산
+                    list_oparts_main[i-2] += database[char_name]["Skill_Bd"]["Main"][i-2]
+                    if i >= 3:
+                        list_oparts_sub[i-3] += database[char_name]["Skill_Bd"]["Sub"][i-2]
+        # Note 스킬 계산
+        for n in range(1,4):
+            if list_goal[n] > list_current[n]:
+                for i in range(list_current[n]+1, list_goal[n]+1):
+                    if i == 10:
+                        num_secretnote += 1
+                    if i >= 2 and i <= 9:
+                        for j in range(4):
+                            list_note[j] += data_skill['Skill_Note'][str(i)][j]
+                        #노트 관련 오파츠 계산
+                        if i == 4:
+                            num2 = 0
+                        elif i == 5 or i == 6:
+                            num2 = 1
+                        elif i == 7:
+                            num2 = 2
+                        elif i == 8 or i == 9:
+                            num2 = 3
+                        else:
+                            continue
+                        list_oparts_main[num2] += database[char_name]["Skill_Note"]["Main"][i-2]
+                        list_oparts_sub[num2-1] += database[char_name]["Skill_Note"]["Sub"][i-2]
+        # data에 입력                
+        data["Default"]["Student"][char_name]['bd'] = list_bd
+        data["Default"]["Student"][char_name]['note'] = list_note
+        data["Default"]["Student"][char_name]['secretnote'] = num_secretnote
+        data["Default"]["Student"][char_name]['oparts_main'] = list_oparts_main
+        data["Default"]["Student"][char_name]['oparts_sub'] = list_oparts_sub
+        # json 형식 지정 / 저장
+        json_data = json.dumps(data, ensure_ascii=False, indent=4)
+        json_data = re.sub(r'\[\n\s+','[', json_data)
+        json_data = re.sub(r',\n\s+',',', json_data)
+        json_data = re.sub(r'\n\s+\]',']', json_data)
+        with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
+            f.write(json_data)

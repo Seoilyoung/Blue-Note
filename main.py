@@ -132,7 +132,6 @@ class MainWindow(QMainWindow):
         
         # 재화계산
         self.json_Userdatas, self.json_datas, self.json_table_exp, self.json_table_credit, self.json_table_skill = FunctionCalGrowth.openDB()
-
         self.db_list_char = FunctionCalGrowth.readCharList(self.json_datas)
         sorted_list = sorted(self.json_Userdatas["Default"]["Student"], key=lambda k:self.json_Userdatas["Default"]["Student"][k]['index'])
         self.list_oparts = list(self.json_Userdatas["Default"]["Oparts"].keys())
@@ -303,7 +302,7 @@ class MainWindow(QMainWindow):
                 container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
                 container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
                 # 캐릭터별 필요 재화 계산
-                self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
+                FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
 
             # 오파츠/BD/노트 리스트
             else:
@@ -365,7 +364,8 @@ class MainWindow(QMainWindow):
         container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
         listwidget.addItem(container)
         listwidget.setItemWidget(container, container_ui)
-        self.json_Userdatas = FunctionCalGrowth.insertStudent(self.json_Userdatas, listwidget.count()-1, "Default "+str(listwidget.count()-1), "", "", "")
+        FunctionCalGrowth.insertStudent(self.json_Userdatas, listwidget.count()-1, "Default "+str(listwidget.count()-1), "", "", "")
+        self.json_Userdatas = FunctionCalGrowth.openDBuser()
     # 버튼 - 캐릭터 제거
     def calgrowth_delete(self):
         listwidget = self.listWidget_cal1
@@ -373,7 +373,8 @@ class MainWindow(QMainWindow):
         container_ui = listwidget.itemWidget(self.listWidget_cal1.currentItem())
         char_name = container_ui.comboBox.currentText()
         if index >= 0:
-            self.json_Userdatas = FunctionCalGrowth.deleteStudent(self.json_Userdatas, index)
+            FunctionCalGrowth.deleteStudent(self.json_Userdatas, index)
+            self.json_Userdatas = FunctionCalGrowth.openDBuser()
             # class 반영
             self.update_class(container_ui.label_oparts_main.text(), container_ui.label_oparts_sub.text(), container_ui.label_academy.text())
             listwidget.takeItem(index)
@@ -396,21 +397,24 @@ class MainWindow(QMainWindow):
                 container_ui.label_oparts_main.setText(oparts_main)
                 container_ui.label_oparts_sub.setText(oparts_sub)
                 # json 연동
-                if char_name in self.json_Userdatas['Default']['Student']:
+                if char_name in self.json_Userdatas['Default']['Student'] and self.json_Userdatas['Default']['Student'][char_name]['index'] != row:
                     # if char_name != widget.label_name.text():
                     widget.label_img.clear()
                     widget.label_img.setText("중복 학생")
                     widget.label_name.setText("")
-                    self.json_Userdatas = FunctionCalGrowth.initStudent(self.json_Userdatas, row, "Default "+str(row))
+                    FunctionCalGrowth.initStudent(self.json_Userdatas, row, "Default "+str(row))
+                    self.json_Userdatas = FunctionCalGrowth.openDBuser()
                 else:
-                    self.json_Userdatas = FunctionCalGrowth.updateStudent(self.json_Userdatas, row, char_name, academy, oparts_main, oparts_sub)
+                    FunctionCalGrowth.updateStudent(self.json_Userdatas, row, char_name, academy, oparts_main, oparts_sub)
+                    self.json_Userdatas = FunctionCalGrowth.openDBuser()
                     widget.label_name.setText(char_name)
-                self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
+                FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
             else:
                 container_ui.label_academy.setText("")
                 container_ui.label_oparts_main.setText("")
                 container_ui.label_oparts_sub.setText("")
-                self.json_Userdatas = FunctionCalGrowth.initStudent(self.json_Userdatas, row, char_name)
+                FunctionCalGrowth.initStudent(self.json_Userdatas, row, char_name)
+                self.json_Userdatas = FunctionCalGrowth.openDBuser()
             # class 반영
             self.update_class(container_ui.label_oparts_main.text(), container_ui.label_oparts_sub.text(), container_ui.label_academy.text())
     # 테이블 셀 값 변경 이벤트 처리
@@ -426,7 +430,7 @@ class MainWindow(QMainWindow):
                     
             self.json_Userdatas, result = FunctionCalGrowth.updateTable(self.json_Userdatas, row, cell_row, cell_column, int(item.text()))
             if result == 0:
-                self.json_Userdatas = FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
+                FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
                 # class 반영
                 self.update_class(container_ui.label_oparts_main.text(), container_ui.label_oparts_sub.text(), container_ui.label_academy.text())
     # class 생성 및 값 입력 / 테이블 반영
@@ -468,9 +472,10 @@ class MainWindow(QMainWindow):
             pos = event.position()
             index = self.listWidget_cal1.indexAt(QPoint(int(pos.x()), int(pos.y())))
             current_row = self.listWidget_cal1.currentRow()
+            
             if (current_row == self.listWidget_cal1.count()-1 and index.row()==-1) or (index.row() == current_row+1 and pos.y()%50<25):
                 return True
-            self.json_Userdatas = FunctionCalGrowth.updateIndex(self.json_Userdatas, current_row, index.row())
+            FunctionCalGrowth.updateIndex(self.json_Userdatas, current_row, index.row())
         return super().eventFilter(source, event)
     # 오파츠, BD, 노트 테이블 변경 이벤트
     def on_table_cell_changed2(self,cell_row,cell_column):
@@ -501,7 +506,8 @@ class MainWindow(QMainWindow):
                     item.setForeground(QColor(0, 0, 0))
                     item_goal.setBackground(QColor(255, 255, 255))
                     item_goal.setForeground(QColor(0, 0, 0, 150))
-                self.json_Userdatas = FunctionCalGrowth.updateTable2(self.json_Userdatas, item_type, item_name, cell_column, int(item.text()))
+                FunctionCalGrowth.updateTable2(self.json_Userdatas, item_type, item_name, cell_column, int(item.text()))
+                self.json_Userdatas = FunctionCalGrowth.openDBuser()
     # 버튼 기능 - AP 가이드
     def ap_image_save(self):
         event_str = self.textEdit_ap1.toPlainText()
