@@ -5,6 +5,7 @@ import aiohttp
 import re
 from selenium import webdriver
 from bs4 import BeautifulSoup, SoupStrainer
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from datetime import datetime
 
 BASE_URL = 'https://forum.nexon.com/bluearchive/'
@@ -14,9 +15,10 @@ class Posts():
         super().__init__()
         # 옵션 적용
         edge_options = webdriver.EdgeOptions()
-        edge_options.add_experimental_option('excludeSwitches', ['enable-logging'])
         edge_options.add_argument("headless")
-        self.driver = webdriver.Edge(options=edge_options)
+        services = webdriver.EdgeService(EdgeChromiumDriverManager().install())
+        services.creation_flags=0x08000000
+        self.driver = webdriver.Edge(service=services, options=edge_options)
 
     async def getUpdateUrl(self):
         url_search = BASE_URL + 'board_list?keywords=상세&board=1076&searchKeywordType=THREAD_TITLE'
