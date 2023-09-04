@@ -14,5 +14,5 @@ Images
 #빌드 폴더/파일
 build
 dist
-main.spec
 main.exe
+BlueNote.spec

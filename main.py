@@ -537,11 +537,22 @@ class MainWindow(QMainWindow):
         self.label_ap6.setStyleSheet("background-color: rgba(0,0,0,0); color:rgba(255,255,255,0); border-radius:20px;")
 
     def ap_image_link(self):
-        if os.path.isdir('Images') == False:
+        if not os.path.isdir('Images'):
             os.mkdir('Images')
-        folder_path = os.path.dirname(__file__)
+
+
+        # 스크립트가 실행 중인 디렉토리를 가져오기
+        script_dir = os.path.dirname(sys.argv[0])
+
+        # Images 디렉토리 경로 만들기
+        image_dir = os.path.join(script_dir, 'Images')
+
+        # 슬래시로 경로를 변경
+        image_dir = image_dir.replace("/", "\\")
+
         explorer_command = "explorer.exe"
-        subprocess.Popen([explorer_command, folder_path+'\Images'])
+        subprocess.Popen([explorer_command, image_dir])
+        
     #콤보박스 휠 이벤트 무시
     def ignore_wheel_event(self, event):
         event.ignore()
