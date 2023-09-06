@@ -29,7 +29,7 @@ import random
 import time
 
 img_back_path = 'Gui/Useimages/background.webp'
-icon_path = 'Gui/Useimages/icon.webp'
+icon_path = 'Gui/Useimages/icon.ico'
 window_title = '블루 스케줄러'
 mainscreen_path = 'Gui\Screen.ui'
 loadingscreen_path = 'Gui\Screen_Loading.ui'
@@ -130,6 +130,9 @@ class MainWindow(QMainWindow):
         self.button_screen_menu3.clicked.connect(self.show_screen3)
         self.button_screen_menu4.clicked.connect(self.show_screen4)
         
+        # 슬라이드쇼
+        self.pushButton_slide_home.clicked.connect(self.clicked_image)
+        
         # 재화계산
         self.json_Userdatas, self.json_datas, self.json_table_exp, self.json_table_credit, self.json_table_skill = FunctionCalGrowth.openDB()
         self.db_list_char = FunctionCalGrowth.readCharList(self.json_datas)
@@ -179,8 +182,6 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self.next_image)
         self.timer.start(3000)
             
-            
-        self.pushButton_slide_home.clicked.connect(self.clicked_image)
         
         # Home - 공지사항, 주요소식
         self.createTable(self.tableWidget_home1, self.crawl_thread.list_notice)
@@ -206,7 +207,7 @@ class MainWindow(QMainWindow):
         self.current_image = (self.current_image + 1) % len(self.images)
         self.setImage()
     def clicked_image(self):
-        # print(self.crawl_thread.url_slideshow)
+        print(self.crawl_thread.url_slideshow)
         webbrowser.open_new_tab(self.crawl_thread.url_slideshow)
  
     # Home - 공지글 layout
@@ -508,8 +509,10 @@ class MainWindow(QMainWindow):
                     item_goal.setForeground(QColor(0, 0, 0, 150))
                 FunctionCalGrowth.updateTable2(self.json_Userdatas, item_type, item_name, cell_column, int(item.text()))
                 self.json_Userdatas = FunctionCalGrowth.openDBuser()
-    # 버튼 기능 - AP 가이드
+
+    # 버튼 기능 - AP 가이드 저장
     def ap_image_save(self):
+        print("저장")
         event_str = self.textEdit_ap1.toPlainText()
         date_str = self.dateEdit_ap1.date().toString('yyyy/MM/dd')
         time_start_str = self.timeEdit_ap1.time().toString('hh:mm')
@@ -536,7 +539,9 @@ class MainWindow(QMainWindow):
         self.timer.stop()
         self.label_ap6.setStyleSheet("background-color: rgba(0,0,0,0); color:rgba(255,255,255,0); border-radius:20px;")
 
+    # 버튼 기능 - AP 가이드 경로
     def ap_image_link(self):
+        print("링크")
         if not os.path.isdir('Images'):
             os.mkdir('Images')
 

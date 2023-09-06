@@ -16,3 +16,5 @@ build
 dist
 main.exe
 BlueNote.spec
+
+# pyinstaller -w -F --icon=Gui/Useimages/icon.ico -n BlueNote main.py

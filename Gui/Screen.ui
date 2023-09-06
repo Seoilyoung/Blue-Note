@@ -243,10 +243,6 @@ QPushButton:clicked{
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	background-color: rgba(0,0,0,0);
-}
-QPushButton:hover{
-}
-QPushButton:clicked{
 }</string>
        </property>
        <property name="text">
