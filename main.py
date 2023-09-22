@@ -94,8 +94,6 @@ class LoadingWindow(QWidget):
         self.label.setPixmap(pixmap)
         self.label.setScaledContents(True)
 
-        icon = QIcon(icon_path)
-        self.setWindowIcon(icon)
         self.setWindowTitle(window_title)
         self.setFixedSize(180,230)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
