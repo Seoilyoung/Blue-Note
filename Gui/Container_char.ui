@@ -185,6 +185,9 @@
    <property name="currentText">
     <string>이름</string>
    </property>
+   <property name="maxVisibleItems">
+    <number>5</number>
+   </property>
    <property name="insertPolicy">
     <enum>QComboBox::NoInsert</enum>
    </property>

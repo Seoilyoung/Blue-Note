@@ -19,7 +19,7 @@ from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QGraphicsDropShadowEffect,
     QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem, QItemDelegate,
-    QWidget
+    QWidget, QCompleter
 )
 import ApGuide.FunctionApGuide as ApGuide
 import threading
@@ -272,6 +272,9 @@ class MainWindow(QMainWindow):
                 # 콤보박스 드롭다운 목록 추가
                 container_ui.comboBox.wheelEvent = self.ignore_wheel_event
                 container_ui.comboBox.addItems(self.db_list_char)
+                # 콤보박스 Completer를 이용한 자동완성
+                completer = QCompleter(container_ui.comboBox.model())
+                container_ui.comboBox.setCompleter(completer)
                 # 테이블 숫자 범위 제한
                 delegate = RangeDelegate()
                 container_ui.tableWidget_cal.setItemDelegate(delegate)
