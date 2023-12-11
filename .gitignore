@@ -19,7 +19,3 @@ main.exe
 BlueNote.spec
 
 # pyinstaller -w -F --icon=Gui/Useimages/icon.ico -n BlueNote main.py
-
-# 공통 추가사항 - Gui에 이미지 추가
-# 오파츠 추가 - DatabaseUser.json에 오파츠 순서 수정/추가
-# 학생 추가 - Database.json에 학생 추가
