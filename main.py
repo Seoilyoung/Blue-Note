@@ -5,13 +5,18 @@
 # - 함수들 각 py파일로 이동할 수 있으면 옮기자. main이 더럽다
 
 # - 이미지 출처 : 블루 아카이브 디지털 굿즈샵 (https://forum.nexon.com/bluearchive/board_view?thread=1881343)
-#                블루아카이브 - 나무위키
+#                블루 아카이브 - 나무위키
 
 import sys
 import os
 import subprocess
 import webbrowser
 import asyncio
+import random
+import time
+import threading
+import requests
+import datetime
 
 from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent, QThread, pyqtSignal
 from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices, QColor
@@ -21,12 +26,10 @@ from PyQt6.QtWidgets import (
     QHeaderView, QTableWidgetItem, QAbstractItemView, QLabel, QListWidgetItem, QItemDelegate,
     QWidget, QCompleter
 )
+
 import ApGuide.FunctionApGuide as ApGuide
-import threading
 from CalGrowth import *
 from Posts.FunctionPosts import Posts
-import random
-import time
 
 img_back_path = 'Gui/Useimages/background.webp'
 icon_path = 'Gui/Useimages/icon.ico'
@@ -48,18 +51,16 @@ class CrawlThread(QThread):
         progress_thread = threading.Thread(target=self.run_progress)
         progress_thread.start()
 
-        # 크롤링
+        # URL, 제목리스트 추출
         asyncio.run(self.home_crwaling())
-
        
         # 작업이 완료되면 프로그래스바 스레드 종료 및 finished 시그널 발생
         progress_thread.join()
         self.finished.emit()
-        self.posts.driver.quit()
     
     # 프로그래스바
     def run_progress(self):
-        for i in range(101):
+        for i in range(51):
             self.progressChanged.emit(i)
             time.sleep(0.1)
             if self.crawl_complete:
@@ -67,16 +68,10 @@ class CrawlThread(QThread):
 
     # Home
     async def home_crwaling(self):
-        
-        self.posts = Posts()
-
-        tasks = [
-            self.posts.getUpdateUrl(),
-            self.posts.getNotice()
-        ]
-        results = await asyncio.gather(*tasks)
-        self.url_slideshow, (self.list_mainTopic, self.list_notice) = results
-
+        posts = Posts()
+        self.url_update, self.url_images = await posts.get_images()
+        self.maintopics = await posts.get_maintopic()
+        self.notices = await posts.get_notice()
         self.crawl_complete = True
 
 class LoadingWindow(QWidget):
@@ -162,28 +157,21 @@ class MainWindow(QMainWindow):
         self.loading_window.progressBar.setValue(100)
         time.sleep(0.5)
         
-        # Home - 이미지쇼 링크
+        # Home - 슬라이드쇼 링크
         self.label_slide_home.setScaledContents(True)
         self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
 
-        if not os.path.exists('Posts'):
-            os.makedirs('Posts')
-        if not os.path.exists('Posts/Images'):
-            os.makedirs('Posts/Images')
-
-        files = os.listdir('Posts/Images')
-        files_path = ['Posts/Images/' + file for file in files]
-        self.images = files_path
         self.current_image = 0
-        self.setImage()
+        self.setImageFromUrl(self.current_image)
+
         self.timer = QTimer()
         self.timer.timeout.connect(self.next_image)
         self.timer.start(3000)
             
         
         # Home - 공지사항, 주요소식
-        self.createTable(self.tableWidget_home1, self.crawl_thread.list_notice)
-        self.createTable(self.tableWidget_home2, self.crawl_thread.list_mainTopic)
+        self.createTable(self.tableWidget_home1, self.crawl_thread.notices)
+        self.createTable(self.tableWidget_home2, self.crawl_thread.maintopics)
 
         self.show()
 
@@ -198,15 +186,16 @@ class MainWindow(QMainWindow):
         self.stackedWidget.setCurrentIndex(3)
 
     # Home - 슬라이드쇼
-    def setImage(self):
-        pixmap = QPixmap(self.images[self.current_image])
+    def setImageFromUrl(self, index):
+        response = requests.get(self.crawl_thread.url_images[index])
+        pixmap = QPixmap()
+        pixmap.loadFromData(response.content)
         self.label_slide_home.setPixmap(pixmap)
     def next_image(self):
-        self.current_image = (self.current_image + 1) % len(self.images)
-        self.setImage()
+        self.current_image = (self.current_image + 1) % len(self.crawl_thread.url_images)
+        self.setImageFromUrl(self.current_image)
     def clicked_image(self):
-        print(self.crawl_thread.url_slideshow)
-        webbrowser.open_new_tab(self.crawl_thread.url_slideshow)
+        webbrowser.open_new_tab(self.crawl_thread.url_update)
  
     # Home - 공지글 layout
     def createTable(self, tableWidget, list):
@@ -232,16 +221,21 @@ class MainWindow(QMainWindow):
         header.setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
         header.resizeSection(1,50)
 
+        current_unix_time = int(time.time())
+        day3_time = 259200
+
         for idx, post in enumerate(list):
             # title 추가
-            label = ClickableLabel('',post['link'])
+            link = f"https://forum.nexon.com/bluearchive/board_view?board={post['boardId']}&thread={post['threadId']}"
+            label = ClickableLabel('',link)
+            
             font_metrics = QFontMetrics(label.font())
             elided_text = font_metrics.elidedText(post['title'], Qt.TextElideMode.ElideRight, label.width()-250)
             label.setText(elided_text)
             label.setObjectName('label_notice')
             label.setToolTip(post['title'])
             label.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-            if post['new']==1:
+            if current_unix_time - post['createDate'] < day3_time:
                 label.setStyleSheet("""QLabel {
                     color: red ;
                     font-weight: bold;
@@ -249,7 +243,8 @@ class MainWindow(QMainWindow):
 
             tableWidget.setCellWidget(idx,0,label)
             # date 추가
-            date_item = QTableWidgetItem(post['date'])
+            formated_date = (datetime.datetime.utcfromtimestamp(post['createDate']) + datetime.timedelta(hours=9)).strftime("%m/%d")
+            date_item = QTableWidgetItem(formated_date)
             tableWidget.setItem(idx, 1, date_item)
 
     # 재화계산 - layout

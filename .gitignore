@@ -2,9 +2,6 @@
 *.pyc
 *.pid
 __pycache__/
-캐릭터db생성.py
-test.py
-testfilter.py
 webpconvert.py
 
 #결과물 폴더
@@ -17,5 +14,9 @@ build
 dist
 main.exe
 BlueNote.spec
+
+#테스트,백업 파일
+BACKUP*.PY
+test*.py
 
 # pyinstaller -w -F --icon=Gui/Useimages/icon.ico -n BlueNote main.py
