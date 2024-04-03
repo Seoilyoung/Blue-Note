@@ -206,7 +206,7 @@ QPushButton:clicked{
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page">
       <widget class="QLabel" name="label_slide_home">
@@ -736,7 +736,7 @@ QPushButton:clicked{
         <rect>
          <x>15</x>
          <y>15</y>
-         <width>380</width>
+         <width>363</width>
          <height>700</height>
         </rect>
        </property>
@@ -769,7 +769,7 @@ QPushButton:clicked{
       <widget class="QPushButton" name="button_calgrowth_insert">
        <property name="geometry">
         <rect>
-         <x>395</x>
+         <x>385</x>
          <y>40</y>
          <width>30</width>
          <height>30</height>
@@ -805,7 +805,7 @@ QPushButton:clicked{
       <widget class="QPushButton" name="button_calgrowth_delete">
        <property name="geometry">
         <rect>
-         <x>395</x>
+         <x>385</x>
          <y>80</y>
          <width>30</width>
          <height>30</height>

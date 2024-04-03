@@ -258,18 +258,23 @@ class MainWindow(QMainWindow):
         for i in range(len(list_item)):
             container_ui = loadUi(container_path)
             container = QListWidgetItem(listwidget)
-            container.setSizeHint(QSize(0,50))
             container_ui.label_img.setScaledContents(True)
             container_ui.label_img.setContentsMargins(3,3,3,3)
             
             # 캐릭터 리스트
             if listwidget is self.listWidget_cal1:
+                # 높이 96
+                container.setSizeHint(QSize(0,98))
                 # 콤보박스 드롭다운 목록 추가
                 container_ui.comboBox.wheelEvent = self.ignore_wheel_event
                 container_ui.comboBox.addItems(self.db_list_char)
                 # 콤보박스 Completer를 이용한 자동완성
                 completer = QCompleter(container_ui.comboBox.model())
                 container_ui.comboBox.setCompleter(completer)
+                # 테이블 셀 가로 길이
+                for columnIndex in range(0,7):
+                    container_ui.tableWidget_cal.setColumnWidth(columnIndex, 24)
+
                 # 테이블 숫자 범위 제한
                 delegate = RangeDelegate()
                 container_ui.tableWidget_cal.setItemDelegate(delegate)
@@ -282,11 +287,14 @@ class MainWindow(QMainWindow):
                 academy = FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
                 oparts_main = FunctionCalGrowth.readCharMainOparts(self.json_datas, char_name)
                 oparts_sub = FunctionCalGrowth.readCharSubOparts(self.json_datas, char_name)
+                memo = FunctionCalGrowth.readCharMemo(self.json_Userdatas, char_name)
+                
                 if academy is not None and oparts_main is not None and oparts_sub is not None:
                     container_ui.label_academy.setText(academy)
                     container_ui.label_oparts_main.setText(oparts_main)
                     container_ui.label_oparts_sub.setText(oparts_sub)
-                # 테이블위젯. 
+                    container_ui.plainTextEdit.setPlainText(memo)
+                # 테이블위젯 value 설정
                 for j in range(4):
                     item_goal = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_goal"][j]))
                     item_goal.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -294,15 +302,36 @@ class MainWindow(QMainWindow):
                     item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["skill_current"][j]))
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     container_ui.tableWidget_cal.setItem(1, j, item)
+                    
+                    # 해방 테이블
+                    if j>=1:
+                        item_goal = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["liberation_goal"][j-1]))
+                        item_goal.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                        container_ui.tableWidget_cal.setItem(2, j, item_goal)
+                        item = QTableWidgetItem(str(self.json_Userdatas["Default"]["Student"][char_name]["liberation_current"][j-1]))
+                        item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                        container_ui.tableWidget_cal.setItem(3, j, item)
+                
+                # 테이블위젯 안쓰는 셀 비활성화
+                for row in [2,3]:
+                    if row < container_ui.tableWidget_cal.rowCount():  # Check if the row index is within the range
+                        item = QTableWidgetItem()
+                        item.setBackground(QColor('lightgray'))
+                        item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEnabled)  # Disable the item
+                        container_ui.tableWidget_cal.setItem(row, 0, item)  # Adjust row index to 0-based
+
                 # 아이템 이벤트 추가
                 # 마지막에 추가하는 이유는 처음 초기값에서 JSON의 값을 넣을 때 마다 이벤트가 발생하고 그로 인해 버그가 발생하는데 이를 예방하기 위함
                 container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
                 container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
+                container_ui.plainTextEdit.textChanged.connect(self.on_text_changed)
                 # 캐릭터별 필요 재화 계산
                 FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
 
             # 오파츠/BD/노트 리스트
             else:
+                #높이 50
+                container.setSizeHint(QSize(0,50))
                 # 이미지
                 if item_type == 'BD' or item_type == 'Note':
                     img_path = f"Gui/Useimages/Academy/{i+1:02}.webp"
@@ -343,15 +372,15 @@ class MainWindow(QMainWindow):
         container_path = 'Gui\Container_char.ui'
         container_ui = loadUi(container_path)
         container = QListWidgetItem(listwidget)
-        container.setSizeHint(QSize(0,50))
+        container.setSizeHint(QSize(0,98))
         container_ui.comboBox.wheelEvent = self.ignore_wheel_event
         container_ui.label_img.setScaledContents(True)
         container_ui.label_img.setContentsMargins(3,3,3,3)
-        for row in range(container_ui.tableWidget_cal.rowCount()):
-            for column in range(container_ui.tableWidget_cal.columnCount()):
-                    item = QTableWidgetItem('0')
-                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                    container_ui.tableWidget_cal.setItem(row, column, item)
+        # for row in range(container_ui.tableWidget_cal.rowCount()):
+        #     for column in range(container_ui.tableWidget_cal.columnCount()):
+        #             item = QTableWidgetItem('0')
+        #             item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+        #             container_ui.tableWidget_cal.setItem(row, column, item)
         
         container_ui.comboBox.addItems(self.db_list_char)
         container_ui.comboBox.setCurrentText("")
@@ -377,6 +406,7 @@ class MainWindow(QMainWindow):
             listwidget.takeItem(index)
     # 콤보박스 값 변경 이벤트 처리
     def on_combo_box_changed(self, char_name):
+        
         widget = self.sender().parent()
         row = self.listWidget_cal1.indexAt(widget.pos()).row()
         # print(f"on_combo_box_changed 콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
@@ -424,12 +454,27 @@ class MainWindow(QMainWindow):
         if container_ui is not None:
             char_name = container_ui.comboBox.currentText()
             item = container_ui.tableWidget_cal.item(cell_row, cell_column)
-                    
+            
             self.json_Userdatas, result = FunctionCalGrowth.updateTable(self.json_Userdatas, row, cell_row, cell_column, int(item.text()))
+
             if result == 0:
                 FunctionCalGrowth.calSkillTable(self.json_Userdatas, self.json_table_skill, self.json_datas, char_name)
                 # class 반영
                 self.update_class(container_ui.label_oparts_main.text(), container_ui.label_oparts_sub.text(), container_ui.label_academy.text())
+    # 텍스트박스 텍스트 변경 이벤트 처리
+    def on_text_changed(self):
+        # 해당 캐릭터의 row 확인
+        widget = self.sender().parent()
+        row = self.listWidget_cal1.indexAt(widget.pos()).row()
+        # 작업할 row 설정
+        self.listWidget_cal1.setCurrentRow(row)
+        container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
+        if container_ui is not None:
+            char_name = container_ui.comboBox.currentText()
+            memo = container_ui.plainTextEdit.toPlainText()
+
+            FunctionCalGrowth.updateMemo(self.json_Userdatas, row, char_name, memo)
+    
     # class 생성 및 값 입력 / 테이블 반영
     def update_class(self,oparts_main,oparts_sub,academy):
         # print("Update 클래스")
@@ -573,10 +618,13 @@ class RangeDelegate(QItemDelegate):
     def setModelData(self, editor, model, index):
         try:
             value = int(editor.text())
-            if index.column() == 0:
-                range_min, range_max = 1, 5
-            else:
-                range_min, range_max = 1, 10
+            if index.row()==0 or index.row()==1:
+                if index.column() == 0:
+                    range_min, range_max = 1, 5
+                else:
+                    range_min, range_max = 1, 10
+            elif index.row()==2 or index.row()==3:
+                range_min, range_max = 0, 25
             value = min(max(range_min, value), range_max)
             model.setData(index, value, Qt.ItemDataRole.EditRole)
         except ValueError:

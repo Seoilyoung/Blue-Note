@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>380</width>
-    <height>50</height>
+    <width>370</width>
+    <height>98</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,14 +16,15 @@
   <widget class="QTableWidget" name="tableWidget_cal">
    <property name="geometry">
     <rect>
-     <x>224</x>
+     <x>223</x>
      <y>0</y>
-     <width>156</width>
-     <height>50</height>
+     <width>140</width>
+     <height>98</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">border: 1px solid rgb(130,135,144);
+border-right : none;</string>
    </property>
    <property name="verticalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -37,32 +38,51 @@
    <property name="selectionMode">
     <enum>QAbstractItemView::NoSelection</enum>
    </property>
+   <property name="textElideMode">
+    <enum>Qt::ElideNone</enum>
+   </property>
    <attribute name="horizontalHeaderVisible">
     <bool>false</bool>
    </attribute>
    <attribute name="horizontalHeaderCascadingSectionResizes">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>38</number>
+    <number>34</number>
    </attribute>
-   <attribute name="horizontalHeaderMinimumSectionSize">
-    <number>20</number>
+   <attribute name="horizontalHeaderHighlightSections">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="horizontalHeaderStretchLastSection">
+    <bool>false</bool>
    </attribute>
    <attribute name="verticalHeaderVisible">
     <bool>false</bool>
+   </attribute>
+   <attribute name="verticalHeaderCascadingSectionResizes">
+    <bool>true</bool>
    </attribute>
    <attribute name="verticalHeaderDefaultSectionSize">
     <number>24</number>
    </attribute>
    <row>
     <property name="text">
-     <string>C</string>
+     <string>skill_goal</string>
     </property>
    </row>
    <row>
     <property name="text">
-     <string>S</string>
+     <string>skill_current</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>liberation_goal</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>liberation_current</string>
     </property>
    </row>
    <column>
@@ -85,14 +105,29 @@
      <string>T4</string>
     </property>
    </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>5</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>10</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>10</string>
+    </property>
+   </item>
   </widget>
   <widget class="QLabel" name="label_img">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
-     <width>50</width>
-     <height>50</height>
+     <y>1</y>
+     <width>72</width>
+     <height>72</height>
     </rect>
    </property>
    <property name="font">
@@ -102,7 +137,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: 1px solid rgb(130,135,144);</string>
+    <string notr="true">border: 1px solid rgb(130,135,144);
+border-top: none;</string>
    </property>
    <property name="text">
     <string>Default</string>
@@ -123,7 +159,7 @@
      <x>0</x>
      <y>0</y>
      <width>380</width>
-     <height>50</height>
+     <height>96</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -136,10 +172,10 @@
   <widget class="QLabel" name="label_academy">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>72</x>
      <y>25</y>
-     <width>107</width>
-     <height>25</height>
+     <width>151</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="font">
@@ -149,7 +185,10 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">border: 1px solid rgb(130,135,144);
+border-top: none;
+border-left: none;
+border-right:none;</string>
    </property>
    <property name="text">
     <string>아카데미</string>
@@ -164,9 +203,60 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>1</y>
-     <width>107</width>
+     <x>72</x>
+     <y>2</y>
+     <width>150</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>맑은 고딕</family>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
+   <property name="mouseTracking">
+    <bool>true</bool>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::WheelFocus</enum>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="editable">
+    <bool>true</bool>
+   </property>
+   <property name="currentText">
+    <string>테스트(가나다라)</string>
+   </property>
+   <property name="maxVisibleItems">
+    <number>5</number>
+   </property>
+   <property name="insertPolicy">
+    <enum>QComboBox::NoInsert</enum>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+   </property>
+   <property name="minimumContentsLength">
+    <number>0</number>
+   </property>
+   <property name="frame">
+    <bool>true</bool>
+   </property>
+   <item>
+    <property name="text">
+     <string>테스트(가나다라)</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_oparts_main">
+   <property name="geometry">
+    <rect>
+     <x>72</x>
+     <y>49</y>
+     <width>76</width>
      <height>24</height>
     </rect>
    </property>
@@ -176,43 +266,8 @@
      <pointsize>8</pointsize>
     </font>
    </property>
-   <property name="focusPolicy">
-    <enum>Qt::WheelFocus</enum>
-   </property>
-   <property name="editable">
-    <bool>true</bool>
-   </property>
-   <property name="currentText">
-    <string>이름</string>
-   </property>
-   <property name="maxVisibleItems">
-    <number>5</number>
-   </property>
-   <property name="insertPolicy">
-    <enum>QComboBox::NoInsert</enum>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_oparts_main">
-   <property name="geometry">
-    <rect>
-     <x>157</x>
-     <y>0</y>
-     <width>67</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>맑은 고딕</family>
-     <pointsize>8</pointsize>
-    </font>
-   </property>
    <property name="styleSheet">
-    <string notr="true">border: 1px solid rgb(130,135,144);
-border-right: none;</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>주오파츠</string>
@@ -227,10 +282,10 @@ border-right: none;</string>
   <widget class="QLabel" name="label_oparts_sub">
    <property name="geometry">
     <rect>
-     <x>157</x>
-     <y>25</y>
-     <width>67</width>
-     <height>25</height>
+     <x>148</x>
+     <y>49</y>
+     <width>75</width>
+     <height>24</height>
     </rect>
    </property>
    <property name="font">
@@ -241,8 +296,9 @@ border-right: none;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">border: 1px solid rgb(130,135,144);
-border-right: none;
-border-top:none;</string>
+border-top: none;
+border-right:none;
+border-bottom:none;</string>
    </property>
    <property name="text">
     <string>보조오파츠</string>
@@ -287,6 +343,32 @@ border-top:none;</string>
     <set>Qt::NoTextInteraction</set>
    </property>
   </widget>
+  <widget class="QPlainTextEdit" name="plainTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>1</x>
+     <y>72</y>
+     <width>223</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>맑은 고딕</family>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid rgb(130,135,144);
+border-left : none;</string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+  </widget>
   <zorder>label_back</zorder>
   <zorder>tableWidget_cal</zorder>
   <zorder>label_academy</zorder>
@@ -295,6 +377,7 @@ border-top:none;</string>
   <zorder>label_oparts_main</zorder>
   <zorder>label_oparts_sub</zorder>
   <zorder>label_name</zorder>
+  <zorder>plainTextEdit</zorder>
  </widget>
  <resources/>
  <connections/>

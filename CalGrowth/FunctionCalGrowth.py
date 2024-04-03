@@ -44,13 +44,19 @@ def readCharSubOparts(datas, char_name):
         return datas[char_name]['SubOparts']
     except:
         return
+    
+def readCharMemo(datas, char_name):
+    try:
+        return datas["Default"]["Student"][char_name]['memo']
+    except:
+        return
 
 # 학생 정보 생성
 def insertStudent(data, index, char_name, academy, mainoparts, suboparts):
     if academy == 'SRT':
         academy = '발키리'
     data["Default"]["Student"][char_name] = {'index' : index, 'academy' : academy, 'mainoparts' : mainoparts, 'suboparts' : suboparts,
-                                             'level_current' : 0, 'level_goal' : 0,'skill_current' : [0,0,0,0], 'skill_goal' : [0,0,0,0], 
+                                             'level_current' : 0, 'level_goal' : 0,'skill_current' : [0,0,0,0], 'skill_goal' : [0,0,0,0], 'liberation_current':0, 'liberation_goal':0,
                                              'oparts_main' : [0,0,0,0], 'oparts_sub' : [0,0,0,0], 'bd' : [0,0,0,0], 'note' : [0,0,0,0], 'secretnote' : 0}
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
     json_data = re.sub(r'\[\n\s+','[', json_data)
@@ -81,7 +87,7 @@ def deleteStudent(data, index):
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
     # print(data["Default"]["Student"])
-# 학생 정보 수정
+# 학생 정보 수정(학생명 변경시)
 def updateStudent(data, index, char_name, academy, mainoparts, suboparts):
     if academy == 'SRT':
         academy = '발키리'
@@ -101,7 +107,22 @@ def updateStudent(data, index, char_name, academy, mainoparts, suboparts):
     with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
         f.write(json_data)
     # print(data["Default"]["Student"])
-# 학생 정보 수정
+
+# 학생 메모 업데이트
+def updateMemo(data, index, char_name, memo):
+    for name, info in data["Default"]["Student"].items():
+        if index == info["index"]:
+            data["Default"]["Student"][char_name]["memo"] = memo
+            break
+        
+    json_data = json.dumps(data, ensure_ascii=False, indent=4)
+    json_data = re.sub(r'\[\n\s+','[', json_data)
+    json_data = re.sub(r',\n\s+',',', json_data)
+    json_data = re.sub(r'\n\s+\]',']', json_data)
+    with open('CalGrowth/DatabaseUser.json', 'w',encoding='UTF-8') as f:
+        f.write(json_data)
+
+# 학생 정보 init
 def initStudent(data, index, char_name):
     for name, info in data["Default"]["Student"].items():
         if index == info["index"]:
@@ -109,10 +130,15 @@ def initStudent(data, index, char_name):
             data["Default"]["Student"][char_name]["academy"] = ""
             data["Default"]["Student"][char_name]["mainoparts"] = ""
             data["Default"]["Student"][char_name]["suboparts"] = ""
+            data["Default"]["Student"][char_name]["skill_current"] = [0, 0, 0, 0]
+            data["Default"]["Student"][char_name]["skill_goal"] = [5, 10, 10, 10]
+            data["Default"]["Student"][char_name]["liberation_current"] = [0,0,0]
+            data["Default"]["Student"][char_name]["liberation_goal"] = [25,25,25]
             data["Default"]["Student"][char_name]["oparts_main"] = [0, 0, 0, 0]
             data["Default"]["Student"][char_name]["oparts_sub"] = [0, 0, 0, 0]
             data["Default"]["Student"][char_name]["bd"] = [0, 0, 0, 0]
             data["Default"]["Student"][char_name]["note"] = [0, 0, 0, 0]
+            data["Default"]["Student"][char_name]["memo"] = ""
             break
 
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
@@ -145,14 +171,25 @@ def updateIndex(data, index1, index2):
     # print(data["Default"]["Student"])
 # 학생 스킬 테이블 수정
 def updateTable(data, index, row, column, value):
-    if row == 0:
-        menu = "skill_goal"
-    elif row == 1:
-        menu = "skill_current"
+    if row==0 or row==1:
+        menu = "skill"
+    elif row==2 or row==3:
+        menu = "liberation"
+
+    if row%2 == 0:
+        menu = menu + "_goal"
+    elif row%2 == 1:
+        menu = menu + "_current"
 
     for name, info in data["Default"]["Student"].items():
         if index == info["index"]:
-            data["Default"]["Student"][name][menu][column] = value
+            # 데이터 수정 
+            if row==0 or row==1:
+                data["Default"]["Student"][name][menu][column] = value
+            elif row==2 or row==3:
+                data["Default"]["Student"][name][menu][column-1] = value
+                
+            # 공백 오류 통제
             if info["academy"] != "":
                 result = 0
             else:
@@ -183,6 +220,10 @@ def calSkillTable(data, data_skill, database, char_name):
     if char_name in database and char_name in data["Default"]["Student"]:
         list_goal = data["Default"]["Student"][char_name]['skill_goal']
         list_current = data["Default"]["Student"][char_name]['skill_current']
+        list_liberation_goal = data["Default"]["Student"][char_name]['liberation_goal']
+        list_liberation_current = data["Default"]["Student"][char_name]['liberation_current']
+        
+        #[T1,T2,T3,T4]
         list_oparts_main = [0,0,0,0]
         list_oparts_sub = [0,0,0,0]
         list_bd = [0,0,0,0]
@@ -220,6 +261,13 @@ def calSkillTable(data, data_skill, database, char_name):
                             continue
                         list_oparts_main[num2] += database[char_name]["Skill_Note"]["Main"][i-2]
                         list_oparts_sub[num2-1] += database[char_name]["Skill_Note"]["Sub"][i-2]
+        # Liberation 계산
+        # TableSkill의 Liberation = [오파츠T1,오파츠T2,재료노트T1,재료노트T2,재료노트T3]
+        for i in range(3):
+            for liberation_level in range(list_liberation_current[i]+1, list_liberation_goal[i]+1):
+                list_oparts_main[0] += data_skill['Liberation'][str(liberation_level)][0]
+                list_oparts_main[1] += data_skill['Liberation'][str(liberation_level)][1]
+
         # data에 입력                
         data["Default"]["Student"][char_name]['bd'] = list_bd
         data["Default"]["Student"][char_name]['note'] = list_note
