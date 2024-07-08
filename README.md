@@ -60,6 +60,8 @@
 - selenium을 사용하는 방식은 javascript로 랜더링된 웹사이트를 크롤링할 때 적합하다. 속도 느림(약 4초)
 - requests를 사용하는 방식은 javascript로 동적으로 생성되는 정보는 크롤링할 수 없다. 속도 상대적으로 빠름(약 0.5초)
 - 여기서 크롤링하는 웹사이트는 javascript를 사용하므로 selenium과 같은 웹드라이버를 사용해야 한다.
+2024.07.08
+- 크롤링 방식은 속도 최적화면에서 한계가 있음. 그래서 api 방식으로 변경해서 초반 로딩 속도 개선했습니다. 
 
 [참고 자료]
 https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=python
