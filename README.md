@@ -63,3 +63,8 @@
 
 [참고 자료]
 https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=python
+
+[스크린샷]
+![스크린샷 2024-07-08 113652](https://github.com/Seoilyoung/Blue-Note/assets/15991117/8616a24b-a5cb-4425-95e4-b3fb92a02b9f)
+![스크린샷 2024-07-08 113709](https://github.com/Seoilyoung/Blue-Note/assets/15991117/14ca0b32-ee50-4f29-8891-44092c0817e9)
+
