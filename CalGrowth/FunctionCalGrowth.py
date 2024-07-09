@@ -57,7 +57,10 @@ def insertStudent(data, index, char_name, academy, mainoparts, suboparts):
         academy = '발키리'
     data["Default"]["Student"][char_name] = {'index' : index, 'academy' : academy, 'mainoparts' : mainoparts, 'suboparts' : suboparts,
                                              'level_current' : 0, 'level_goal' : 0,'skill_current' : [0,0,0,0], 'skill_goal' : [0,0,0,0], 'liberation_current':0, 'liberation_goal':0,
-                                             'oparts_main' : [0,0,0,0], 'oparts_sub' : [0,0,0,0], 'bd' : [0,0,0,0], 'note' : [0,0,0,0], 'secretnote' : 0}
+                                             'oparts_main' : [0,0,0,0], 'oparts_sub' : [0,0,0,0], 'bd' : [0,0,0,0], 'note' : [0,0,0,0], 
+                                             'report' : [0,0,0,0], 'credit' : 0,'secretnote' : 0, 'wb': [0,0,0], 
+                                             'memo':""
+                                             }
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
     json_data = re.sub(r'\[\n\s+','[', json_data)
     json_data = re.sub(r',\n\s+',',', json_data)
@@ -130,6 +133,8 @@ def initStudent(data, index, char_name):
             data["Default"]["Student"][char_name]["academy"] = ""
             data["Default"]["Student"][char_name]["mainoparts"] = ""
             data["Default"]["Student"][char_name]["suboparts"] = ""
+            data["Default"]["Student"][char_name]["level_current"] = 0
+            data["Default"]["Student"][char_name]["level_goal"] = 0
             data["Default"]["Student"][char_name]["skill_current"] = [0, 0, 0, 0]
             data["Default"]["Student"][char_name]["skill_goal"] = [5, 10, 10, 10]
             data["Default"]["Student"][char_name]["liberation_current"] = [0,0,0]
@@ -138,6 +143,10 @@ def initStudent(data, index, char_name):
             data["Default"]["Student"][char_name]["oparts_sub"] = [0, 0, 0, 0]
             data["Default"]["Student"][char_name]["bd"] = [0, 0, 0, 0]
             data["Default"]["Student"][char_name]["note"] = [0, 0, 0, 0]
+            data["Default"]["Student"][char_name]["report"] = [0,0,0,0]
+            data["Default"]["Student"][char_name]["credit"] = 0
+            data["Default"]["Student"][char_name]["secretnote"] = 0
+            data["Default"]["Student"][char_name]["wb"] = [0,0,0]
             data["Default"]["Student"][char_name]["memo"] = ""
             break
 
@@ -203,9 +212,16 @@ def updateTable(data, index, row, column, value):
         f.write(json_data)
     # print(data["Default"]["Student"])
     return data, result
-# 재화 테이블 수정
+
+# 재화(스킬,오파츠)테이블 수정
 def updateTable2(data, item_type, item_name, column, value):
-    data["Default"][item_type][item_name][3-column] = value
+    if item_type == "Oparts" or item_type == "BD" or item_type == "Note":
+        data["Default"][item_type][item_name][3-column] = value
+    elif item_type == "wb":
+        data["Default"][item_type][column] = value
+    else:
+        data["Default"][item_type] = value
+
     json_data = json.dumps(data, ensure_ascii=False, indent=4)
     json_data = re.sub(r'\[\n\s+','[', json_data)
     json_data = re.sub(r',\n\s+',',', json_data)
@@ -229,6 +245,8 @@ def calSkillTable(data, data_skill, database, char_name):
         list_bd = [0,0,0,0]
         list_note = [0,0,0,0]
         num_secretnote = 0
+        num_credit = 0
+
         # BD 스킬 계산
         if list_goal[0] > list_current[0]:
             for i in range(list_current[0]+1, list_goal[0]+1):

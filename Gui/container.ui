@@ -54,11 +54,17 @@
    <attribute name="horizontalHeaderDefaultSectionSize">
     <number>49</number>
    </attribute>
+   <attribute name="horizontalHeaderHighlightSections">
+    <bool>false</bool>
+   </attribute>
    <attribute name="verticalHeaderVisible">
     <bool>false</bool>
    </attribute>
    <attribute name="verticalHeaderDefaultSectionSize">
     <number>24</number>
+   </attribute>
+   <attribute name="verticalHeaderHighlightSections">
+    <bool>false</bool>
    </attribute>
    <row>
     <property name="text">

@@ -1,9 +1,10 @@
 class dataset:
     def __init__(self,name):
         self.ID = name
-        self.Report = 0
-        self.Credit = [0,0]
-        self.ScretNote = 0
+        self.Report = [0,0,0,0]
+        self.Credit = 0
+        self.Secretnote = 0
+        self.wb = [0,0,0]
         self.Oparts = {
             "네브라" :[0,0,0,0],
             "파에스토스" :[0,0,0,0],
@@ -57,20 +58,32 @@ class dataset:
             suboparts = info["suboparts"]
             if academy != "" and mainoparts != "" and suboparts != "":
                 for i in range(4):
+                    self.Report[i] += info["report"][i]
                     self.Bd[academy][i] += info["bd"][i]
                     self.Note[academy][i] += info["note"][i]
-                    self.ScretNote += info["secretnote"]
                     self.Oparts[mainoparts][i] += info["oparts_main"][i]
                     self.Oparts[suboparts][i] += info["oparts_sub"][i]
+                self.Credit += info["credit"]
+                self.Secretnote += info["secretnote"]
+                for i in range(3):
+                    self.wb[i] += info["wb"][i]
 
-    def printList(self, itemtype, item_name):
+
+    def printItem(self, itemtype, item_name=None):
         if itemtype == 'Oparts':
-            list_test = self.Oparts[item_name]
+            item = self.Oparts[item_name]
         elif itemtype == 'BD':
-            list_test = self.Bd[item_name]
+            item = self.Bd[item_name]
         elif itemtype == 'Note':
-            list_test = self.Note[item_name]
-        return list_test
+            item = self.Note[item_name]
+        elif itemtype == 'wb':
+            item = self.wb
+        elif itemtype == 'Credit':
+            item = self.Credit
+        elif itemtype == 'Secretnote':
+            item = self.Secretnote
+        
+        return item
 
     def increase(self, A, B, list):
         if A == 'Bd':

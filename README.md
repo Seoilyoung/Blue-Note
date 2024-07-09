@@ -61,5 +61,16 @@
 - requests를 사용하는 방식은 javascript로 동적으로 생성되는 정보는 크롤링할 수 없다. 속도 상대적으로 빠름(약 0.5초)
 - 여기서 크롤링하는 웹사이트는 javascript를 사용하므로 selenium과 같은 웹드라이버를 사용해야 한다.
 
+2024.07.08
+- 크롤링 방식은 속도 최적화면에서 한계가 있음. 그래서 api 방식으로 변경해서 초반 로딩 속도 개선했습니다. 
+
+2024.07.09
+- 공지사항 가독성 개선
+- DB - 칸나(수영복) 픽업까지
+
 [참고 자료]
 https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=python
+
+[스크린샷]
+![스크린샷 2024-07-08 113652](https://github.com/Seoilyoung/Blue-Note/assets/15991117/8616a24b-a5cb-4425-95e4-b3fb92a02b9f)
+![스크린샷 2024-07-08 113709](https://github.com/Seoilyoung/Blue-Note/assets/15991117/14ca0b32-ee50-4f29-8891-44092c0817e9)
