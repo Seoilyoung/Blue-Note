@@ -19,7 +19,7 @@ import requests
 import datetime
 
 from PyQt6.QtCore import QDate, QTimer, Qt, QUrl, QSize, QPoint, QEvent, QThread, pyqtSignal
-from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices, QColor, QPainter
+from PyQt6.QtGui import QPixmap, QIcon, QFontMetrics, QCursor, QDesktopServices, QColor, QPainter, QFont, QFontDatabase
 from PyQt6.uic import loadUi
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QGraphicsDropShadowEffect,
@@ -40,6 +40,7 @@ mainscreen_path = 'Gui\Screen.ui'
 loadingscreen_path = 'Gui\Screen_Loading.ui'
 container_cal_path = 'Gui\Container.ui'
 container_char_path = 'Gui\Container_char.ui'
+font_path = 'Gui\Font\BMJUA_ttf.ttf'
 
 class CrawlThread(QThread):
     progressChanged = pyqtSignal(int)
@@ -99,6 +100,8 @@ class LoadingWindow(QWidget):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+
+        self.set_font(font_path)
 
         self.loading_window = LoadingWindow()
         self.loading_window.show()
@@ -176,7 +179,6 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self.next_image)
         self.timer.start(3000)
             
-        
         # Home - 공지사항, 주요소식
         self.createTable(self.tableWidget_home1, self.crawl_thread.notices)
         self.createTable(self.tableWidget_home2, self.crawl_thread.maintopics)
@@ -743,7 +745,15 @@ class MainWindow(QMainWindow):
     #콤보박스 휠 이벤트 무시
     def ignore_wheel_event(self, event):
         event.ignore()
-        
+
+    # GUI 폰트 추가
+    def set_font(self, fontpath):
+        font_id = QFontDatabase.addApplicationFont(fontpath)
+
+        if font_id == -1:
+            print("폰트 로드 실패")
+            return
+
 
 # 공지사항 제목 라벨 속성 부여
 class ClickableLabel(QLabel):
