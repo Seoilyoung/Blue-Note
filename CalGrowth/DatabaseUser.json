@@ -12,7 +12,7 @@
             },"사키(수영복)": {
                 "index": 3,"academy": "발키리","mainoparts": "볼프세크","suboparts": "아틀란티스","level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [0,0,0],"oparts_main": [30,51,22,44],"oparts_sub": [117,71,86,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0]
             },"아스나(바니걸)": {
-                "index": 4,"academy": "밀레니엄","mainoparts": "로혼치","suboparts": "네브라","level_current": 0,"level_goal": 0,"skill_current": [1,0,0,0],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [0,0,0],"oparts_main": [35,67,27,56],"oparts_sub": [134,75,92,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0]
+                "index": 4,"academy": "밀레니엄","mainoparts": "로혼치","suboparts": "네브라","level_current": 0,"level_goal": 0,"skill_current": [1,0,0,0],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [0,0,0],"oparts_main": [35,67,27,56],"oparts_sub": [134,75,92,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
             },"시로코(라이딩)": {
                 "index": 5,"academy": "아비도스","mainoparts": "파에스토스","suboparts": "안티키테라","level_current": 0,"level_goal": 0,"skill_current": [3,7,7,7],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [0,0,0],"oparts_main": [0,0,8,42],"oparts_sub": [0,28,98,0],"bd": [0,18,30,8],"note": [0,0,36,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0]
             },"코타마(캠핑)": {
@@ -28,11 +28,11 @@
             },"히나": {
                 "index": 2,"academy": "게헨나","mainoparts": "보이니치","suboparts": "보이니치","level_current": 0,"level_goal": 0,"skill_current": [3,7,7,7],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [0,0,25],"oparts_main": [225,70,9,50],"oparts_sub": [0,26,84,0],"bd": [0,18,30,8],"note": [0,0,36,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0]
             },"아리스": {
-                "index": 0,"academy": "밀레니엄","mainoparts": "네브라","suboparts": "님루드","level_current": 0,"level_goal": 0,"skill_current": [5,4,4,4],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [20,0,0],"oparts_main": [225,84,9,36],"oparts_sub": [90,54,75,0],"bd": [0,0,0,0],"note": [0,60,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0]
+                "index": 0,"academy": "밀레니엄","mainoparts": "네브라","suboparts": "님루드","level_current": 0,"level_goal": 0,"skill_current": [5,4,4,4],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [20,0,0],"oparts_main": [225,84,9,36],"oparts_sub": [90,54,75,0],"bd": [0,0,0,0],"note": [0,60,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
             },"요시미(밴드)": {
-                "index": 11,"academy": "트리니티","mainoparts": "위니페소키","suboparts": "님루드","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [25,25,25],"oparts_main": [705,265,19,46],"oparts_sub": [124,76,93,0],"bd": [30,30,30,8],"note": [75,75,75,60],"secretnote": 3,"memo": ""
+                "index": 11,"academy": "트리니티","mainoparts": "위니페소키","suboparts": "님루드","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [25,25,25],"oparts_main": [705,265,19,46],"oparts_sub": [124,76,93,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
             },"칸나(수영복)": {
-                "index": 12,"academy": "발키리","mainoparts": "양모","suboparts": "볼프세크","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [25,25,25],"oparts_main": [707,264,19,42],"oparts_sub": [130,75,89,0],"bd": [30,30,30,8],"note": [75,75,75,60],"secretnote": 3,"memo": ""
+                "index": 12,"academy": "발키리","mainoparts": "양모","suboparts": "볼프세크","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [25,25,25],"oparts_main": [707,264,19,42],"oparts_sub": [130,75,89,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
             }
         }
     },"Preset1": {

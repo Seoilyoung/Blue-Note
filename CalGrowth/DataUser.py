@@ -5,6 +5,7 @@ class dataset:
         self.Credit = 0
         self.Secretnote = 0
         self.wb = [0,0,0]
+        self.memo = ""
         self.Oparts = {
             "네브라" :[0,0,0,0],
             "파에스토스" :[0,0,0,0],
