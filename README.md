@@ -68,7 +68,10 @@
 
 2024.07.09
 - 공지사항 가독성 개선
-- DB - 칸나(수영복) 픽업까지
+- DB ~칸나(수영복)
+
+2024.07.30
+- DB ~사오리(수영복) 
 
 [참고 자료]
 https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=python
