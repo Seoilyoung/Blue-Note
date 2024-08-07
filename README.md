@@ -73,6 +73,9 @@
 2024.07.30
 - DB ~사오리(수영복) 
 
+2024.08.07
+- 폴더 정리
+
 [참고 자료]
 https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/?tabs=python
 
