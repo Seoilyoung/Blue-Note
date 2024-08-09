@@ -57,7 +57,8 @@ def insertStudent(data, index, char_name, academy, mainoparts, suboparts):
     if academy == 'SRT':
         academy = '발키리'
     data["Default"]["Student"][char_name] = {'index' : index, 'academy' : academy, 'mainoparts' : mainoparts, 'suboparts' : suboparts,
-                                             'level_current' : 0, 'level_goal' : 0,'skill_current' : [0,0,0,0], 'skill_goal' : [0,0,0,0], 'liberation_current':0, 'liberation_goal':0,
+                                             'level_current' : 0, 'level_goal' : 0,'skill_current' : [1,1,1,1], 'skill_goal' : [1,1,1,1],
+                                             'liberation_current':[1,1,1], 'liberation_goal':[1,1,1],
                                              'oparts_main' : [0,0,0,0], 'oparts_sub' : [0,0,0,0], 'bd' : [0,0,0,0], 'note' : [0,0,0,0], 
                                              'report' : [0,0,0,0], 'credit' : 0,'secretnote' : 0, 'wb': [0,0,0], 
                                              'memo':""
@@ -136,10 +137,10 @@ def initStudent(data, index, char_name):
             data["Default"]["Student"][char_name]["suboparts"] = ""
             data["Default"]["Student"][char_name]["level_current"] = 0
             data["Default"]["Student"][char_name]["level_goal"] = 0
-            data["Default"]["Student"][char_name]["skill_current"] = [0, 0, 0, 0]
+            data["Default"]["Student"][char_name]["skill_current"] = [1, 1, 1, 1]
             data["Default"]["Student"][char_name]["skill_goal"] = [5, 10, 10, 10]
-            data["Default"]["Student"][char_name]["liberation_current"] = [0,0,0]
-            data["Default"]["Student"][char_name]["liberation_goal"] = [25,25,25]
+            data["Default"]["Student"][char_name]["liberation_current"] = [1, 1, 1]
+            data["Default"]["Student"][char_name]["liberation_goal"] = [25, 25, 25]
             data["Default"]["Student"][char_name]["oparts_main"] = [0, 0, 0, 0]
             data["Default"]["Student"][char_name]["oparts_sub"] = [0, 0, 0, 0]
             data["Default"]["Student"][char_name]["bd"] = [0, 0, 0, 0]

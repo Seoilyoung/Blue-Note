@@ -1,8 +1,8 @@
 # 설정 및 상수 정의
+window_title = 'BlueNote'
 
 img_back_path = 'src/Gui/Useimages/background.webp'
 icon_path = 'src/Gui/Useimages/icon.ico'
-window_title = '블루 스케줄러'
 mainscreen_path = 'src/Gui/Screen.ui'
 loadingscreen_path = 'src/Gui/Screen_Loading.ui'
 container_cal_path = 'src/Gui/Container.ui'
@@ -12,7 +12,6 @@ sticker_folder_path = 'src/Gui/Useimages/sticker/'
 Calgrowth_path = 'src/Calgrowth/'
 container_path = 'src/Gui/Container_char.ui'
 useimage_path = 'src/Gui/Useimages/'
-
 etc_img_paths = [
     ("src/Gui/Useimages/WB/0_체육 WB.webp", "체육 WB"),
     ("src/Gui/Useimages/WB/1_사격 WB.webp", "사격 WB"),
@@ -20,3 +19,5 @@ etc_img_paths = [
     ("src/Gui/Useimages/Etc/비의서.webp", "비의서"),
     ("src/Gui/Useimages/Etc/크레딧.webp", "크레딧")
     ]
+
+default_skill_level = 1

@@ -410,12 +410,45 @@ class MainWindow(QMainWindow):
         container_ui.comboBox.setCurrentText("")
         delegate = RangeDelegate()
         container_ui.tableWidget_cal.setItemDelegate(delegate)
+
+        # 테이블위젯 value 설정
+        for j in range(4):
+            if j==0:
+                item_goal_level = '5'
+            else:
+                item_goal_level = '10'
+            item_goal = QTableWidgetItem(item_goal_level)
+            item_goal.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+            container_ui.tableWidget_cal.setItem(0, j, item_goal)
+            item = QTableWidgetItem(str(config.default_skill_level))
+            item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+            container_ui.tableWidget_cal.setItem(1, j, item)
+            
+            # 해방 테이블
+            if j>=1:
+                item_goal = QTableWidgetItem('25')
+                item_goal.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                container_ui.tableWidget_cal.setItem(2, j, item_goal)
+                item = QTableWidgetItem(str(config.default_skill_level))
+                item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                container_ui.tableWidget_cal.setItem(3, j, item)
+
+        # 테이블위젯 안쓰는 셀 비활성화
+        for row in [2,3]:
+            if row < container_ui.tableWidget_cal.rowCount():  # Check if the row index is within the range
+                item = QTableWidgetItem()
+                item.setBackground(QColor('lightgray'))
+                item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEnabled)  # Disable the item
+                container_ui.tableWidget_cal.setItem(row, 0, item)  # Adjust row index to 0-based
+
         container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
         container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
         listwidget.addItem(container)
         listwidget.setItemWidget(container, container_ui)
         CalGrowth.FunctionCalGrowth.insertStudent(self.json_Userdatas, listwidget.count()-1, "Default "+str(listwidget.count()-1), "", "", "")
         self.json_Userdatas = CalGrowth.FunctionCalGrowth.openDBuser()
+
+
     # 버튼 - 캐릭터 제거
     def calgrowth_delete(self):
         listwidget = self.listWidget_cal1

@@ -20,4 +20,4 @@ backup_files
 BACKUP*.PY
 test*.py
 
-# pyinstaller -w -F --icon=src/Gui/Useimages/icon.ico -n BlueNote main.py
+# pyinstaller -w -F --icon=src/Gui/Useimages/icon.ico -n BlueNote --distpath main.py
