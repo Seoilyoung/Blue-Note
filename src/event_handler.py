@@ -2,9 +2,9 @@
 
 import sys
 from PyQt6.QtWidgets import QApplication
-from src.ui_setup import MainWindow
+from src.ui_setup import LoadingWindow
 
 def main():
     app = QApplication(sys.argv)
-    main_window = MainWindow()
+    window = LoadingWindow()
     sys.exit(app.exec())

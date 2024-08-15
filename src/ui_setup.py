@@ -28,13 +28,18 @@ class LoadingWindow(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
+        self.crawl_thread = crawler.CrawlThread()
+        self.crawl_thread.finished.connect(self.on_cache_loaded)
+
+        self.crawl_thread.start()
+
         # 스티커 지정
         if os.path.isdir(config.sticker_folder_path):
             count_sticker = len(os.listdir(config.sticker_folder_path))
         # 스티커 번호 랜덤
         num_sticker = random.randrange(1,count_sticker)
         loadUi(config.loadingscreen_path,self)
-        pixmap = QPixmap(config.sticker_folder_path + str(num_sticker) + '.webp')
+        pixmap = QPixmap(os.path.join(config.sticker_folder_path, f"{num_sticker}.webp"))
         self.label.setPixmap(pixmap)
         self.label.setScaledContents(True)
 
@@ -42,25 +47,37 @@ class LoadingWindow(QWidget):
         self.setFixedSize(180,230)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.show()
+
+    def on_cache_loaded(self):
+        self.mainWindow = MainWindow(self.crawl_thread)
+        self.mainWindow.show()
+        self.close()
+
+
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, crawl_thread):
         super().__init__()
 
         self.set_font(config.font_path)
 
-        self.loading_window = LoadingWindow()
-        self.loading_window.show()
+        # self.loading_window = LoadingWindow()
+        # self.loading_window.show()
 
-        self.crawl_thread = crawler.CrawlThread()
-        self.crawl_thread.progressChanged.connect(self.updateProgressBar)
-        self.crawl_thread.finished.connect(self.onCrawlFinished)
-        self.crawl_thread.finished.connect(self.loading_window.close)
-        self.crawl_thread.finished.connect(self.show)
-        self.crawl_thread.start()       
+        # self.crawl_thread = crawler.CrawlThread()
+        # self.crawl_thread.progressChanged.connect(self.updateProgressBar)
+        # self.crawl_thread.finished.connect(self.onCrawlFinished)
+        # self.crawl_thread.finished.connect(self.loading_window.close)
+        # self.crawl_thread.finished.connect(self.show)
+        # self.crawl_thread.start()       
+
+        self.crawl_thread = crawl_thread
 
         loadUi(config.mainscreen_path,self)
-        pixmap = QPixmap(config.img_back_path)
+
+        #배경 이미지
+        pixmap = self.crawl_thread.image_cache.get_image(f"Etc\Background.webp")
         self.label.setPixmap(pixmap)
         self.label.setScaledContents(True)
 
@@ -77,6 +94,22 @@ class MainWindow(QMainWindow):
         
         # 슬라이드쇼
         self.pushButton_slide_home.clicked.connect(self.clicked_image)
+
+
+        # Home - 슬라이드쇼 링크
+        self.label_slide_home.setScaledContents(True)
+        self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
+
+        self.current_image = 0
+        self.setImageFromUrl(self.current_image)
+
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.next_image)
+        self.timer.start(3000)
+            
+        # Home - 공지사항, 주요소식
+        self.createTable(self.tableWidget_home1, self.crawl_thread.notices)
+        self.createTable(self.tableWidget_home2, self.crawl_thread.maintopics)
 
 
         # 재화계산화면
@@ -109,26 +142,6 @@ class MainWindow(QMainWindow):
 
     def updateProgressBar(self, value):
         self.loading_window.progressBar.setValue(value)
-        
-    def onCrawlFinished(self):
-        # 크롤링 작업이 완료되면 호출되는 콜백 함수
-        self.loading_window.progressBar.setValue(100)
-        time.sleep(0.5)
-        
-        # Home - 슬라이드쇼 링크
-        self.label_slide_home.setScaledContents(True)
-        self.label_slide_home.setGraphicsEffect(QGraphicsDropShadowEffect(blurRadius=25, xOffset=0, yOffset=0))
-
-        self.current_image = 0
-        self.setImageFromUrl(self.current_image)
-
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.next_image)
-        self.timer.start(3000)
-            
-        # Home - 공지사항, 주요소식
-        self.createTable(self.tableWidget_home1, self.crawl_thread.notices)
-        self.createTable(self.tableWidget_home2, self.crawl_thread.maintopics)
 
     # 메뉴바
     def show_screen1(self):
@@ -261,7 +274,7 @@ class MainWindow(QMainWindow):
                 #캐릭터 이미지
                 char_name = list_item[i]
                 container_ui.comboBox.setCurrentText(char_name)
-                img_path = config.useimage_path + f"{item_type}/{char_name}.webp"
+                img_path = f"{item_type}\{char_name}.webp"
                 
                 #캐릭터 데이터 불러오기
                 academy = CalGrowth.FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
@@ -302,7 +315,7 @@ class MainWindow(QMainWindow):
 
                 # 아이템 이벤트 추가
                 # 마지막에 추가하는 이유는 처음 초기값에서 JSON의 값을 넣을 때 마다 이벤트가 발생하고 그로 인해 버그가 발생하는데 이를 예방하기 위함
-                container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
+                container_ui.comboBox.currentTextChanged.connect(self.on_combobox_changed)
                 container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
                 container_ui.plainTextEdit.textChanged.connect(self.on_text_changed)
                 # 캐릭터별 필요 재화 계산
@@ -314,9 +327,9 @@ class MainWindow(QMainWindow):
                 container.setSizeHint(QSize(0,50))
                 # 이미지
                 if item_type == 'BD' or item_type == 'Note':
-                    img_path = config.useimage_path + f"Academy/{i+1:02}.webp"
+                    img_path = f"Academy\{i+1:02}.webp"
                 else:
-                    img_path = config.useimage_path + f"{item_type}/{i+1:02}.webp"
+                    img_path = f"{item_type}\{i+1:02}.webp"
                 # 테이블위젯. 
                 list_insert = self.data_default.printItem(item_type,list_item[i])
                 for j in range(4):
@@ -339,9 +352,9 @@ class MainWindow(QMainWindow):
                         item_goal.setBackground(QColor(255, 255, 255))
                         item_goal.setForeground(QColor(0, 0, 0, 150))
                 container_ui.tableWidget_cal.cellChanged.connect(lambda row, column: self.on_table_cell_changed2(row, column) if row == 1 else None)
- 
-            if os.path.isfile(img_path):
-                pixmap = QPixmap(img_path)
+
+            pixmap = self.crawl_thread.image_cache.get_image(img_path)
+            if pixmap is not None:
                 container_ui.label_img.setPixmap(pixmap)
                 container_ui.label_name.setText(list_item[i])
             else:
@@ -355,7 +368,7 @@ class MainWindow(QMainWindow):
     def material_layout(self):
         # layout 구성
         def set_label_content(label_img, label_name, img_path, text):
-            pixmap = QPixmap(img_path)
+            pixmap = self.crawl_thread.image_cache.get_image(img_path)
             label_img.setPixmap(pixmap)
             label_name.setText(text)
         
@@ -441,7 +454,7 @@ class MainWindow(QMainWindow):
                 item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEnabled)  # Disable the item
                 container_ui.tableWidget_cal.setItem(row, 0, item)  # Adjust row index to 0-based
 
-        container_ui.comboBox.currentTextChanged.connect(self.on_combo_box_changed)
+        container_ui.comboBox.currentTextChanged.connect(self.on_combobox_changed)
         container_ui.tableWidget_cal.cellChanged.connect(self.on_table_cell_changed)
         listwidget.addItem(container)
         listwidget.setItemWidget(container, container_ui)
@@ -460,17 +473,18 @@ class MainWindow(QMainWindow):
             self.update_class()
             listwidget.takeItem(index)
     # 콤보박스 값 변경 이벤트 처리
-    def on_combo_box_changed(self, char_name):
-        
+    def on_combobox_changed(self, char_name):
         widget = self.sender().parent()
         row = self.listWidget_cal1.indexAt(widget.pos()).row()
-        # print(f"on_combo_box_changed 콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
+        # print(f"on_combobox_changed 콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
         self.listWidget_cal1.setCurrentRow(row)
         container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
         if container_ui is not None:
-            img_path = config.useimage_path + f"character/{char_name}.webp"
-            pixmap = QPixmap(img_path)
-            if os.path.isfile(img_path):
+            img_path = f"Character\{char_name}.webp"
+            pixmap = self.crawl_thread.image_cache.get_image(img_path)
+
+            # if os.path.isfile(img_path):
+            if pixmap is not None:
                 widget.label_img.setPixmap(pixmap)
                 academy = CalGrowth.FunctionCalGrowth.readCharAcademy(self.json_datas, char_name)
                 oparts_main = CalGrowth.FunctionCalGrowth.readCharMainOparts(self.json_datas, char_name)
@@ -498,9 +512,9 @@ class MainWindow(QMainWindow):
                 container_ui.label_oparts_main.setText("")
                 container_ui.label_oparts_sub.setText("")
                 CalGrowth.FunctionCalGrowth.initStudent(self.json_Userdatas, row, char_name)
-                self.json_Userdatas = CalGrowth.FunctionCalGrowth.openDBuser()
-            # class 반영
-            self.update_class()
+                self.json_Userdatas = CalGrowth.FunctionCalGrowth.openDBuser()   
+        # class 반영
+        self.update_class()
     # 테이블 셀 값 변경 이벤트 처리
     def on_table_cell_changed(self,cell_row,cell_column):
         widget = self.sender().parent()
