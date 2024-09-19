@@ -629,6 +629,8 @@ class MainWindow(QMainWindow):
         return super().eventFilter(source, event)
     # 오파츠, BD, 노트 테이블 변경 이벤트
     def on_table_cell_changed2(self,cell_row,cell_column):
+        print(cell_row, cell_column)
+
         widget = self.sender().parent()
         if widget.parent() is not None:
             listWidget = widget.parent().parent()
@@ -641,6 +643,7 @@ class MainWindow(QMainWindow):
             row = listWidget.indexAt(widget.pos()).row()
             listWidget.setCurrentRow(row)
             container_ui = listWidget.itemWidget(listWidget.currentItem())
+            container_ui.tableWidget_cal.blockSignals(True)
             if container_ui is not None:
                 item_name = container_ui.label_name.text()
                 item = container_ui.tableWidget_cal.item(cell_row, cell_column)
@@ -649,6 +652,9 @@ class MainWindow(QMainWindow):
                 self.set_cell_colors(item_goal,item)
                 CalGrowth.FunctionCalGrowth.updateTable2(self.json_Userdatas, item_type, item_name, cell_column, int(item.text()))
                 self.json_Userdatas = CalGrowth.FunctionCalGrowth.openDBuser()
+
+            container_ui.tableWidget_cal.blockSignals(False)
+        
 
     # 기타 재화 테이블 변경 이벤트
     def on_table_cell_changed3(self):
