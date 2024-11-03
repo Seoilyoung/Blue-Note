@@ -517,6 +517,16 @@ class MainWindow(QMainWindow):
         self.update_class()
     # 테이블 셀 값 변경 이벤트 처리
     def on_table_cell_changed(self,cell_row,cell_column):
+        #셀 값 가져오기
+        item = self.sender().item(cell_row, cell_column)
+        cell_value = item.text() if item else ""
+        #셀 값이 숫자가 아니거나 음수일 경우 0으로 수정
+        if not cell_value.isdigit() or int(cell_value) < 0:
+            self.sender().blockSignals(True)
+            cell_value = "0"
+            item.setText(cell_value)            
+            self.sender().blockSignals(False)
+
         widget = self.sender().parent()
         row = self.listWidget_cal1.indexAt(widget.pos()).row()
         # print(f"on_table_cell_changed 콤보박스가 listWidget_cal1의 {row}번째 아이템에 속해 있습니다.")
@@ -524,8 +534,7 @@ class MainWindow(QMainWindow):
         container_ui = self.listWidget_cal1.itemWidget(self.listWidget_cal1.currentItem())
         if container_ui is not None:
             char_name = container_ui.comboBox.currentText()
-            item = container_ui.tableWidget_cal.item(cell_row, cell_column)
-            
+                        
             self.json_Userdatas, result = CalGrowth.FunctionCalGrowth.updateTable(self.json_Userdatas, row, cell_row, cell_column, int(item.text()))
 
             if result == 0:
@@ -629,7 +638,15 @@ class MainWindow(QMainWindow):
         return super().eventFilter(source, event)
     # 오파츠, BD, 노트 테이블 변경 이벤트
     def on_table_cell_changed2(self,cell_row,cell_column):
-        print(cell_row, cell_column)
+        #셀 값 가져오기
+        item = self.sender().item(cell_row, cell_column)
+        cell_value = item.text() if item else ""
+        #셀 값이 숫자가 아니거나 음수일 경우 0으로 수정
+        if not cell_value.isdigit() or int(cell_value) < 0:
+            self.sender().blockSignals(True)
+            cell_value = "0"
+            item.setText(cell_value)            
+            self.sender().blockSignals(False)
 
         widget = self.sender().parent()
         if widget.parent() is not None:
@@ -646,11 +663,10 @@ class MainWindow(QMainWindow):
             container_ui.tableWidget_cal.blockSignals(True)
             if container_ui is not None:
                 item_name = container_ui.label_name.text()
-                item = container_ui.tableWidget_cal.item(cell_row, cell_column)
-                item_goal = container_ui.tableWidget_cal.item(0, cell_column)
-                
+                item_goal = self.sender().item(0, cell_column)
                 self.set_cell_colors(item_goal,item)
-                CalGrowth.FunctionCalGrowth.updateTable2(self.json_Userdatas, item_type, item_name, cell_column, int(item.text()))
+                
+                CalGrowth.FunctionCalGrowth.updateTable2(self.json_Userdatas, item_type, item_name, cell_column, int(cell_value))
                 self.json_Userdatas = CalGrowth.FunctionCalGrowth.openDBuser()
 
             container_ui.tableWidget_cal.blockSignals(False)
