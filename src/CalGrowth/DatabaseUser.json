@@ -1,11 +1,11 @@
 {
     "Default": {
-        "Report": [0,0,0,0],"Credit": 500,"Secretnote": 42,"wb": [2,3,3],"Oparts": {
-            "네브라": [1747,908,434,192],"파에스토스": [949,696,216,31],"볼프세크": [1177,622,206,99],"님루드": [1958,1096,346,105],"만드라고라": [994,774,265,16],"로혼치": [1151,811,218,61],"에테르": [1851,1484,440,180],"안티키테라": [1726,990,301,126],"보이니치": [1728,1409,248,107],"하니와": [1819,1231,453,75],"토템폴": [1251,473,213,83],"전지": [1208,783,203,110],"양모": [263,52,64,42],"인형": [672,266,110,75],"콜간테": [1171,649,294,113],"아틀란티스": [541,265,166,76],"12면체": [287,151,85,60],"킴바야": [353,190,109,42],"로켓": [242,124,80,38],"위니페소키": [1150,443,114,112]
+        "Report": [0,0,0,0],"Credit": 500,"Secretnote": 42,"wb": [77,77,77],"Oparts": {
+            "네브라": [1719,983,449,188],"파에스토스": [1016,673,157,37],"볼프세크": [1490,774,251,113],"님루드": [1718,1062,295,119],"만드라고라": [1128,779,209,15],"로혼치": [1403,917,284,81],"에테르": [1927,1609,419,192],"안티키테라": [1808,998,321,88],"보이니치": [1931,1607,302,142],"하니와": [2046,1326,458,84],"토템폴": [1289,505,223,85],"전지": [1280,884,268,122],"양모": [356,99,48,42],"인형": [879,347,146,91],"콜간테": [1262,637,297,76],"아틀란티스": [484,196,100,79],"12면체": [537,240,130,77],"킴바야": [611,248,144,24],"로켓": [470,198,147,29],"위니페소키": [1307,497,125,115]
         },"BD": {
-            "백귀야행": [614,106,206,35],"붉은겨울": [648,231,86,24],"트리니티": [361,30,119,58],"게헨나": [514,256,243,85],"아비도스": [534,149,200,31],"밀레니엄": [344,132,193,89],"아리우스": [407,204,92,38],"산해경": [683,263,271,46],"발키리": [528,222,198,33]
+            "백귀야행": [637,114,218,41],"붉은겨울": [726,265,111,29],"트리니티": [332,58,71,46],"게헨나": [409,164,161,61],"아비도스": [623,177,216,37],"밀레니엄": [424,156,210,96],"아리우스": [96,209,98,44],"산해경": [713,270,284,52],"발키리": [556,222,200,33]
         },"Note": {
-            "백귀야행": [397,489,123,31],"붉은겨울": [366,246,164,78],"트리니티": [426,273,296,201],"게헨나": [963,685,608,412],"아비도스": [429,395,252,182],"밀레니엄": [549,485,445,321],"아리우스": [349,201,106,62],"산해경": [595,347,174,106],"발키리": [455,310,306,130]
+            "백귀야행": [504,530,160,51],"붉은겨울": [571,321,251,120],"트리니티": [363,163,179,135],"게헨나": [786,509,410,265],"아비도스": [745,578,301,189],"밀레니엄": [864,693,588,398],"아리우스": [438,260,131,62],"산해경": [683,390,193,130],"발키리": [541,332,324,136]
         },"Student": {
             "아리스": {
                 "index": 0,"academy": "밀레니엄","mainoparts": "네브라","suboparts": "님루드","level_current": 0,"level_goal": 0,"skill_current": [5,4,4,4],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [20,0,0],"oparts_main": [225,84,9,36],"oparts_sub": [90,54,75,0],"bd": [0,0,0,0],"note": [0,60,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
@@ -21,10 +21,28 @@
                 "index": 5,"academy": "밀레니엄","mainoparts": "12면체","suboparts": "로혼치","level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [5,7,10,1],"liberation_current": [0,0,0],"liberation_goal": [0,0,0],"oparts_main": [23,39,14,19],"oparts_sub": [96,63,47,0],"bd": [30,30,30,8],"note": [50,50,38,20],"report": [0,0,0,0],"credit": 0,"secretnote": 1,"wb": [0,0,0]
             },"호시노(무장)": {
                 "index": 6,"academy": "아비도스","mainoparts": "네브라","suboparts": "로켓","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [678,269,20,47],"oparts_sub": [120,75,83,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
-            },"마코토": {
-                "index": 7,"academy": "게헨나","mainoparts": "네브라","suboparts": "전지","level_current": 0,"level_goal": 0,"skill_current": [0,0,0,0],"skill_goal": [5,10,10,10],"liberation_current": [0,0,0],"liberation_goal": [0,0,0],"oparts_main": [37,59,19,49],"oparts_sub": [115,70,83,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0]
-            },"아루(새해)": {
-                "index": 8,"academy": "게헨나","mainoparts": "토템폴","suboparts": "로혼치","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [677,265,18,56],"oparts_sub": [106,71,80,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
+            },"시로코(테러)": {
+                "index": 7,"academy": "아비도스","mainoparts": "12면체","suboparts": "토템폴","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [675,268,20,46],"oparts_sub": [129,74,87,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
+            },"히요리(수영복)": {
+                "index": 8,"academy": "아리우스","mainoparts": "하니와","suboparts": "콜간테","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [680,271,24,44],"oparts_sub": [127,80,88,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
+            },"키사키": {
+                "index": 9,"academy": "산해경","mainoparts": "로켓","suboparts": "인형","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [684,265,21,44],"oparts_sub": [124,78,82,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
+            },"레이죠": {
+                "index": 10,"academy": "산해경","mainoparts": "보이니치","suboparts": "위니페소키","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [683,270,26,46],"oparts_sub": [118,70,84,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
+            },"칸나(수영복)": {
+                "index": 11,"academy": "발키리","mainoparts": "양모","suboparts": "볼프세크","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [677,264,19,42],"oparts_sub": [130,75,89,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
+            },"카즈사(밴드)": {
+                "index": 12,"academy": "트리니티","mainoparts": "콜간테","suboparts": "로켓","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [680,274,29,45],"oparts_sub": [119,72,85,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
+            },"요시미(밴드)": {
+                "index": 13,"academy": "트리니티","mainoparts": "위니페소키","suboparts": "님루드","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [675,265,19,46],"oparts_sub": [124,76,93,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
+            },"모모이(메이드)": {
+                "index": 14,"academy": "밀레니엄","mainoparts": "로켓","suboparts": "안티키테라","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [674,260,19,46],"oparts_sub": [122,81,90,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
+            },"미도리(메이드)": {
+                "index": 15,"academy": "밀레니엄","mainoparts": "파에스토스","suboparts": "12면체","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [683,270,19,47],"oparts_sub": [124,83,88,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
+            },"마리(아이돌)": {
+                "index": 16,"academy": "트리니티","mainoparts": "로혼치","suboparts": "12면체","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [678,265,21,43],"oparts_sub": [130,72,88,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
+            },"사쿠라코(아이돌)": {
+                "index": 17,"academy": "트리니티","mainoparts": "만드라고라","suboparts": "아틀란티스","level_current": 0,"level_goal": 0,"skill_current": [1,1,1,1],"skill_goal": [5,10,10,10],"liberation_current": [1,1,1],"liberation_goal": [25,25,25],"oparts_main": [683,267,20,45],"oparts_sub": [128,78,87,0],"bd": [30,30,30,8],"note": [75,75,75,60],"report": [0,0,0,0],"credit": 0,"secretnote": 3,"wb": [0,0,0],"memo": ""
             }
         }
     },"Preset1": {
